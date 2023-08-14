@@ -274,3 +274,7 @@ Description du Modèle Conceptuel de Données (MCD) :
 - La table "Trip" représente les trajets proposés par "Travel Pulse Caravan". Elle contient les attributs : "tripId" (clé primaire), "departure" (lieu de départ), "destination" (destination finale), "departureDate" (date de départ), "departureTime" (heure de départ), et "availableSeats" (nombre de places disponibles).
 14
 Les clés primaires sont marquées avec "(PK)" et les clés étrangères sont marquées avec "(FK)". Les relations entre les tables sont définies par les clés étrangères qui référencent les clés primaires d'autres tables. Le MCD représente les entités essentielles impliquées dans la gestion de la flotte de véhicules et des réservations chez "Travel Pulse Caravan". Il sert de base pour la conception de la base de données et le développement du système de gestion.
+
+## --- Les librairie externe ---
+
+1. bacon/bacon-qr-code
