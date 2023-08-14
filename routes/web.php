@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\HomeAdminController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -33,6 +34,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
 */
 require __DIR__.'/auth.php';
 
+
 Route::prefix('/Administration')->name('Admin.')->group( function() {
     Route::get('/', [AdminController::class, 'index'])->name('index');
+
+    //Home Admin Routes
+    Route::get('/Acceuil-administration', [HomeAdminController::class, 'index'])->name('Home.index');
+    Route::get('/Acceuil-administration/ajouter-pub', [HomeAdminController::class, 'create'])->name('Home.create');
+    Route::post('/Acceuil-administration/ajouter-pub', [HomeAdminController::class, 'store'])->name('Home.store');
+    Route::get('/Acceuil-administration/{id}/editer', [HomeAdminController::class, 'edit'])->name('Home.edit');
+    Route::put('/Acceuil-administration/{id}/editer', [HomeAdminController::class, 'update'])->name('Home.update');
 }) ;
