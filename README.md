@@ -388,3 +388,7 @@ Pour réaliser le projet de gestion de la flotte de véhicules, des réservation
     - **Email**: Pour envoyer des confirmations de réservation, des alertes, etc.
     - **Notifications Push** : Pour envoyer des notifications en temps réel aux utilisateurs.
 
+
+## -- Api Key google calendar --
+AIzaSyDfhvm5bYx7Z0SGNfxfBqZ_vB6XUpyxJqQ
+
