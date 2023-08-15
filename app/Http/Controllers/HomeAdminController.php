@@ -36,26 +36,29 @@ class HomeAdminController extends Controller
 
     /**
      * TODO - Upload information
+     * This is used when users upload pictures or videos in the home create view
      * @param HomeAdmin $home
      * @param HomeAdminRequest $request
      * @return RedirectResponse() 
     */
-    public function store(HomeAdmin $home, HomeAdminRequest $request):RedirectResponse
-    {
-       
-        $home = HomeAdmin::create($request->validated());
-        $picture = $request->validated('picture');
-        if ($picture !== null && !$picture->getError()) {
-            $data['picture'] = $picture->store('home', 'public');
-        }
-        $home->update($data);
-        $video = $request->validated('video');
-        if ($video !== null && !$video->getError()) {
-            $data['video'] = $video->store('home', 'public');
-        }
-        $home->update($data);
-        return redirect()->route('Admin.Home.index')->with('success', 'Création de la publication réussi');
+   public function store(HomeAdminRequest $request): RedirectResponse
+{
+    $data = $request->validated(); // Retrieve validated data from the form
+
+    // Create a HomeAdmin instance with validated data
+    $home = HomeAdmin::create($data);
+
+    // Manage the upload of the image or video
+    if ($request->hasFile('media')) {
+        $mediaPath = $request->file('media')->store('home', 'public');
+        $mediaName = basename($mediaPath);
+        $home->update(['media' => $mediaName]);
     }
+
+    return redirect()->route('Admin.Home.index')->with('success', 'Création de la publication réussie');
+}
+
+   
 
     public function edit(HomeAdmin $home, string $id): View
     {

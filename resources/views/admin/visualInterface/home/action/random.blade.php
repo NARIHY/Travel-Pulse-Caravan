@@ -42,15 +42,11 @@
             <p style="color:rgb(114, 19, 19)"> {{$message}} </p>
         @enderror
 
-        <label for="picture">Ajouter une photo</label>
-        <input type="file" name="picture" id="picture" class="form-control @error('picture') is-invalid @enderror">
-        @error('picture')
-            <p style="color:rgb(114, 19, 19)"> {{$message}} </p>
-        @enderror
+        
 
-        <label for="video">Ajouter une video</label>
-        <input type="file" name="video" id="video" class="form-control @error('video') is-invalid @enderror">
-        @error('video')
+        <label for="media">Ajouter une video ou une photo</label>
+        <input type="file" name="media" id="video" class="form-control @error('media') is-invalid @enderror">
+        @error('media')
             <p style="color:rgb(114, 19, 19)"> {{$message}} </p>
         @enderror
 
@@ -79,29 +75,19 @@
 
         <div class="row mb-3" style="margin-top: 20px">
             <div class="col-6">
-                <label for="picture">Ajouter une photo</label>
-                <input type="file" name="picture" id="picture" class="form-control @error('picture') is-invalid @enderror">
-                @error('picture')
+                <label for="media">Ajouter une video ou une photo</label>
+                <input type="file" name="media" id="video" class="form-control @error('media') is-invalid @enderror">
+                @error('media')
                     <p style="color:rgb(114, 19, 19)"> {{$message}} </p>
-                @enderror
+                @enderror                                                                       
             </div>
             <div class="col-6">
                 <img src="/storage/{{$home->picture}}" alt="{{$home->title}}" width="100%">
-            </div>
-        </div>
-
-        <div class="row mb-3" style="margin-top: 20px">
-            <div class="col-6">
-                <label for="video">Ajouter une video</label>
-                <input type="file" name="video" id="video" class="form-control @error('video') is-invalid @enderror">
-                @error('video')
-                    <p style="color:rgb(114, 19, 19)"> {{$message}} </p>
-                @enderror
-            </div>
-            <div class="col-6">
                 <video src="/storage/{{$home->video}}" width="100%"></video>
             </div>
         </div>
+
+      
 
         
 

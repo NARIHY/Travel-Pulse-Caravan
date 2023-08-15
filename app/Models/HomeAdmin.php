@@ -4,16 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class HomeAdmin extends Model
+class HomeAdmin extends Model implements HasMedia
 {
     use HasFactory;
-
+    use InteractsWithMedia;
     protected $fillable = [
         'title',
         'content',
-        'picture',
-        'video',
-        'posted_by'
+        'posted_by', 
+        'media'
     ];
 }

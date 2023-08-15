@@ -24,9 +24,13 @@ class HomeAdminRequest extends FormRequest
         return [
             'title' => ['required', 'min:3'],
             'content' => ['required', 'min:3'],
-            'video' => ['required_without_all:picture', 'mimetypes:video/mp4,video/mov,video/avi', 'max:100000'],
-            'picture' => [ 'required_without_all:video', 'image', 'max:10000']
+            'media' => [
+                'required_without_all:media', // Au moins un média (image ou vidéo) doit être présent
+                'mimetypes:video/mp4,video/mov,video/avi,image/jpeg,image/png,image/jpg,image/gif', // Types de médias acceptés
+                'max:512000000', // Taille maximale des médias (5 Go)
+            ],
         ];
+        
     }
     
 }

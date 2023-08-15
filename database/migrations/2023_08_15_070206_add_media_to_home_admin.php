@@ -11,13 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('home_admins', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->longText('content');
-           
-            $table->string('posted_by')->nullable();
-            $table->timestamps();
+        Schema::table('home_admins', function (Blueprint $table) {
+            $table->string('media')->nullable();
         });
     }
 
@@ -26,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('home_admins');
+        Schema::table('home_admins', function (Blueprint $table) {
+            //
+        });
     }
 };
