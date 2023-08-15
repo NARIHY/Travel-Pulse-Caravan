@@ -7,6 +7,8 @@ use App\Models\HomeAdmin;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Storage;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class HomeAdminController extends Controller
 {
@@ -51,8 +53,7 @@ class HomeAdminController extends Controller
     // Manage the upload of the image or video
     if ($request->hasFile('media')) {
         $mediaPath = $request->file('media')->store('home', 'public');
-        $mediaName = basename($mediaPath);
-        $home->update(['media' => $mediaName]);
+        $home->update(['media' =>  $mediaPath]);
     }
 
     return redirect()->route('Admin.Home.index')->with('success', 'Création de la publication réussie');
@@ -62,9 +63,35 @@ class HomeAdminController extends Controller
 
     public function edit(HomeAdmin $home, string $id): View
     {
+       
         $home = HomeAdmin::findOrFAil($id);
         return view('admin.visualInterface.home.action.random', [
             'home' => $home
         ]);
     }
+
+    public function delete(string $id)
+    {
+       
+        try {
+            $home = HomeAdmin::findOrFail($id);
+
+            // Supprimer le fichier média associé du stockage s'il existe
+            if ($home->media) {
+                
+                if (Storage::disk('public')->exists($home->media)) {
+                     Storage::disk('public')->delete($home->media);           
+                }
+            }
+            
+            // Supprimer l'objet HomeAdmin lui-même
+            $home->delete();
+
+            return redirect()->route('Admin.Home.index')->with('success', 'Suppression réussie');
+        } catch (\Exception $e) {
+            return redirect()->route('Admin.Home.index')->with('error', 'Une erreur est survenue lors de la suppression');
+        }
+    }
+
+
 }

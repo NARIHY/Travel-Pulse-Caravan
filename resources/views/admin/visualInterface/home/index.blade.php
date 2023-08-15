@@ -22,6 +22,11 @@
         {{session('success')}}
       </div>
     @endif
+    @if(session('error'))
+      <div class="alert alert-danger" style="text-align: center">
+        {{session('error')}}
+      </div>
+    @endif
 
     <div>
         <table class="table datatable">
@@ -45,7 +50,7 @@
                                     <a href="{{route('Admin.Home.edit', ['id'=> $homes->id])}}" class="btn btn-primary">Modifier</a>
                                 </div>
                                 <div class="col-6">
-                                    <form action="" method="post">
+                                    <form action="{{route('Admin.Home.delete', ['id' => $homes->id])}}" method="post">
                                         @csrf
                                         @method('DELETE')
                                         <input type="submit" class="btn btn-danger" value="Supprimer">

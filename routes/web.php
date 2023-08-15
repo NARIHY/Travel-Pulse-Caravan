@@ -44,4 +44,5 @@ Route::prefix('/Administration')->name('Admin.')->group( function() {
     Route::post('/Acceuil-administration/ajouter-pub', [HomeAdminController::class, 'store'])->name('Home.store');
     Route::get('/Acceuil-administration/{id}/editer', [HomeAdminController::class, 'edit'])->name('Home.edit');
     Route::put('/Acceuil-administration/{id}/editer', [HomeAdminController::class, 'update'])->name('Home.update');
+    Route::delete('/Acceuil-administration/{id}/delete', [HomeAdminController::class, 'delete'])->name('Home.delete');
 }) ;
