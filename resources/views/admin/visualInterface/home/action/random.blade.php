@@ -82,8 +82,17 @@
                 @enderror                                                                       
             </div>
             <div class="col-6">
-                <img src="/storage/{{$home->picture}}" alt="{{$home->title}}" width="100%">
-                <video src="/storage/{{$home->video}}" width="100%"></video>
+                @foreach($mediaCollection as $media)
+                @if($media->mime_type === 'image/jpeg' || $media->mime_type === 'image/png')
+                    <img src="{{ $media->getUrl() }}" alt="Media">
+                @elseif($media->mime_type === 'video/mp4')
+                    <video controls>
+                        <source src="{{ $media->getUrl() }}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                @endif
+            @endforeach
+
             </div>
         </div>
 
