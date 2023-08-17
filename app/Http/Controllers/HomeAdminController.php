@@ -128,9 +128,8 @@ class HomeAdminController extends Controller
      * 
      * 
      *  */
-    public function delete(string $id)
+    public function delete(string $id): RedirectResponse
     {
-       
         try {
             $home = HomeAdmin::findOrFail($id);
 
