@@ -26,6 +26,11 @@
         <p class="text-center">{{session('error')}}</p>
     </div>
 @endif
+@if (session('success'))
+    <div class="alert alert-danger">
+        <p class="text-center">{{session('success')}}</p>
+    </div>
+@endif
 
 <div class="container">
     @if (request()->routeIS('Admin.Home.create'))

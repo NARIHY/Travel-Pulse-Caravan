@@ -294,6 +294,11 @@
               <i class="bi bi-circle"></i><span>Information sur l'entreprise</span>
             </a>
           </li>
+          <li>
+            <a href="{{route('Admin.Entreprise.flote.index')}}">
+              <i class="bi bi-circle"></i><span>Nos flotes</span>
+            </a>
+          </li>
           
         </ul>
       </li><!-- End Forms Nav -->

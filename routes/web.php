@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeAdminController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -45,4 +46,11 @@ Route::prefix('/Administration')->name('Admin.')->group( function() {
     Route::get('/Acceuil-administration/{id}/editer', [HomeAdminController::class, 'edit'])->name('Home.edit');
     Route::put('/Acceuil-administration/{id}/editer', [HomeAdminController::class, 'update'])->name('Home.update');
     Route::delete('/Acceuil-administration/{id}/delete', [HomeAdminController::class, 'delete'])->name('Home.delete');
+    
+    //flote
+    Route::get('/Entreprise/nos-flote', [CategoryController::class, 'index'])->name('Entreprise.flote.index');
+    Route::get('/Entreprise/nos-flote/creation', [CategoryController::class, 'create'])->name('Entreprise.flote.create');
+    Route::post('/Entreprise/nos-flote/creation', [CategoryController::class, 'store'])->name('Entreprise.flote.store');
+    Route::get('/Entreprise/nos-flote/{id}/mis-a-jour', [CategoryController::class, 'edit'])->name('Entreprise.flote.edit');
+    Route::put('/Entreprise/nos-flote/{id}/mis-a-jour', [CategoryController::class, 'update'])->name('Entreprise.flote.update');
 }) ;
