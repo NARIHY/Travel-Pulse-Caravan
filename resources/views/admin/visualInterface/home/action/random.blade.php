@@ -21,13 +21,9 @@
     </nav>
 </div>
 
-@if ($errors->any())
+@if (session('error'))
     <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
+        <p class="text-center">{{session('error')}}</p>
     </div>
 @endif
 
@@ -67,6 +63,7 @@
 
     <form action="" method="post" enctype="multipart/form-data">
         @csrf
+        @method('PUT')
         <label for="title">Titre du publication</label>
         <input type="text" name="title" id="title" class="form-control @error('title') is-invalid @enderror" value="{{$home->title}}">
         @error('title')
@@ -76,7 +73,7 @@
         <div class="row mb-3" style="margin-top: 20px">
             <div class="col-6">
                 <label for="media">Ajouter une video ou une photo</label>
-                <input type="file" name="media" id="video" class="form-control @error('media') is-invalid @enderror">
+                <input type="file" name="media" id="media" class="form-control @error('media') is-invalid @enderror">
                 @error('media')
                     <p style="color:rgb(114, 19, 19)"> {{$message}} </p>
                 @enderror                                                                       
@@ -84,10 +81,10 @@
             <div class="col-6">
                 @foreach($mediaCollection as $media)
                 @if($media->mime_type === 'image/jpeg' || $media->mime_type === 'image/png')
-                    <img src="{{ $media->getUrl() }}" alt="Media">
+                    <img src="{{ $media->getUrl() }}" alt="Media" width="100%">
                 @elseif($media->mime_type === 'video/mp4')
                     <video controls>
-                        <source src="{{ $media->getUrl() }}" type="video/mp4">
+                        <source src="{{ $media->getUrl() }}" type="video/mp4" width="50%">
                         Your browser does not support the video tag.
                     </video>
                 @endif

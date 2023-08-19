@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\HomeAdminRequest;
+use App\Http\Requests\HomeAdminUpdateRequest;
 use App\Models\HomeAdmin;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -58,6 +59,9 @@ class HomeAdminController extends Controller
                     // Add the uploaded media to the 'home_collection' collection on the specified disk
                     $media = $home->addMedia($request->file('media'))
                         ->toMediaCollection('home_collection', 'public'); // Change 'disk_name' to the actual disk name
+                    //storage Path
+                    $storagePath = $media->getPath();
+                    $home->update(['media'=> $storagePath]);
                     // You can also set additional media properties here if needed
                 } catch (\Exception $mediaException) {
                     // Handle media-related exceptions
@@ -109,6 +113,46 @@ class HomeAdminController extends Controller
         }
     }
 
+    /**
+     * This methods is not perfect now this has an expeption when users upload new pictures. To resolve the problem
+     * we need to delete the oldMedia when user upload a new media but away the script work
+     *
+     * @param string $id
+     * @param HomeAdmin $home
+     * @param HomeAdminUpdateRequest $request
+     * @return RedirectResponse
+     */
+    public function update(string $id, HomeAdmin $home, HomeAdminUpdateRequest $request): RedirectResponse
+    {
+        try {
+            $data = $request->validated();
+            $home = HomeAdmin::findOrFail($id);
+            $home->update($data);
+            if (!empty($request->hasFile('media'))) {
+                try {
+                    // used to delete an old  media files when update action is on 
+                    $delete = Media::where('collection_name', 'home_collection')
+                                        ->where('model_type', HomeAdmin::class)
+                                        ->where('model_id', $id)
+                                        ->delete();
+                    // Add the uploaded media to the 'home_collection' collection on the specified disk
+                    $media = $home->addMedia($request->file('media'))
+                        ->toMediaCollection('home_collection', 'public'); // Change 'disk_name' to the actual disk name
+                    //Now we store the new files in the home_admins entities
+                    $storagePath = $media->getPath();
+                    $home->update(['media'=> $storagePath]);    
+                    // You can also set additional media properties here if needed
+                } catch (\Exception $mediaException) {
+                    // Handle media-related exceptions
+                    throw new \Exception('An error occurred while adding media: ' . $mediaException->getMessage());
+                }
+            }
+            return redirect()->route('Admin.Home.edit', ['id' => $id])->with('success', 'Modification réussi');
+        } catch(\Exception $e) {
+            return redirect()->route('Admin.Home.edit', ['id' => $id])->with('error', 'Erreur lors de la modification' . $e->getMessage());
+        }
+    }
+
 
 
     /**
@@ -132,6 +176,7 @@ class HomeAdminController extends Controller
     {
         try {
             $home = HomeAdmin::findOrFail($id);
+           
 
             // Supprimer le fichier média associé du stockage s'il existe
             if ($home->media) {
