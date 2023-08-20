@@ -116,8 +116,8 @@ class CarController extends Controller
     {
         try {
             $data = $request->validated();
-            $home = Car::findOrFail($id);
-            $home->update($data);
+            $car = Car::findOrFail($id);
+            $car->update($data);
             $car->category()->sync(['car_id' => $car->id], $request->validated('category'));
             if (!empty($request->hasFile('media'))) {
                 try {
@@ -127,11 +127,11 @@ class CarController extends Controller
                                         ->where('model_id', $id)
                                         ->delete();
                     // Add the uploaded media to the 'home_collection' collection on the specified disk
-                    $media = $home->addMedia($request->file('media'))
+                    $media = $car->addMedia($request->file('media'))
                         ->toMediaCollection('car_info', 'public'); // Change 'disk_name' to the actual disk name
                     //Now we store the new files in the home_admins entities
                     $storagePath = $media->getPath();
-                    $home->update(['media'=> $storagePath]);    
+                    $car->update(['media'=> $storagePath]);    
                     // You can also set additional media properties here if needed
                 } catch (\Exception $mediaException) {
                     // Handle media-related exceptions

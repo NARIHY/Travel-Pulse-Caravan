@@ -36,6 +36,7 @@
                 <th scope="col">Modèle</th>
                 <th scope="col">Marque</th>
                 <th scope="col">Imatriculation</th>
+                <th scope="col">Flote</th>
                 <th scope="col">Année</th>
                 <th scope="col">Action</th>
                
@@ -48,7 +49,12 @@
                         <td>{{$cars->model}}</td>
                         <td>{{$cars->brand}}</td>
                         <td>{{$cars->plate_number}}</td>
-                        <td>{{$cars->category}}</td>
+                        @php 
+                          
+                          $category = App\Models\Category::where('id', $cars->category)
+                                                          ->value('flotte');
+                        @endphp
+                        <td>{{$category}}</td>
                         <td>{{$cars->year}}</td>
                         <td>    
                             
@@ -69,6 +75,7 @@
                 @empty
                     <tr>
                         <th scope="row"></th>
+                        <td></td>
                         <td></td>
                         <td></td>
                         <td style="text-align: center">Aucune flote pour le moment</td>
