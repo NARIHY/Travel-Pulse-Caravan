@@ -8,6 +8,7 @@ use App\Models\Car;
 use App\Models\Category;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
@@ -142,6 +143,37 @@ class CarController extends Controller
             return redirect()->route($this->routes().'edit', ['id' => $id])->with('error', 'Erreur lors de la modification' . $e->getMessage());
         }
     }
+
+
+    /**
+     * Nedeed to delete an car information
+     *
+     * @param string $id
+     * @return RedirectResponse
+     */
+    public function delete(string $id): RedirectResponse
+    {
+        try {
+            $home = Car::findOrFail($id);
+           
+
+            // Supprimer le fichier média associé du stockage s'il existe
+            if ($home->media) {
+                
+                if (Storage::disk('public')->exists($home->media)) {
+                     Storage::disk('public')->delete($home->media);           
+                }
+            }
+            
+            // Supprimer l'objet HomeAdmin lui-même
+            $home->delete();
+
+            return redirect()->route($this->routes(). 'index')->with('success', 'Suppression réussie');
+        } catch (\Exception $e) {
+            return redirect()->route($this->routes(). 'index')->with('error', 'une erreur c\'est survenu lors de la suppréssion');
+        }
+    }
+
     /**
      * Private function who is very nedded because this return a instance of fileViewPath
      *

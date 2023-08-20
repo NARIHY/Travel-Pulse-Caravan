@@ -51,8 +51,19 @@
                         <td>{{$cars->category}}</td>
                         <td>{{$cars->year}}</td>
                         <td>    
-                            <a href="{{route('Admin.Entreprise.flote.car.edit', ['id'=> $cars->id])}}" class="btn btn-primary">Modifier</a>
                             
+                            <div class="row mb-3">
+                              <div class="col-6">
+                                <a href="{{route('Admin.Entreprise.flote.car.edit', ['id'=> $cars->id])}}" class="btn btn-primary">Modifier</a>
+                              </div>
+                              <div class="col-6">
+                                  <form action="{{route('Admin.Entreprise.flote.car.delete', ['id' => $cars->id])}}" method="post">
+                                      @csrf
+                                      @method('DELETE')
+                                      <input type="submit" class="btn btn-danger" value="Supprimer">
+                                  </form>
+                              </div>
+                         </div>
                         </td>
                     </tr>
                 @empty
@@ -72,6 +83,7 @@
              
             </tbody>
           </table>
+          {{$car->links()}}
     </div>
   </section>
 
