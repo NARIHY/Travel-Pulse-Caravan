@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CarController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeAdminController;
 use App\Http\Controllers\ProfileController;
@@ -53,4 +54,11 @@ Route::prefix('/Administration')->name('Admin.')->group( function() {
     Route::post('/Entreprise/nos-flote/creation', [CategoryController::class, 'store'])->name('Entreprise.flote.store');
     Route::get('/Entreprise/nos-flote/{id}/mis-a-jour', [CategoryController::class, 'edit'])->name('Entreprise.flote.edit');
     Route::put('/Entreprise/nos-flote/{id}/mis-a-jour', [CategoryController::class, 'update'])->name('Entreprise.flote.update');
+
+    //Cars
+    Route::get('/Entreprise/nos-flote/voiture', [CarController::class, 'index'])->name('Entreprise.flote.car.index');
+    Route::get('/Entreprise/nos-flote/voiture/Ajout-d-un-voiture', [CarController::class, 'create'])->name('Entreprise.flote.car.create');
+    Route::post('/Entreprise/nos-flote/voiture/Ajout-d-un-voiture', [CarController::class, 'store'])->name('Entreprise.flote.car.store');
+    Route::get('/Entreprise/nos-flote/voiture/{id}/Edition-d-un-voiture', [CarController::class, 'edit'])->name('Entreprise.flote.car.edit');
+    Route::put('/Entreprise/nos-flote/voiture/{id}/Edition-d-un-voiture', [CarController::class, 'update'])->name('Entreprise.flote.car.update');
 }) ;

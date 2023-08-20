@@ -17,7 +17,7 @@ class HomeAdmin extends Model implements HasMedia
         'posted_by', 
         'media'
     ];
-        public function addMediaFromRequest($requestField)
+    public function addMediaFromRequest($requestField)
     {
         return $this->addMediaFromRequest($requestField)->toMediaCollection('home_collection');
     }

@@ -309,8 +309,8 @@
         </a>
         <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="">
-              <i class="bi bi-circle"></i><span>General Tables</span>
+            <a href="{{route('Admin.Entreprise.flote.car.index')}}">
+              <i class="bi bi-circle"></i><span>Liste de nos voiture</span>
             </a>
           </li>
           <li>
