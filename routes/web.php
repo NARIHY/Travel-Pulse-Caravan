@@ -61,5 +61,6 @@ Route::prefix('/Administration')->name('Admin.')->group( function() {
     Route::post('/Entreprise/nos-flote/voiture/Ajout-d-un-voiture', [CarController::class, 'store'])->name('Entreprise.flote.car.store');
     Route::get('/Entreprise/nos-flote/voiture/{id}/Edition-d-un-voiture', [CarController::class, 'edit'])->name('Entreprise.flote.car.edit');
     Route::put('/Entreprise/nos-flote/voiture/{id}/Edition-d-un-voiture', [CarController::class, 'update'])->name('Entreprise.flote.car.update');
-        Route::delete('/Entreprise/nos-flote/voiture/{id}/Supression-d-un-voiture', [CarController::class, 'delete'])->name('Entreprise.flote.car.delete');
+    Route::delete('/Entreprise/nos-flote/voiture/{id}/Supression-d-un-voiture', [CarController::class, 'delete'])->name('Entreprise.flote.car.delete');
+    Route::get('/Entreprise/nos-flote/voiture/{id}/Vue-d-un-voiture', [CarController::class, 'view'])->name('Entreprise.flote.car.view');
 }) ;

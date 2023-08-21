@@ -175,6 +175,27 @@ class CarController extends Controller
     }
 
     /**
+     * Return an information car by car
+     *
+     * @param string $id
+     * @return View
+     */
+    public function view(string $id): View 
+    {
+        $car = Car::findOrFail($id);
+        $mediaCollection = Media::where('collection_name', 'car_info')
+                                        ->where('model_type', Car::class)
+                                        ->where('model_id', $id)
+                                        ->get();
+
+        
+        return view($this->path(). 'view.view', [
+            'car' => $car,
+            'mediaCollection' => $mediaCollection
+        ]);
+    }
+
+    /**
      * Private function who is very nedded because this return a instance of fileViewPath
      *
      * @return string
