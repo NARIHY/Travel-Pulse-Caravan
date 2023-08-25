@@ -45,7 +45,7 @@
             <tbody>
                 @forelse ($car as $cars)
                     <tr>
-                        <th scope="row">{{$cars->id}}</th>
+                        <th scope="row"><a href="{{route('Admin.Entreprise.flote.car.view', ['id' => $cars->id])}}" style="text-decoration: none">{{$cars->id}}</a></th>
                         <td>{{$cars->model}}</td>
                         <td>{{$cars->brand}}</td>
                         <td>{{$cars->plate_number}}</td>

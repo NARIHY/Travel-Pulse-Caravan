@@ -314,8 +314,8 @@
             </a>
           </li>
           <li>
-            <a href="">
-              <i class="bi bi-circle"></i><span>Data Tables</span>
+            <a href="{{route('Admin.Entreprise.flote.car.listing.flote.index')}}">
+              <i class="bi bi-circle"></i><span>Liste de nos voiture par flote</span>
             </a>
           </li>
         </ul>

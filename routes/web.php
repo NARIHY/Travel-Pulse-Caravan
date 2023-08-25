@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CarController;
+use App\Http\Controllers\CarListingController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeAdminController;
 use App\Http\Controllers\ProfileController;
@@ -61,5 +62,10 @@ Route::prefix('/Administration')->name('Admin.')->group( function() {
     Route::post('/Entreprise/nos-flote/voiture/Ajout-d-un-voiture', [CarController::class, 'store'])->name('Entreprise.flote.car.store');
     Route::get('/Entreprise/nos-flote/voiture/{id}/Edition-d-un-voiture', [CarController::class, 'edit'])->name('Entreprise.flote.car.edit');
     Route::put('/Entreprise/nos-flote/voiture/{id}/Edition-d-un-voiture', [CarController::class, 'update'])->name('Entreprise.flote.car.update');
-        Route::delete('/Entreprise/nos-flote/voiture/{id}/Supression-d-un-voiture', [CarController::class, 'delete'])->name('Entreprise.flote.car.delete');
+    Route::delete('/Entreprise/nos-flote/voiture/{id}/Supression-d-un-voiture', [CarController::class, 'delete'])->name('Entreprise.flote.car.delete');
+    Route::get('/Entreprise/nos-flote/voiture/{id}/Vue-d-un-voiture', [CarController::class, 'view'])->name('Entreprise.flote.car.view');
+
+    //float cars listing
+    Route::get('/Entreprise/nos-flote/liste-des-voiture-par-flote', [CarListingController::class, 'index'])->name('Entreprise.flote.car.listing.flote.index');
+    Route::get('/Entreprise/nos-flote/liste-des-voiture-par-flote/{id}/{category}', [CarListingController::class, 'listing'])->name('Entreprise.flote.car.listing.flote.listing');
 }) ;
