@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Car;
 use App\Models\Category;
+
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
 use Illuminate\View\View;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class CarListingController extends Controller
 {
@@ -48,10 +51,12 @@ class CarListingController extends Controller
         }
     }
 
+    
+
     /**
      * Needed to return a routes path
      *
-     * @return String
+     * @return String 
      */
     private function routes(): String 
     {
@@ -67,4 +72,6 @@ class CarListingController extends Controller
     {
         return 'admin.entreprise.flote.listing.';
     }
+
+    
 }

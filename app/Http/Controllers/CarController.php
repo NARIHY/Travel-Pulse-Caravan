@@ -10,6 +10,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class CarController extends Controller
@@ -75,6 +76,7 @@ class CarController extends Controller
                     throw new \Exception('An error occurred while adding media: ' . $mediaException->getMessage());
                 }
             }
+            
             return redirect()->route($this->routes().'index')->with('success', 'Ajout réussi');
         } catch (\Exception $e) {
             return redirect()->route($this->routes().'create')->with('error', 'Une erreur s\'est survenu' . $e->getMessage());
@@ -187,11 +189,29 @@ class CarController extends Controller
                                         ->where('model_type', Car::class)
                                         ->where('model_id', $id)
                                         ->get();
-
+        $category = Category::findOrFail($car->category)->value('flotte');
+        $array = [
+            'Model' => $car->model,
+            'Marque' => $car->brand,
+            'Immatriculation' => $car->plate_number,
+            'Nombre de place' => $car->place,
+            'Année de sortie' => $car->year,
+            'flote' => $category,
+            'compagnie' => 'Travel Pulse Caravan'
+        ];
+            $items = [];
+        foreach ($array as $key =>$value) {
+            $items[]= "$key: $value"; 
+        }
+        $string = implode("\n", $items);
         
+        $qrCode = QrCode::size(150)
+                            ->color(0,0,0)
+                            ->generate($string);
         return view($this->path(). 'view.view', [
             'car' => $car,
-            'mediaCollection' => $mediaCollection
+            'mediaCollection' => $mediaCollection,
+            'qrCode' => $qrCode
         ]);
     }
 

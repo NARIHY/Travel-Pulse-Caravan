@@ -21,7 +21,8 @@ class Car extends Model implements HasMedia
       'year',
       'place',
       'vehicule_info',
-       'media'
+       'media',
+       'qrCode'
     ];
 
     public function addMediaFromRequest($requestField)

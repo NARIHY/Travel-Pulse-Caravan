@@ -68,4 +68,5 @@ Route::prefix('/Administration')->name('Admin.')->group( function() {
     //float cars listing
     Route::get('/Entreprise/nos-flote/liste-des-voiture-par-flote', [CarListingController::class, 'index'])->name('Entreprise.flote.car.listing.flote.index');
     Route::get('/Entreprise/nos-flote/liste-des-voiture-par-flote/{id}/{category}', [CarListingController::class, 'listing'])->name('Entreprise.flote.car.listing.flote.listing');
+
 }) ;

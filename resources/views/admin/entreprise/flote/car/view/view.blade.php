@@ -96,7 +96,8 @@
                 <h4 style="color:blue">Qrcode</h4>
             </div>
             <div class="col-6">
-                <h4></h4>
+                {{$qrCode}}
+               
             </div>
         </div>
     </div>
