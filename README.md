@@ -278,6 +278,9 @@ Les clés primaires sont marquées avec "(PK)" et les clés étrangères sont ma
 ## --- Les librairie externe ---
 # Librairie php 
 1. bacon/bacon-qr-code
+2. barryvdh/laravel-snappy
+3. Barryvdh/DomPDF
+4. simplesoftwareio/simple-qrcode
 
 
 --*--
