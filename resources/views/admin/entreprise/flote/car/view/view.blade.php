@@ -4,6 +4,7 @@
 
 @section('content')
 <div class="pagetitle">
+    <a href="{{route('Admin.Entreprise.flote.car.generatePDF', ['id' => $car->id])}}" class="btn btn-success" style="float: right">Exporter <i class="ri-download-fill"></i></a>
     <h1>Gestion de voiture</h1>
     <nav>
       <ol class="breadcrumb">
