@@ -34,4 +34,9 @@ class Car extends Model implements HasMedia
     {
         return $this->belongsToMany(Category::class);
     }
+
+    public function carInformation(): BelongsToMany
+    {
+        return $this->belongsToMany(CarInformation::class);
+    }
 }

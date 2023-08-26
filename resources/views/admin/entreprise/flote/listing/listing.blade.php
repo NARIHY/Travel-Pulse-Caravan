@@ -4,6 +4,17 @@
 
 @section('content')
     <div class="container">
+        <div class="pagetitle">
+            <a href="{{route('Admin.Entreprise.flote.create')}}" class="btn btn-success" style="float: right">Ajouter une flote</a>
+            <h1>Gestion de flote</h1>
+            <nav>
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{route('Admin.index')}}">Tableau de bord</a></li>
+                <li class="breadcrumb-item"><a href="{{route('Admin.Entreprise.flote.index')}}">Nos flote</a></li>
+                <li class="breadcrumb-item">Listing de nos voiture en particulier</li>
+              </ol>
+            </nav>
+          </div>
         <table class="table datatable">
             <thead>
               <tr>

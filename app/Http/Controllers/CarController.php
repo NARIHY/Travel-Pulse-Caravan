@@ -5,12 +5,17 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CarRequest;
 use App\Http\Requests\CarUpdateRequest;
 use App\Models\Car;
+use App\Models\CarInformation;
 use App\Models\Category;
+use Barryvdh\DomPDF\PDF;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
+
+use Dompdf\Dompdf;
+use Dompdf\Options;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class CarController extends Controller
@@ -190,12 +195,22 @@ class CarController extends Controller
                                         ->where('model_id', $id)
                                         ->get();
         $category = Category::findOrFail($car->category)->value('flotte');
+        $carIn = CarInformation::where('car', $id)
+                            ->value('id');
+        $carInformation = CarInformation::findOrFail($carIn);
+        //convertion stringe to date
+        $date = strtotime($carInformation->maintains);
         $array = [
             'Model' => $car->model,
             'Marque' => $car->brand,
+            'kilometrage' => number_format($carInformation->kilometers, thousands_separator:' '). 'Km ',
+            'carburant max' => $carInformation->max_fuel,
+            'poid minimale' => number_format($carInformation->min_weight, thousands_separator: ' '). ' Kg',
+            'poid maximale' => number_format($carInformation->max_weight, thousands_separator: ' '). ' Kg',
             'Immatriculation' => $car->plate_number,
             'Nombre de place' => $car->place,
             'Année de sortie' => $car->year,
+            'date d\'expiration Visite technique' => date('D d M Y', $date),
             'flote' => $category,
             'compagnie' => 'Travel Pulse Caravan'
         ];
@@ -214,6 +229,68 @@ class CarController extends Controller
             'qrCode' => $qrCode
         ]);
     }
+    
+
+    public function generatePDF(string $id)
+    {
+        $car = Car::findOrFail($id);
+        $mediaCollection = Media::where('collection_name', 'car_info')
+                                ->where('model_type', Car::class)
+                                ->where('model_id', $id)
+                                ->get();
+        $category = Category::findOrFail($car->category)->value('flotte');
+        $carIn = CarInformation::where('car', $id)
+                            ->value('id');
+        $carInformation = CarInformation::findOrFail($carIn);
+    
+        // Convertir la date en timestamp
+        $date = strtotime($carInformation->maintains);
+    
+        $array = [
+            'Model' => $car->model,
+            'Marque' => $car->brand,
+            'kilometrage' => number_format($carInformation->kilometers, 0, '.', ' ') . ' Km',
+            'carburant max' => $carInformation->max_fuel,
+            'poid minimale' => number_format($carInformation->min_weight, 0, '.', ' ') . ' Kg',
+            'poid maximale' => number_format($carInformation->max_weight, 0, '.', ' ') . ' Kg',
+            'Immatriculation' => $car->plate_number,
+            'Nombre de place' => $car->place,
+            'Année de sortie' => $car->year,
+            'date d\'expiration Visite technique' => date('D d M Y', $date),
+            'flote' => $category,
+            'compagnie' => 'Travel Pulse Caravan'
+        ];
+    
+        $items = [];
+        foreach ($array as $key => $value) {
+            $items[] = "$key: $value";
+        }
+    
+        $string = implode("\n", $items);
+    
+        $qrCode = QrCode::size(150)
+                        ->color(0, 0, 0)
+                        ->generate($string);
+    
+        // Générer le contenu HTML pour le PDF
+        $html = view($this->path().'pdf.index', [
+            'car' => $car,
+            'mediaCollection' => $mediaCollection,
+            'qrCode' => $qrCode
+        ])->render();
+
+        
+    
+        // Générer le PDF avec Dompdf
+        $pdf = new Dompdf();
+        $pdf->loadHtml($html);
+        $pdf->setPaper('A4', 'portrait');
+        $pdf->render();
+    
+        // Retourner le PDF en tant que réponse HTTP
+        return $pdf->stream('car_information.pdf');
+    }
+    
 
     /**
      * Private function who is very nedded because this return a instance of fileViewPath

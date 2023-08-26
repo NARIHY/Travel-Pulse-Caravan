@@ -318,6 +318,11 @@
               <i class="bi bi-circle"></i><span>Liste de nos voiture par flote</span>
             </a>
           </li>
+          <li>
+            <a href="{{route('Admin.Entreprise.flote.car.carInformation.index')}}">
+              <i class="bi bi-circle"></i><span>Information sur nos voiture</span>
+            </a>
+          </li>
         </ul>
       </li><!-- End Tables Nav -->
 

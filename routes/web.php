@@ -2,10 +2,12 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CarController;
+use App\Http\Controllers\CarInformationController;
 use App\Http\Controllers\CarListingController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeAdminController;
 use App\Http\Controllers\ProfileController;
+use App\Models\CarInformation;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -64,9 +66,18 @@ Route::prefix('/Administration')->name('Admin.')->group( function() {
     Route::put('/Entreprise/nos-flote/voiture/{id}/Edition-d-un-voiture', [CarController::class, 'update'])->name('Entreprise.flote.car.update');
     Route::delete('/Entreprise/nos-flote/voiture/{id}/Supression-d-un-voiture', [CarController::class, 'delete'])->name('Entreprise.flote.car.delete');
     Route::get('/Entreprise/nos-flote/voiture/{id}/Vue-d-un-voiture', [CarController::class, 'view'])->name('Entreprise.flote.car.view');
+    //return pdf download
+    Route::get('/Entreprise/nos-flote/voiture/{id}/pdf', [CarController::class, 'generatePDF'])->name('Entreprise.flote.car.generatePDF');
+
 
     //float cars listing
     Route::get('/Entreprise/nos-flote/liste-des-voiture-par-flote', [CarListingController::class, 'index'])->name('Entreprise.flote.car.listing.flote.index');
     Route::get('/Entreprise/nos-flote/liste-des-voiture-par-flote/{id}/{category}', [CarListingController::class, 'listing'])->name('Entreprise.flote.car.listing.flote.listing');
+
+    //CAr Information routes
+    $routesCarInformation = "Entreprise.flote.car.carInformation.";
+    Route::get('/Entreprise/nos-flote/voiture/information', [CarInformationController::class, 'index'])->name($routesCarInformation.'index');
+    Route::get('/Entreprise/nos-flote/voiture/information/ajouter-information-pour-un-voiture', [CarInformationController::class, 'create'])->name($routesCarInformation.'create');
+    Route::post('/Entreprise/nos-flote/voiture/information/ajouter-information-pour-un-voiture', [CarInformationController::class, 'store'])->name($routesCarInformation.'store');
 
 }) ;
