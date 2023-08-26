@@ -66,7 +66,6 @@ Route::prefix('/Administration')->name('Admin.')->group( function() {
     Route::put('/Entreprise/nos-flote/voiture/{id}/Edition-d-un-voiture', [CarController::class, 'update'])->name('Entreprise.flote.car.update');
     Route::delete('/Entreprise/nos-flote/voiture/{id}/Supression-d-un-voiture', [CarController::class, 'delete'])->name('Entreprise.flote.car.delete');
     Route::get('/Entreprise/nos-flote/voiture/{id}/Vue-d-un-voiture', [CarController::class, 'view'])->name('Entreprise.flote.car.view');
-<<<<<<< HEAD
     //return pdf download
     Route::get('/Entreprise/nos-flote/voiture/{id}/pdf', [CarController::class, 'generatePDF'])->name('Entreprise.flote.car.generatePDF');
 
@@ -81,6 +80,4 @@ Route::prefix('/Administration')->name('Admin.')->group( function() {
     Route::get('/Entreprise/nos-flote/voiture/information/ajouter-information-pour-un-voiture', [CarInformationController::class, 'create'])->name($routesCarInformation.'create');
     Route::post('/Entreprise/nos-flote/voiture/information/ajouter-information-pour-un-voiture', [CarInformationController::class, 'store'])->name($routesCarInformation.'store');
 
-=======
->>>>>>> d56b447cf5c9775f020eb35e1c89c2489100e0b3
 }) ;
