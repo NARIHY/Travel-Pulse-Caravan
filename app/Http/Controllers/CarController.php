@@ -7,6 +7,8 @@ use App\Http\Requests\CarUpdateRequest;
 use App\Models\Car;
 use App\Models\CarInformation;
 use App\Models\Category;
+use App\Models\PlaceNumber;
+use App\Models\Statement;
 use Barryvdh\DomPDF\PDF;
 use Barryvdh\Snappy\Facades\SnappyPdf;
 use Illuminate\Http\RedirectResponse;
@@ -43,9 +45,13 @@ class CarController extends Controller
     {
         $category = Category::pluck('flotte', 'id');
         $car = New Car();
+        $statement = Statement::pluck('state');
+        $place = PlaceNumber::pluck('place');
         return view($this->path().'action.random', [
             'car' => $car,
-            'category' => $category
+            'category' => $category,
+            'statement' => $statement,
+            'place' => $place
         ]);
     }
 
@@ -99,15 +105,19 @@ class CarController extends Controller
     public function edit(string $id): View
     {
         $car = Car::findOrFAil($id);
+        $statement = Statement::pluck('state');
         $category = Category::pluck('flotte', 'id');
         $mediaCollection = Media::where('collection_name', 'car_info')
                                         ->where('model_type', Car::class)
                                         ->where('model_id', $id)
                                         ->get();
+        $place = PlaceNumber::pluck('place');
         return view($this->path().'action.random', [
             'car' => $car,
             'category' => $category,
-            'mediaCollection' => $mediaCollection
+            'mediaCollection' => $mediaCollection,
+            'statement' => $statement,
+            'place' => $place
         ]);
     }
 

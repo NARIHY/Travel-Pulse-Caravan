@@ -68,12 +68,9 @@
             <label for="place">Nombre de place de la voiture</label>
             <select name="place" id="place" class="form-control @error('place') is-invalid @enderror">
                 <option value="">Selectionner la flotte de la voiture</option>
-                <option value="3">3</option>
-                <option value="9">9</option>
-                <option value="12">12</option>
-                <option value="22">22</option>
-                <option value="32">32</option>
-                <option value="42">42</option>
+                @foreach ($place as $p)
+                    <option value="{{$p}}">{{$p}}</option>    
+                @endforeach
             </select>
             @error('place')
             <p style="color: rgb(114, 19, 19)">{{$message}}</p>
@@ -96,9 +93,9 @@
             <label for="vehicule_info">Etat du vehicule</label>
             <select name="vehicule_info" id="vehicule_info" class="form-control @error('vehicule_info') is-invalid @enderror">
                 <option value="">Selectionner la flotte de la voiture</option>
-                <option value="Bonne etat">Bonne etat</option>
-                <option value="Moyenne etat">Moyenne etat</option>
-                <option value="Mauvaise etat">Mauvaise etat</option>
+                @foreach ($statement as $state)
+                    <option value="{{$state}}">{{$state}}</option>    
+                @endforeach
             </select>
             @error('vehicule_info')
             <p style="color: rgb(114, 19, 19)">{{$message}}</p>
@@ -154,12 +151,9 @@
             <label for="place">Nombre de place de la voiture</label>
             <select name="place" id="place" class="form-control @error('place') is-invalid @enderror">
                 <option value="">Selectionner la flotte de la voiture</option>
-                <option value="3" @if($car->place == 3) selected @endif>3</option>
-                <option value="9" @if($car->place == 9) selected @endif>9</option>
-                <option value="12" @if($car->place == 12) selected @endif>12</option>
-                <option value="22" @if($car->place == 22) selected @endif>22</option>
-                <option value="32" @if($car->place == 32) selected @endif>32</option>
-                <option value="42" @if($car->place == 42) selected @endif>42</option>
+                @foreach ($place as $p)
+                    <option value="{{$p}}" @if($car->place == $car->place) selected @endif>{{$p}}</option>
+                @endforeach
             </select>
             @error('place')
             <p style="color: rgb(114, 19, 19)">{{$message}}</p>
@@ -185,9 +179,9 @@
             <label for="vehicule_info">Etat du vehicule</label>
             <select name="vehicule_info" id="vehicule_info" class="form-control @error('vehicule_info') is-invalid @enderror">
                 <option value="">Selectionner la flotte de la voiture</option>
-                <option value="Bonne etat" @if($car->vehicule_info == "Bonne etat") selected @endif>Bonne etat</option>
-                <option value="Moyenne etat" @if($car->vehicule_info == "Moyenne etat") selected @endif>Moyenne etat</option>
-                <option value="Mauvaise etat" @if($car->vehicule_info == "Mauvaise etat") selected @endif>Mauvaise etat</option>
+                @foreach ($statement as $state)
+                    <option value="{{$state}}" @if($car->vehicule_info == $state) selected @endif>{{$state}}</option>    
+                @endforeach
             </select>
             @error('vehicule_info')
             <p style="color: rgb(114, 19, 19)">{{$message}}</p>

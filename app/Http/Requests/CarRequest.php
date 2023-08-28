@@ -24,11 +24,11 @@ class CarRequest extends FormRequest
         return [
             'model' => ['required', 'min:3'],
             'brand' => ['required', 'min:3'],
-            'plate_number' => ['required', 'min:7', 'max:9'],
+            'plate_number' => ['required', 'min:7', 'max:9','unique:cars'],
             'category' => ['required', 'exists:categories,id'],
             'year' => ['required', 'min:4', 'max:4'],
-            'place' => ['required'],
-            'vehicule_info' => ['required'],
+            'place' => ['required', 'exists:place_numbers,place'],
+            'vehicule_info' => ['required', 'exists:statements,state'],
             'media' => ['required', 'mimetypes:image/jpeg,image/png,image/jpg,image/gif', 'max: 10000']
         ];
     }

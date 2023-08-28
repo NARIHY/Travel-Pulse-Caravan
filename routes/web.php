@@ -7,6 +7,8 @@ use App\Http\Controllers\CarListingController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeAdminController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TravelController;
+use App\Http\Controllers\TripController;
 use App\Models\CarInformation;
 use Illuminate\Support\Facades\Route;
 
@@ -79,5 +81,19 @@ Route::prefix('/Administration')->name('Admin.')->group( function() {
     Route::get('/Entreprise/nos-flote/voiture/information', [CarInformationController::class, 'index'])->name($routesCarInformation.'index');
     Route::get('/Entreprise/nos-flote/voiture/information/ajouter-information-pour-un-voiture', [CarInformationController::class, 'create'])->name($routesCarInformation.'create');
     Route::post('/Entreprise/nos-flote/voiture/information/ajouter-information-pour-un-voiture', [CarInformationController::class, 'store'])->name($routesCarInformation.'store');
+
+
+    //trip
+    $trip = "Entreprise.trip.";
+    Route::get('/Entreprise/gestion-de-trajet/liste-des-villes', [TravelController::class, 'index'])->name($trip.'travel.index');
+    Route::get('/Entreprise/gestion-de-trajet/liste-des-villes/ajout-de-ville', [TravelController::class, 'create'])->name($trip.'travel.create');
+    Route::post('/Entreprise/gestion-de-trajet/liste-des-villes/ajout-de-ville', [TravelController::class, 'store'])->name($trip.'travel.store');
+    //trip reservation
+    Route::get('/Entreprise/gestion-de-trajet/liste-des-trajet-planifier', [TripController::class, 'index'])->name($trip.'planified.index');
+    Route::get('/Entreprise/gestion-de-trajet/liste-des-trajet-planifier/trajet-creation', [TripController::class, 'create'])->name($trip.'planified.create');
+    Route::post('/Entreprise/gestion-de-trajet/liste-des-trajet-planifier/trajet-creation', [TripController::class, 'store'])->name($trip.'planified.store');
+    Route::get('/Entreprise/gestion-de-trajet/liste-des-trajet-planifier/trajet-creation/{id}/edition', [TripController::class, 'edit'])->name($trip.'planified.edit');
+    Route::put('/Entreprise/gestion-de-trajet/liste-des-trajet-planifier/trajet-creation/{id}/edition', [TripController::class, 'update'])->name($trip.'planified.update');
+    Route::delete('/Entreprise/gestion-de-trajet/liste-des-trajet-planifier/trajet-creation/{id}/suppréssion', [TripController::class, 'delete'])->name($trip.'planified.delete');
 
 }) ;
