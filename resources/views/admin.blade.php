@@ -342,8 +342,8 @@
             </a>
           </li>
           <li>
-            <a href="">
-              <i class="bi bi-circle"></i><span>ECharts</span>
+            <a href="{{route('Admin.Entreprise.trip.reservation.index')}}">
+              <i class="bi bi-circle"></i><span>Reservation</span>
             </a>
           </li>
         </ul>

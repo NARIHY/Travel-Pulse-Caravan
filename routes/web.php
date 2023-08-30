@@ -7,6 +7,7 @@ use App\Http\Controllers\CarListingController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeAdminController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\TravelController;
 use App\Http\Controllers\TripController;
 use App\Models\CarInformation;
@@ -95,5 +96,13 @@ Route::prefix('/Administration')->name('Admin.')->group( function() {
     Route::get('/Entreprise/gestion-de-trajet/liste-des-trajet-planifier/trajet-creation/{id}/edition', [TripController::class, 'edit'])->name($trip.'planified.edit');
     Route::put('/Entreprise/gestion-de-trajet/liste-des-trajet-planifier/trajet-creation/{id}/edition', [TripController::class, 'update'])->name($trip.'planified.update');
     Route::delete('/Entreprise/gestion-de-trajet/liste-des-trajet-planifier/trajet-creation/{id}/suppréssion', [TripController::class, 'delete'])->name($trip.'planified.delete');
+    //Admin reservation
+    Route::get('Entreprise/gestion-de-trajet/reservation', [ReservationController::class, 'index'])->name($trip.'reservation.index');
+    //Passenger
+    Route::get('Entreprise/gestion-de-trajet/reservation/passager', [ReservationController::class, 'passenger'])->name($trip.'reservation.create.passenger');
+    Route::post('Entreprise/gestion-de-trajet/reservation/passager', [ReservationController::class, 'passenger_add'])->name($trip.'reservation.create.passenger_add');
+    //Start city and arrivals choice
+    Route::get('Entreprise/gestion-de-trajet/reservation/passager/{passenger_id}/{purcount}/lieu-depart-et-arriver', [ReservationController::class, 'destination'])->name($trip.'reservation.passenger.city');
+    
 
 }) ;
