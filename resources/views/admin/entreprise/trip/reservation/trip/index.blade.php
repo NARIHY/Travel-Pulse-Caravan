@@ -23,17 +23,27 @@
         @csrf
         <div class="row mb-3">
             <div class="col-6">
-                <label for="name">Nom du passager:</label>
-                <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{@old('name')}}">
-                @error('name') 
-                <p style="color: rgb(163, 0, 0)"> {{$message}} </p> 
+                <label for="place_depart">Lieu de départ</label>
+                <select name="place_depart" id="place_depart" class="form-control @error('place_depart') is-invalid @enderror">
+                    <option value="">Selectionner le lieu de départ</option>
+                    @foreach ($city as $cities)
+                        <option value="{{$cities}}">{{$cities}}</option>    
+                    @endforeach
+                </select>
+                @error('place_depart')
+                <p style="color: rgb(114, 19, 19)">{{$message}}</p>
                 @enderror
             </div>
             <div class="col-6">
-                <label for="last_name">Prénon du passager:</label>
-                <input type="text" name="last_name" id="last_name" class="form-control @error('last_name') is-invalid @enderror" value="{{@old('last_name')}}">
-                @error('last_name') 
-                <p style="color: rgb(163, 0, 0)"> {{$message}} </p> 
+                <label for="place_arrivals">Votre destination:</label>
+                <select name="place_arrivals" id="place_arrivals" class="form-control @error('place_arrivals') is-invalid @enderror">
+                    <option value="">Selectionner le lieu de d'arriver</option>
+                    @foreach ($city as $cities)
+                        <option value="{{$cities}}" >{{$cities}}</option>    
+                    @endforeach
+                </select>
+                @error('place_arrivals')
+                <p style="color: rgb(114, 19, 19)">{{$message}}</p>
                 @enderror
             </div>
         </div>

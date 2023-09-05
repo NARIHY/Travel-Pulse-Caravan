@@ -103,6 +103,15 @@ Route::prefix('/Administration')->name('Admin.')->group( function() {
     Route::post('Entreprise/gestion-de-trajet/reservation/passager', [ReservationController::class, 'passenger_add'])->name($trip.'reservation.create.passenger_add');
     //Start city and arrivals choice
     Route::get('Entreprise/gestion-de-trajet/reservation/passager/{passenger_id}/{purcount}/lieu-depart-et-arriver', [ReservationController::class, 'destination'])->name($trip.'reservation.passenger.city');
+    Route::post('Entreprise/gestion-de-trajet/reservation/passager/{passenger_id}/{purcount}/lieu-depart-et-arriver', [ReservationController::class, 'destination_save'])->name($trip.'reservation.passenger.city.store');
+    Route::get('Entreprise/gestion-de-trajet/reservation/passager/{passenger_id}/{purcount}/{depart}-{arrivals}', [ReservationController::class, 'reservate'])->name($trip.'reservation.passenger.city.reserve');
+    Route::get('Entreprise/gestion-de-trajet/reservation/passager/{passenger_id}/{purcount}/{depart}-{arrivals}/{tripId}', [ReservationController::class, 'payement'])->name($trip.'reservation.passenger.city.payement');
+    Route::post('Entreprise/gestion-de-trajet/reservation/passager/{passenger_id}/{purcount}/{depart}-{arrivals}/{tripId}', [ReservationController::class, 'success'])->name($trip.'reservation.passenger.city.success');
+    //payement
     
+    //final result
+    Route::get('Entreprise/gestion-de-trajet/reservation/passager/{purcount}/reservation', [ReservationController::class, 'finale'])->name($trip.'reservation.passenger.city.finale');
+
+
 
 }) ;
