@@ -6,6 +6,7 @@ use App\Http\Controllers\CarInformationController;
 use App\Http\Controllers\CarListingController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeAdminController;
+use App\Http\Controllers\InformationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\TravelController;
@@ -53,7 +54,7 @@ Route::prefix('/Administration')->name('Admin.')->group( function() {
     Route::get('/Acceuil-administration/{id}/editer', [HomeAdminController::class, 'edit'])->name('Home.edit');
     Route::put('/Acceuil-administration/{id}/editer', [HomeAdminController::class, 'update'])->name('Home.update');
     Route::delete('/Acceuil-administration/{id}/delete', [HomeAdminController::class, 'delete'])->name('Home.delete');
-    
+
     //flote
     Route::get('/Entreprise/nos-flote', [CategoryController::class, 'index'])->name('Entreprise.flote.index');
     Route::get('/Entreprise/nos-flote/creation', [CategoryController::class, 'create'])->name('Entreprise.flote.create');
@@ -108,10 +109,21 @@ Route::prefix('/Administration')->name('Admin.')->group( function() {
     Route::get('Entreprise/gestion-de-trajet/reservation/passager/{passenger_id}/{purcount}/{depart}-{arrivals}/{tripId}', [ReservationController::class, 'payement'])->name($trip.'reservation.passenger.city.payement');
     Route::post('Entreprise/gestion-de-trajet/reservation/passager/{passenger_id}/{purcount}/{depart}-{arrivals}/{tripId}', [ReservationController::class, 'success'])->name($trip.'reservation.passenger.city.success');
     //payement
-    
+
     //final result
     Route::get('Entreprise/gestion-de-trajet/reservation/passager/{purcount}/reservation', [ReservationController::class, 'finale'])->name($trip.'reservation.passenger.city.finale');
 
 
+    //Route for car information
+    Route::prefix('/Information')->name('Information.')->group( function() {
+        Route::get('/Liste-des-informations-publier', [InformationController::class, 'listing'])->name('listing');
+        Route::get('/Ajouter-une-information',[InformationController::class,'create'])->name('create');
+        Route::post('/Ajouter-une-information',[InformationController::class,'store'])->name('store');
+        //Route for edition
+        Route::get('/{id}/edition-d-une-information', [InformationController::class, 'edit'])->name('edit');
+        Route::put('/{id}/edition-d-une-information', [InformationController::class, 'update'])->name('update');
+        //deleting information
+        Route::delete('/{id}/Suprimer-une-information', [InformationController::class, 'delete'])->name('delete');
+    });
 
 }) ;

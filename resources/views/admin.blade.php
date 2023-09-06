@@ -36,7 +36,7 @@
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
 
-    
+
 
     <nav class="header-nav ms-auto">
       <ul class="d-flex align-items-center">
@@ -272,7 +272,7 @@
             </a>
           </li>
           <li>
-            <a href="">
+            <a href="{{route('Admin.Information.listing')}}">
               <i class="bi bi-circle"></i><span>Information</span>
             </a>
           </li>
@@ -299,7 +299,7 @@
               <i class="bi bi-circle"></i><span>Nos flotes</span>
             </a>
           </li>
-          
+
         </ul>
       </li><!-- End Forms Nav -->
 
@@ -440,7 +440,7 @@
     <div class="copyright">
       &copy; Copyright <strong><span>Travel Pulse Caravan</span></strong>. All Rights Reserved
     </div>
-    
+
   </footer><!-- End Footer -->
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
