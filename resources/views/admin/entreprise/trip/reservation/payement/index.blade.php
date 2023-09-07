@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="pagetitle">
-   
+
     <h1>Gestion de trajet</h1>
     <nav>
       <ol class="breadcrumb">
@@ -16,9 +16,10 @@
 
 
 <div class="container">
-    <div class="progress mb-3" role="progressbar" aria-label="Success example with label" aria-valuenow="{{$purcount}}" aria-valuemin="0" aria-valuemax="100">
-        <div class="progress-bar bg-success w-{{$purcount}}">{{$purcount}}</div>
-    </div>
+
+      <div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="margin-bottom: 20px">
+        <div class="progress-bar bg-primary"></div>
+      </div>
 
     <div class="card" style="padding: 20px 20px 20px 20px">
         <div class="row mb-3">
@@ -35,7 +36,7 @@
                 <h4 style="color: blue">Lieu d'arriver:</h4>
             </div>
             <div class="col-6">
-                @php 
+                @php
                 $client = App\Models\Passenger::findOrFail($passenger_id);
                 $trip = App\Models\Trip::findOrFail($tripId);
                 $car = $trip->car;
@@ -58,9 +59,19 @@
         </div>
         <form action="" method="post">
             @csrf
-            <input type="submit" class="btn btn-primary" style="float: right" value="Reserver">
+            <input type="submit" class="btn btn-primary" style="float: right" value="Payement en espèce">
         </form>
     </div>
 </div>
+<script type="text/javascript">
+        // Obtenez la valeur actuelle de la barre de progression (par exemple, 75%)
+    const nouvelleValeur = 80;
 
+    // Sélectionnez la barre de progression avec jQuery
+    const barreDeProgression = $("#maBarreDeProgression");
+
+    // Animez la largeur de la barre de progression jusqu'à la nouvelle valeur
+    barreDeProgression.animate({ width: nouvelleValeur + "%" }, 1000); // 1000 ms pour l'animation (1 seconde)
+
+</script>
 @endsection

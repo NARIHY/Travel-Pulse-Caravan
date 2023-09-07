@@ -26,7 +26,8 @@ class PassengerRequest extends FormRequest
             'last_name' => ['required', 'string', 'max:255'],
             'phone_number' => ['required', 'min:9', 'max:9'],
             'email' => ['required', 'email'],
-            'emergency_contact' => ['required', 'min:9', 'max:9']
+            'emergency_contact' => ['required', 'min:9', 'max:9'],
+            'address' => ['required', 'min:4']
         ];
     }
 }

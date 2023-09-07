@@ -1,0 +1,54 @@
+.progress-bar.bg-primary {
+    width: 50%;
+    animation: primary 3s linear forwards;
+}
+
+.progress-bar.bg-warning {
+    width: 25%;
+    animation: warning 3s linear forwards;
+}
+.progress-bar.bg-danger {
+    width: 25%;
+    animation: danger 3s linear forwards;
+}
+
+.progress-bar.bg-success {
+    width: 75%;
+    animation: success 3s linear forwards;
+}
+
+@keyframes primary {
+    0% {
+        width: 50%;
+    }
+    100% {
+        width: 75%;
+    }
+}
+
+@keyframes warning {
+    0% {
+        width: 25%;
+    }
+    100% {
+        width: 50%;
+    }
+}
+
+@keyframes danger {
+    0% {
+        width: 0%;
+    }
+    100% {
+        width: 25%;
+    }
+}
+
+@keyframes success {
+    0% {
+        width: 75%;
+    }
+    100% {
+        width: 100%;
+    }
+}
