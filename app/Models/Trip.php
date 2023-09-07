@@ -16,6 +16,7 @@ class Trip extends Model
         'flote',
         'date_depart',
         'heure_depart',
-        'status'
+        'status',
+        'price'
     ];
 }

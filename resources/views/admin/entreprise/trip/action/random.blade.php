@@ -10,7 +10,7 @@
 @section('title', $title)
 
 @section('content')
-   
+
 <div class="pagetitle">
     <h1>Gestion de trajet</h1>
     <nav>
@@ -42,7 +42,7 @@
             <select name="car" id="car" class="form-control @error('car') is-invalid @enderror">
                 <option value="">Selectionner la voiture</option>
                 @foreach ($car as $cars)
-                    <option value="{{$cars}}">{{$cars}}</option>    
+                    <option value="{{$cars}}">{{$cars}}</option>
                 @endforeach
             </select>
             @error('car')
@@ -55,7 +55,7 @@
                     <select name="place_depart" id="place_depart" class="form-control @error('place_depart') is-invalid @enderror">
                         <option value="">Selectionner le lieu de départ</option>
                         @foreach ($city as $cities)
-                            <option value="{{$cities}}">{{$cities}}</option>    
+                            <option value="{{$cities}}">{{$cities}}</option>
                         @endforeach
                     </select>
                     @error('place_depart')
@@ -67,7 +67,7 @@
                     <select name="place_arrivals" id="place_arrivals" class="form-control @error('place_arrivals') is-invalid @enderror">
                         <option value="">Selectionner le lieu de d'arriver</option>
                         @foreach ($city as $cities)
-                            <option value="{{$cities}}">{{$cities}}</option>    
+                            <option value="{{$cities}}">{{$cities}}</option>
                         @endforeach
                     </select>
                     @error('place_arrivals')
@@ -92,29 +92,47 @@
                     @enderror
                 </div>
             </div>
-            <label for="status">Status</label>
+            <div class="row mb-3">
+                <div class="col-6">
+                    <label for="status">Status</label>
                     <select name="status" id="status" class="form-control @error('status') is-invalid @enderror">
                         <option value="">Selectionner le status</option>
                         @foreach ($statement as $statues)
-                            <option value="{{$statues}}">{{$statues}}</option>    
+                            <option value="{{$statues}}">{{$statues}}</option>
                         @endforeach
                     </select>
                     @error('status')
                     <p style="color: rgb(114, 19, 19)">{{$message}}</p>
                     @enderror
+                </div>
+                <div class="col-6">
+                    <label for="price">Tarif</label>
+                    <div class="input-group mb-3">
+
+                        <span class="input-group-text" id="basic-addon3">Ar</span>
+                        <input type="text" name="price" id="price" class="form-control @error('price') is-invalid @enderror" value="{{@old('price')}}">
+                        @error('price')
+                        <p style="color: rgb(114, 19, 19)">{{$message}}</p>
+                        @enderror
+                    </div>
+                </div>
+            </div>
+
+
+
                     <div class="d-grid gap-2" style="margin-top: 20px">
-                
+
                         <button class="btn btn-primary" type="submit">Sauvgarder</button>
                     </div>
         </form>
-    @else 
+    @else
     <form action="" method="post">
         @csrf
         @method('PUT')
         <label for="car"> Selectionner une voiture</label>
         <select name="car" id="car" class="form-control @error('car') is-invalid @enderror">
             <option value="{{$trip->car}}">{{$trip->car}}</option>
-           
+
         </select>
         @error('car')
         <p style="color: rgb(114, 19, 19)">{{$message}}</p>
@@ -126,7 +144,7 @@
                 <select name="place_depart" id="place_depart" class="form-control @error('place_depart') is-invalid @enderror">
                     <option value="">Selectionner le lieu de départ</option>
                     @foreach ($city as $cities)
-                        <option value="{{$cities}}" @if($cities === $trip->place_depart) selected @endif>{{$cities}}</option>    
+                        <option value="{{$cities}}" @if($cities === $trip->place_depart) selected @endif>{{$cities}}</option>
                     @endforeach
                 </select>
                 @error('place_depart')
@@ -138,7 +156,7 @@
                 <select name="place_arrivals" id="place_arrivals" class="form-control @error('place_arrivals') is-invalid @enderror">
                     <option value="">Selectionner le lieu de d'arriver</option>
                     @foreach ($city as $cities)
-                        <option value="{{$cities}}" @if($cities === $trip->place_arrivals) selected @endif>{{$cities}}</option>    
+                        <option value="{{$cities}}" @if($cities === $trip->place_arrivals) selected @endif>{{$cities}}</option>
                     @endforeach
                 </select>
                 @error('place_arrivals')
@@ -148,9 +166,9 @@
         </div>
 
         <div class="row mb-3">
-            @php 
+            @php
                $time = Carbon\Carbon::parse($trip->heure_depart)->format('H:m');
-            @endphp 
+            @endphp
             <div class="col-6">
                 <label for="date_depart">Date de départ</label>
                 <input type="date" name="date_depart" id="date_depart" class="form-control @error('date_depart') is-invalid @enderror" value="{{$trip->date_depart}}">
@@ -166,18 +184,37 @@
                 @enderror
             </div>
         </div>
-        <label for="status">Status</label>
+        <div class="row mb-3">
+            <div class="col-6">
+                <label for="status">Status</label>
                 <select name="status" id="status" class="form-control @error('status') is-invalid @enderror">
                     <option value="">Selectionner le status</option>
                     @foreach ($statement as $statues)
-                        <option value="{{$statues}}"  @if($statues === $trip->status) selected @endif>{{$statues}}</option>    
+                        <option value="{{$statues}}"  @if($statues === $trip->status) selected @endif>{{$statues}}</option>
                     @endforeach
                 </select>
                 @error('status')
                 <p style="color: rgb(114, 19, 19)">{{$message}}</p>
                 @enderror
+            </div>
+            <div class="col-6">
+                <label for="price">Tarif</label>
+
+                <div class="input-group mb-3">
+
+                    <span class="input-group-text" id="basic-addon3">Ar1</span>
+                    <input type="text" name="price" id="price" class="form-control @error('price') is-invalid @enderror" value="{{@old('price')}}">
+                    @error('price')
+                    <p style="color: rgb(114, 19, 19)">{{$message}}</p>
+                    @enderror
+                </div>
+            </div>
+        </div>
+
+
+
                 <div class="d-grid gap-2" style="margin-top: 20px">
-            
+
                     <button class="btn btn-success" type="submit">Sauvgarder</button>
                 </div>
     </form>

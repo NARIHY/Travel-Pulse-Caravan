@@ -27,7 +27,8 @@ class TripRequest extends FormRequest
             'place_arrivals' => ['required', 'exists:travel,place', 'different:place_depart'],
             'date_depart' => ['required', 'date', 'after:now'],
             'heure_depart' => ['required', 'date_format:H:i'],
-            'status' => ['required', 'exists:statuses,status']
+            'status' => ['required', 'exists:statuses,status'],
+            'price' => ['required', 'min:5']
         ];
     }
 }
