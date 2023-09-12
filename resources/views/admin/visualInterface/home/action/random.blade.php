@@ -10,7 +10,7 @@
 @section('title', $title)
 
 @section('content')
-   
+
 <div class="pagetitle">
     <h1>Acceuil du site</h1>
     <nav>
@@ -34,16 +34,16 @@
 
 <div class="container">
     @if (request()->routeIS('Admin.Home.create'))
-        
+
     <form action="" method="post" enctype="multipart/form-data">
         @csrf
         <label for="title">Titre du publication</label>
-        <input type="text" name="title" id="title" class="form-control @error('title') is-invalid @enderror" value="{{$home->title}}">
+        <input type="text" name="title" id="title" class="form-control @error('title') is-invalid @enderror" value="{{@old('title')}}">
         @error('title')
             <p style="color:rgb(114, 19, 19)"> {{$message}} </p>
         @enderror
 
-        
+
 
         <label for="media">Ajouter une video ou une photo</label>
         <input type="file" name="media" id="video" class="form-control @error('media') is-invalid @enderror">
@@ -53,14 +53,14 @@
 
         <label for="content">Contenu de la publication</label>
         <textarea name="content" id="content" cols="30" rows="10" class="form-control @error('content') is-invalid @enderror">
-            {{$home->content}}
+            {{@old('content')}}
         </textarea>
         @error('content')
         <p style="color:rgb(114, 19, 19)"> {{$message}} </p>
         @enderror
 
         <div class="d-grid gap-2" style="margin-top: 20px">
-            
+
             <button class="btn btn-primary" type="submit">Créer</button>
         </div>
     </form>
@@ -81,7 +81,7 @@
                 <input type="file" name="media" id="media" class="form-control @error('media') is-invalid @enderror">
                 @error('media')
                     <p style="color:rgb(114, 19, 19)"> {{$message}} </p>
-                @enderror                                                                       
+                @enderror
             </div>
             <div class="col-6">
                 @foreach($mediaCollection as $media)
@@ -98,11 +98,11 @@
             </div>
         </div>
 
-      
 
-        
 
-        
+
+
+
 
         <label for="content" style="margin-top: 20px">Contenu de la publication</label>
         <textarea name="content" id="content" cols="30" rows="10" class="form-control @error('content') is-invalid @enderror">
@@ -116,7 +116,7 @@
             <button class="btn btn-primary" type="submit">Modifier</button>
         </div>
     </form>
-        
+
     @endif
 </div>
 

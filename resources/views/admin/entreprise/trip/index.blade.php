@@ -36,31 +36,33 @@
         <th scope="col">Heure de départ</th>
         <th scope="col">status</th>
         <th scope="col">Action</th>
-       
+
       </tr>
     </thead>
-    
+
     <tbody>
         @forelse ($trip as $trips)
             <tr>
                 <th scope="row">{{$trips->id}}</th>
-               
-                <td ><p style="color: blue">{{$trips->car}}</p></td>
+                @php
+                $cars = App\Models\Car::findOrFail($trips->car);
+                @endphp
+                <td ><p style="color: blue">{{$cars->plate_number}}</p></td>
                 <td> {{$trips->place_depart}} </td>
                 <td>{{$trips->place_arrivals}}</td>
-                @php 
-               
+                @php
+
                $date = Carbon\Carbon::parse($trips->date_depart)->format('D d M Y');
                $time = Carbon\Carbon::parse($trips->heure_depart)->format('H:m:s');
-               @endphp 
+               @endphp
                 <td> {{$trips->flote}} </td>
                 <td>{{$date}}</td>
                 <td> <p style="color: red">{{$time}}</p> </td>
                 <td> {{$trips->status}}</td>
-                
-                
-             
-                <td>    
+
+
+
+                <td>
                     <div class="row mb-3">
                       <div class="col-6">
                         <a href="{{route('Admin.Entreprise.trip.planified.edit', ['id' => $trips->id])}}" class="btn btn-primary"><i class="bi bi-pencil"></i></a>
@@ -70,11 +72,11 @@
                           @csrf
                           @method('DELETE')
                           <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>
-                          
+
                         </form>
                       </div>
                     </div>
-                    
+
                 </td>
             </tr>
         @empty
@@ -87,13 +89,13 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                
+
                 <td>
-                
+
                 </td>
             </tr>
         @endforelse
-     
+
     </tbody>
   </table>
 @endsection

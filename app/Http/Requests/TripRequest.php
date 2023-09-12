@@ -22,7 +22,7 @@ class TripRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'car' => ['required', 'exists:cars,plate_number'],
+            'car' => ['required', 'exists:cars,id'],
             'place_depart' => ['required', 'exists:travel,place', 'different:place_arrivals'],
             'place_arrivals' => ['required', 'exists:travel,place', 'different:place_depart'],
             'date_depart' => ['required', 'date', 'after:now'],

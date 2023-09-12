@@ -8,12 +8,18 @@ use App\Models\Passenger;
 use App\Models\Reservation;
 use App\Models\Travel;
 use App\Models\Trip;
+use Egulias\EmailValidator\EmailValidator;
+use Egulias\EmailValidator\Validation\DNSCheckValidation;
+use Egulias\EmailValidator\Validation\MultipleValidationWithAnd;
+use Egulias\EmailValidator\Validation\RFCValidation;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class ReservationController extends Controller
 {
+
+
 
     /**
      * list the reservation view where reservation_time > now
@@ -35,31 +41,52 @@ class ReservationController extends Controller
      *
      * @return View
      */
-    public function passenger(): View 
+    public function passenger(): View
     {
         return view($this->viewPath().'passenger.index');
     }
 
     /**
-     * to add passenger in passenger list
-     *
-     * @param PassengerRequest $request
-     * @return RedirectResponse
-     */
-    public function passenger_add(PassengerRequest $request): RedirectResponse
-    {
-        try {
-            $data = $request->validated();
-            if($request->validated('phone_number') === $request->validated('emergency_contact')) {
-                return redirect()->route($this->routes().'create.passenger')->with('error', 'Le numéro de téléphone du voyageur ne peut pas être le même que celui du personne à contacter en cas d\'urgence');
+ * Add a passenger to the passenger list with email verification.
+ *
+ * @param PassengerRequest $request
+ * @return RedirectResponse
+ */
+public function passenger_add(PassengerRequest $request): RedirectResponse
+{
+    try {
+        // Get the validated data from the request
+        $data = $request->validated();
+        // Get the validated email address from the request
+        $email = $request->validated('email');
+        // Create an instance of the email validator
+        $validator = new EmailValidator();
+        // Configure multiple validations to apply (RFCValidation and DNSCheckValidation)
+        $multipleValidations = new MultipleValidationWithAnd([
+            new RFCValidation(),
+            new DNSCheckValidation()
+        ]);
+        // Check if the email address is valid using the configured validations
+        if ($validator->isValid($email, $multipleValidations)) {
+            // The email address is valid
+            // Check if the traveler's phone number is the same as the emergency contact's
+            if ($request->validated('phone_number') === $request->validated('emergency_contact')) {
+                return redirect()->route($this->routes().'create.passenger')->with('error', 'The traveler\'s phone number cannot be the same as the emergency contact\'s');
             }
+            // Create an instance of the Passenger model with the validated data
             $passenger = Passenger::create($data);
-            
-            return redirect()->route($this->routes().'passenger.city', ['passenger_id' => $passenger->id, 'purcount' => 25])->with('success','25');
-        } catch(\Exception $e) {
-            return redirect()->route($this->routes().'create.passenger')->with('error', 'Une erreur s\'est survenue'.$e->getMessage());
+            // Redirect to the passenger.city page with parameters and a success message
+            return redirect()->route($this->routes().'passenger.city', ['passenger_id' => $passenger->id, 'purcount' => 25])->with('success', '25');
+        } else {
+            // The email address is not valid
+            return redirect()->route($this->routes().'create.passenger')->with('error', 'The email address you entered is not valid or does not exist');
         }
+    } catch (\Exception $e) {
+        // In case of an error, redirect with an error message
+        return redirect()->route($this->routes().'create.passenger')->with('error', 'An error occurred: ' . $e->getMessage());
     }
+}
+
 
     /**
      * To get the traveling user information
@@ -70,7 +97,7 @@ class ReservationController extends Controller
      * @param string $purcount
      * @return View
      */
-    public function destination(string $passenger_id, string $purcount) : View 
+    public function destination(string $passenger_id, string $purcount) : View
     {
         $city = Travel::pluck('place');
         return view($this->viewPath().'trip.index', [
@@ -100,8 +127,8 @@ class ReservationController extends Controller
         }
     }
     /**
-     * return a reservation view 
-     * we are at 50% 
+     * return a reservation view
+     * we are at 50%
      *
      * @param string $passenger_id
      * @param string $purcount
@@ -116,6 +143,7 @@ class ReservationController extends Controller
                         ->where('place_depart', $depart)
                         ->where('place_arrivals', $arrivals)
                         ->paginate(15);
+        //checks if there are place
         return view($this->viewPath().'reservate.index', [
             'purcount' => $purcount,
             'arrivals' => $arrivals,
@@ -123,7 +151,7 @@ class ReservationController extends Controller
             'depart' => $depart,
             'trip' => $trip
         ]);
-        
+
     }
 
     /**
@@ -136,7 +164,7 @@ class ReservationController extends Controller
      * @param string $tripId
      * @return View
      */
-    public function payement(string $passenger_id, string $purcount, string $depart, string $arrivals, string $tripId):View 
+    public function payement(string $passenger_id, string $purcount, string $depart, string $arrivals, string $tripId):View
     {
         return view($this->viewPath().'payement.index', [
             'purcount' => $purcount ,
@@ -159,29 +187,30 @@ class ReservationController extends Controller
      */
     public function success(string $passenger_id, string $purcount, string $depart, string $arrivals, string $tripId) : RedirectResponse
     {
-        
+
         $data = [
             'trip_id' => $tripId,
             'passenger_id' => $passenger_id,
+            'reservation_date' => date('Y-m-d H:i:s'),
             'reservation_status' => 'reserver'
         ];
         $reservation = Reservation::create($data);
         return redirect()->route($this->routes().'passenger.city.finale', ['purcount' => $purcount + 25]);
     }
 
-    public function finale(string $purcount): View 
+    public function finale(string $purcount): View
     {
         return view($this->viewPath().'finale.index', [
             'purcount' => $purcount
         ]);
     }
     /**
-     * this is already the same 
+     * this is already the same
      * view path directory
      *
      * @return string
      */
-    private function viewPath(): string 
+    private function viewPath(): string
     {
         $path ="admin.entreprise.trip.reservation.";
         return $path;
@@ -192,7 +221,7 @@ class ReservationController extends Controller
      *
      * @return string
      */
-    private function  routes(): string 
+    private function  routes(): string
     {
         $routes = "Admin.Entreprise.trip.reservation.";
         return $routes;

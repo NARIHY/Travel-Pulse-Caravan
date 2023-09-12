@@ -40,8 +40,10 @@
         @forelse ($trip as $trips)
             <tr>
                 <th scope="row">{{$trips->id}}</th>
-
-                <td ><p style="color: blue">{{$trips->car}}</p></td>
+                @php
+                    $cars = App\Models\Car::findOrFail($trips->car);
+                @endphp
+                <td ><p style="color: blue">{{$cars->id}}</p></td>
                 <td> {{$trips->place_depart}} </td>
                 <td>{{$trips->place_arrivals}}</td>
                 @php
@@ -57,7 +59,16 @@
 
 
                 <td>
-                    <a href="{{route('Admin.Entreprise.trip.reservation.passenger.city.payement',['passenger_id' => $passenger_id, 'purcount' => $purcount + 25, 'tripId' => $trips->id, 'depart' => $depart, 'arrivals' => $arrivals])}}" class="btn btn-primary">Reserver</a>
+                    @php
+
+                        $verify = new Nari\Reservation\Reservation ($trips->id, $trips->car);
+                    @endphp
+
+                    @if ($verify->verify() === false)
+                        <a href="{{route('Admin.Entreprise.trip.reservation.passenger.city.payement',['passenger_id' => $passenger_id, 'purcount' => $purcount + 25, 'tripId' => $trips->id, 'depart' => $depart, 'arrivals' => $arrivals])}}" class="btn btn-primary">Reserver</a>
+                    @else
+                        <p style="color: red">Plein</p>
+                    @endif
 
                 </td>
             </tr>

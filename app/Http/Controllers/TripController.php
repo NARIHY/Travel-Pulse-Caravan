@@ -26,7 +26,7 @@ class TripController extends Controller
         $trip = Trip::where('date_depart', '>', now())
                             ->orderBy('created_at', 'desc')
                             ->paginate(15);
-                            
+
         return view($this->viewPath().'index', [
             'trip' => $trip
         ]);
@@ -37,11 +37,11 @@ class TripController extends Controller
      *
      * @return View
      */
-    public function create():View 
+    public function create():View
     {
         $city = Travel::pluck('place');
         $car = Car::where('vehicule_info', 'apte')
-                        ->pluck('plate_number');
+                        ->pluck('id');
         //for the flote category we only get the car category
         $statement = Status::pluck('status');
         return view($this->viewPath().'action.random', [
@@ -54,8 +54,8 @@ class TripController extends Controller
     public function store(TripRequest $request): RedirectResponse
     {
         try {
-            $data = $request->validated();          
-            $car = Car::where('plate_number', $request->validated('car'))
+            $data = $request->validated();
+            $car = Car::where('id', $request->validated('car'))
                                 ->value('category');
             $flote = Category::where('id', $car)
                                     ->value('flotte');
@@ -65,9 +65,9 @@ class TripController extends Controller
                                         ->where('date_depart', $daysToGo)
                                         ->count();
             if ($verification > 0) {
-                return redirect()->route($this->routes().'create')->with('error', 'Cette voiture ne peut pas être mis sur le planing pour ce jour  car elle y est déjàs inscrit'); 
-            }            
-            //trip creation            
+                return redirect()->route($this->routes().'create')->with('error', 'Cette voiture ne peut pas être mis sur le planing pour ce jour  car elle y est déjàs inscrit');
+            }
+            //trip creation
             $trip = Trip::create($data);
             $trip->update(['flote' => $flote]);
             return redirect()->route($this->routes().'index')->with('success', 'Ajout du trajet réussi');
@@ -82,11 +82,11 @@ class TripController extends Controller
      * @param string $id
      * @return View
      */
-    public function edit(string $id):View 
+    public function edit(string $id):View
     {
         $city = Travel::pluck('place');
         $car = Car::where('vehicule_info', 'apte')
-                        ->pluck('plate_number');
+                        ->pluck('id');
         //for the flote category we only get the car category
         $statement = Status::pluck('status');
         $trip = Trip::findOrFail($id);
@@ -117,7 +117,7 @@ class TripController extends Controller
         }
     }
 
-    public function delete(string $id):RedirectResponse 
+    public function delete(string $id):RedirectResponse
     {
         $trip = Trip::findOrFail($id);
         $trip->delete();
@@ -130,9 +130,9 @@ class TripController extends Controller
      *
      * @return string
      */
-    private function viewPath():string 
+    private function viewPath():string
     {
-        $view = "admin.entreprise.trip."; 
+        $view = "admin.entreprise.trip.";
         return $view;
     }
 
@@ -141,7 +141,7 @@ class TripController extends Controller
      *
      * @return string
      */
-    private function routes(): string 
+    private function routes(): string
     {
         $routes ="Admin.Entreprise.trip.planified.";
         return $routes;

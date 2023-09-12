@@ -21,6 +21,9 @@
       </div>
 
 
+      <h2 style="color: green">Réservation réussi</h2>
+
+
 
 </div>
 @endsection
