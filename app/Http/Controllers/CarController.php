@@ -55,12 +55,12 @@ class CarController extends Controller
         ]);
     }
 
-    
+
 
     /**
      * Action todo when user insert the car information in database
      *
-     * 
+     *
      * @param CarRequest $request
      * @return RedirectResponse
      */
@@ -88,7 +88,7 @@ class CarController extends Controller
                     throw new \Exception('An error occurred while adding media: ' . $mediaException->getMessage());
                 }
             }
-            
+
             return redirect()->route($this->routes().'index')->with('success', 'Ajout réussi');
         } catch (\Exception $e) {
             return redirect()->route($this->routes().'create')->with('error', 'Une erreur s\'est survenu' . $e->getMessage());
@@ -139,7 +139,7 @@ class CarController extends Controller
             $car->category()->sync(['car_id' => $car->id], $request->validated('category'));
             if (!empty($request->hasFile('media'))) {
                 try {
-                    // used to delete an old  media files when update action is on 
+                    // used to delete an old  media files when update action is on
                     $delete = Media::where('collection_name', 'car_info')
                                         ->where('model_type', Car::class)
                                         ->where('model_id', $id)
@@ -149,7 +149,7 @@ class CarController extends Controller
                         ->toMediaCollection('car_info', 'public'); // Change 'disk_name' to the actual disk name
                     //Now we store the new files in the home_admins entities
                     $storagePath = $media->getPath();
-                    $car->update(['media'=> $storagePath]);    
+                    $car->update(['media'=> $storagePath]);
                     // You can also set additional media properties here if needed
                 } catch (\Exception $mediaException) {
                     // Handle media-related exceptions
@@ -173,16 +173,16 @@ class CarController extends Controller
     {
         try {
             $home = Car::findOrFail($id);
-           
+
 
             // Supprimer le fichier média associé du stockage s'il existe
             if ($home->media) {
-                
+
                 if (Storage::disk('public')->exists($home->media)) {
-                     Storage::disk('public')->delete($home->media);           
+                     Storage::disk('public')->delete($home->media);
                 }
             }
-            
+
             // Supprimer l'objet HomeAdmin lui-même
             $home->delete();
 
@@ -198,7 +198,7 @@ class CarController extends Controller
      * @param string $id
      * @return View
      */
-    public function view(string $id): View 
+    public function view(string $id): View
     {
         $car = Car::findOrFail($id);
         $mediaCollection = Media::where('collection_name', 'car_info')
@@ -229,22 +229,27 @@ class CarController extends Controller
         ];
             $items = [];
         foreach ($array as $key =>$value) {
-            $items[]= "$key: $value"; 
+            $items[]= "$key: $value";
         }
         $string = implode("\n", $items);
-        
+
         $qrCode = QrCode::size(150)
                             ->color(0,0,0)
                             ->generate($string);
-       
+
         return view($this->path(). 'view.view', [
             'car' => $car,
             'mediaCollection' => $mediaCollection,
             'qrCode' => $qrCode
         ]);
     }
-    
 
+
+    /**
+     * Generating pdf
+     * @param string $id
+     *
+     */
     public function generatePDF(string $id)
     {
         $car = Car::findOrFail($id);
@@ -258,10 +263,10 @@ class CarController extends Controller
         $carInformation = CarInformation::findOrFail($carIn);
         $flote = Category::where('id', $car->category)
                                     ->value('flotte');
-    
+
         // Convertir la date en timestamp
         $date = strtotime($carInformation->maintains);
-    
+
         $array = [
             'Model' => $car->model,
             'Marque' => $car->brand,
@@ -276,19 +281,19 @@ class CarController extends Controller
             'flote' => $flote,
             'compagnie' => 'Travel Pulse Caravan'
         ];
-    
+
         $items = [];
         foreach ($array as $key => $value) {
             $items[] = "$key: $value";
         }
-    
+
         $string = implode("\n", $items);
-    
+
         $qrCode = QrCode::size(150)
                         ->color(0, 0, 0)
                         ->generate($string);
-                        
-    
+
+
         // Générer le contenu HTML pour le PDF
         $html = view($this->path().'pdf.index', [
             'car' => $car,
@@ -297,18 +302,18 @@ class CarController extends Controller
             'carInformation' => $carInformation
         ])->render();
 
-        
-    
+
+
         // Générer le PDF avec Dompdf
         $pdf = new Dompdf();
         $pdf->loadHtml($html);
         $pdf->setPaper('A4', 'portrait');
         $pdf->render();
-    
+
         // Retourner le PDF en tant que réponse HTTP
         return $pdf->stream($car->model.'_'.$car->brand.'.pdf');
     }
-    
+
 
     /**
      * Private function who is very nedded because this return a instance of fileViewPath
@@ -326,7 +331,7 @@ class CarController extends Controller
      *
      * @return string
      */
-    private function routes():string 
+    private function routes():string
     {
         $routes = 'Admin.Entreprise.flote.car.';
         return $routes;

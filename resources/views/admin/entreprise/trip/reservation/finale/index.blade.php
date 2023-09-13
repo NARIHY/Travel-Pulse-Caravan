@@ -23,6 +23,8 @@
 
       <h2 style="color: green">Réservation réussi</h2>
 
+      <a href="{{route('Admin.pdf.export', ['purcount' => $purcount,'passenger_id' => $passenger_id, 'tripId' => $tripId])}}">Exporter</a>
+
 
 
 </div>

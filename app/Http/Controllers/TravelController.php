@@ -30,7 +30,7 @@ class TravelController extends Controller
      *
      * @return View
      */
-    public function create(): View 
+    public function create(): View
     {
         return view($this->viewPath(). 'action.random');
     }
@@ -57,7 +57,7 @@ class TravelController extends Controller
      *
      * @return string
      */
-    private function viewPath(): string 
+    private function viewPath(): string
     {
         $path = "admin.entreprise.trip.travel.";
         return $path;
@@ -68,7 +68,7 @@ class TravelController extends Controller
      *
      * @return string
      */
-    private function routes(): string 
+    private function routes(): string
     {
         $routes = "Admin.Entreprise.trip.travel.";
         return $routes;

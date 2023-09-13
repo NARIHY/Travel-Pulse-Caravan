@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\DestinationRequest;
 use App\Http\Requests\PassengerRequest;
+use App\Models\Car;
+use App\Models\Category;
 use App\Models\Passenger;
 use App\Models\Reservation;
 use App\Models\Travel;
 use App\Models\Trip;
+use Dompdf\Dompdf;
 use Egulias\EmailValidator\EmailValidator;
 use Egulias\EmailValidator\Validation\DNSCheckValidation;
 use Egulias\EmailValidator\Validation\MultipleValidationWithAnd;
@@ -15,6 +18,8 @@ use Egulias\EmailValidator\Validation\RFCValidation;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Nari\Pdf;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class ReservationController extends Controller
 {
@@ -28,11 +33,12 @@ class ReservationController extends Controller
      */
     public function index(): View
     {
-        $reservation = Reservation::orderBy('created_at')
-                                        ->where('reservation_date', '>', now())
-                                        ->paginate(20);
+
+        $trip = Trip::where('date_depart', '>', now())
+                                        ->orderBy('created_at', 'desc')
+                                        ->paginate(15);
         return view($this->viewPath().'index', [
-            'reservation' => $reservation
+            'trip' => $trip
         ]);
     }
 
@@ -195,14 +201,83 @@ public function passenger_add(PassengerRequest $request): RedirectResponse
             'reservation_status' => 'reserver'
         ];
         $reservation = Reservation::create($data);
-        return redirect()->route($this->routes().'passenger.city.finale', ['purcount' => $purcount + 25]);
+        return redirect()->route($this->routes().'passenger.city.finale', ['purcount' => $purcount + 25,'passenger_id' => $passenger_id, 'tripId' => $tripId]);
     }
-
-    public function finale(string $purcount): View
+    //s
+    public function finale(string $purcount, string $tripId, string $passenger_id): View
     {
         return view($this->viewPath().'finale.index', [
-            'purcount' => $purcount
+            'purcount' => $purcount,
+            'tripId' => $tripId,
+            'passenger_id' => $passenger_id
         ]);
+    }
+
+    /**
+     * export pdf
+     */
+    public function pdf(string $purcount, string $tripId, string $passenger_id)
+    {
+        //for passengers information
+        $passenger = Passenger::findOrFail($passenger_id);
+
+        //for trip information
+        $trip = Trip::findOrFail($tripId);
+
+        //get trip categories
+        $flotte = Category::findOrFail($trip->flote);
+
+        // Convert date of depart
+        $date = strtotime($trip->date_depart);
+        //car plate_number
+        $car = Car::findOrFail($trip->car);
+
+        $array = [
+            'compagnie' => 'Travel Pulse Caravan',
+            'flote' => $flotte->flotte,
+            'trajet' => $trip->place_depart .'-'.$trip->place_arrivals,
+            'heure de départ' => date('D d M Y', $date),
+            'Immatriculation' => $car->plate_number,
+            'nom du passager' => $passenger->name,
+            'prenon du passager' => $passenger->last_name,
+            'telephone du passager' => $passenger->phone_number,
+            'email du passager' => $passenger->email,
+            'prix du trajet' => number_format($trip->price, 0, '.', ' ')
+        ];
+
+
+        $items = [];
+        foreach ($array as $key => $value) {
+            $items[] = "$key: $value";
+        }
+
+        $string = implode("\n", $items);
+
+        $qrCode = QrCode::size(125)
+                        ->color(200, 150, 0)
+                        ->generate($string);
+
+        $carDepart = date('D d M Y', $date);
+        // Générer le contenu HTML pour le PDF
+        $html = view('pdf.reservation', [
+            'car' => $car,
+            'passenger' => $passenger,
+            'qrCode' => $qrCode,
+            'trip' => $trip,
+            'flotte' => $flotte,
+            'carDepart' => $carDepart
+        ])->render();
+
+
+
+        // Générer le PDF avec Dompdf
+        $pdf = new Dompdf();
+        $pdf->loadHtml($html);
+        $pdf->setPaper('A5', 'landscape');
+        $pdf->render();
+
+        // Retourner le PDF en tant que réponse HTTP
+        return $pdf->stream('reservation_'.$purcount.'_'.$tripId.'_'.$passenger_id.'_'.$car->brand.'.pdf');
     }
     /**
      * this is already the same

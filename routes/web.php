@@ -108,12 +108,16 @@ Route::prefix('/Administration')->name('Admin.')->group( function() {
     Route::get('Entreprise/gestion-de-trajet/reservation/passager/{passenger_id}/{purcount}/{depart}-{arrivals}', [ReservationController::class, 'reservate'])->name($trip.'reservation.passenger.city.reserve');
     Route::get('Entreprise/gestion-de-trajet/reservation/passager/{passenger_id}/{purcount}/{depart}-{arrivals}/{tripId}', [ReservationController::class, 'payement'])->name($trip.'reservation.passenger.city.payement');
     Route::post('Entreprise/gestion-de-trajet/reservation/passager/{passenger_id}/{purcount}/{depart}-{arrivals}/{tripId}', [ReservationController::class, 'success'])->name($trip.'reservation.passenger.city.success');
+
     //payement
 
     //final result
-    Route::get('Entreprise/gestion-de-trajet/reservation/passager/{purcount}/reservation', [ReservationController::class, 'finale'])->name($trip.'reservation.passenger.city.finale');
+    Route::get('Entreprise/gestion-de-trajet/reservation/passager/{purcount}/{passenger_id}-{tripId}/reservation', [ReservationController::class, 'finale'])->name($trip.'reservation.passenger.city.finale');
 
 
+
+    //export pdf
+    Route::get('Entreprise/gestion-de-trajet/reservation/passager/pdf/{purcount}/{passenger_id}/{tripId}/reservation/55', [ReservationController::class, 'pdf'])->name('pdf.export');
     //Route for car information
     Route::prefix('/Information')->name('Information.')->group( function() {
         Route::get('/Liste-des-informations-publier', [InformationController::class, 'listing'])->name('listing');
