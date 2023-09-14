@@ -41,7 +41,7 @@ class TripController extends Controller
     {
         $city = Travel::pluck('place');
         $car = Car::where('vehicule_info', 'apte')
-                        ->pluck('id');
+                        ->pluck('id','plate_number');
         //for the flote category we only get the car category
         $statement = Status::pluck('status');
         return view($this->viewPath().'action.random', [
@@ -58,7 +58,7 @@ class TripController extends Controller
             $car = Car::where('id', $request->validated('car'))
                                 ->value('category');
             $flote = Category::where('id', $car)
-                                    ->value('flotte');
+                                    ->value('id');
             //verify date_depart if date has a reservation return an error
             $daysToGo = $request->validated('date_depart');
             $verification = Trip::where('car', $request->validated('car'))

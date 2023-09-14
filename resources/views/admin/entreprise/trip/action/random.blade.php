@@ -37,12 +37,13 @@
 <div class="container">
     @if(request()->routeIS('Admin.Entreprise.trip.planified.create'))
         <form action="" method="post">
+
             @csrf
             <label for="car">Selectionner une voiture</label>
             <select name="car" id="car" class="form-control @error('car') is-invalid @enderror">
                 <option value="">Selectionner la voiture</option>
-                @foreach ($car as $cars)
-                    <option value="{{$cars}}">{{$cars}}</option>
+                @foreach ($car as $k=>$v)
+                    <option value="{{$v}}">{{$k}}</option>
                 @endforeach
             </select>
             @error('car')

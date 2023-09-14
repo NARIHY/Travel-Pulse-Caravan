@@ -3,14 +3,23 @@
 <head>
     <title>Travel Pulse Caravan</title>
     <style>
+        @page {
+            size: A5 landscape; /* Format A5 en mode paysage */
+            margin: 0;
+            height: 400px;
+        }
         body {
             font-family: 'Times New Roman', Times, serif;
+            left: 0;
+            top: 0;
             margin: 0;
             padding: 0;
         }
 
         .header {
             text-align: center;
+            left: 0;
+            top: 0;
             font-size: 20px;
             height: 100px;
             background-color: #0074E4;
@@ -19,7 +28,7 @@
         }
 
         .content {
-            font-size: 14px;
+            font-size: 12px;
             line-height: 1.5;
             margin: 20px;
             /* Supprimer la page-break */
@@ -33,7 +42,7 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
 
         th, td {
@@ -48,6 +57,9 @@
             margin-top: 20px;
             /* Supprimer le pied de page */
             display: none;
+            background-color: #0074E4;
+            width: 100%;
+            height: 100%;
         }
     </style>
 </head>
@@ -82,12 +94,20 @@
                     <td>{{$trip->place_depart}} à {{$trip->place_arrivals}}</td>
                 </tr>
                 <tr>
-                    <th>Heure de départ</th>
+                    <th>Date de départ</th>
                     <td>{{$carDepart}}</td>
+                </tr>
+                <tr>
+                    <th>Heure de départ</th>
+                    <td>{{$timesDepart}}</td>
                 </tr>
                 <tr>
                     <th>Prix du ticket</th>
                     <td>{{number_format($trip->price, 0, '.', ' ')}} Ar</td>
+                </tr>
+                <tr>
+                    <th>Ticket acheter le:</th>
+                    <td>{{$tiket}}</td>
                 </tr>
             </table>
         </div>

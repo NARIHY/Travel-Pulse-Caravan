@@ -43,7 +43,7 @@
                 @php
                     $cars = App\Models\Car::findOrFail($trips->car);
                 @endphp
-                <td ><p style="color: blue">{{$cars->id}}</p></td>
+                <td ><p style="color: blue">{{$cars->plate_number}}</p></td>
                 <td> {{$trips->place_depart}} </td>
                 <td>{{$trips->place_arrivals}}</td>
                 @php

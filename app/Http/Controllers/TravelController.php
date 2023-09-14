@@ -46,7 +46,7 @@ class TravelController extends Controller
         try {
             $data = $request->validated();
             $travel = Travel::create($data);
-            return redirect()->route($this->routes().'index')->with('error', 'Ajout du place réussi');
+            return redirect()->route($this->routes().'index')->with('success', 'Ajout du place réussi');
         } catch(\Exception $e) {
             return redirect()->route($this->routes().'action.random')->with('error', 'il y a une erreur lor de l\'ajout'. $e->getMessage());
         }

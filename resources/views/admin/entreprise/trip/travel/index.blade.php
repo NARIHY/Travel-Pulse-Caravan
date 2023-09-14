@@ -13,23 +13,24 @@
       </ol>
     </nav>
   </div>
+  @if (session('success'))
+    <div class="alert alert-success">
+        <p class="text-center">{{session('success')}}</p>
+    </div>
+@endif
   @if (session('error'))
     <div class="alert alert-danger">
         <p class="text-center">{{session('error')}}</p>
     </div>
 @endif
-@if (session('success'))
-    <div class="alert alert-success">
-        <p class="text-center">{{session('success')}}</p>
-    </div>
-@endif
+
   <div>
     <table class="table table-striped">
       <thead>
       <tr>
         <th scope="col">#</th>
         <th scope="col">Ville</th>
-        
+
       </tr>
       </thead>
       <tbody>
@@ -37,11 +38,11 @@
               <tr>
                   <th scope="row">{{$categories->id}}</th>
                   <td>{{$categories->place}}</td>
-                 
+
               </tr>
           @endforeach
-     
-      
+
+
       </tbody>
     </table>
     {{$travel->links()}}

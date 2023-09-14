@@ -13,6 +13,7 @@ class Reservation extends Model
         'trip_id',
         'reservation_date',
         'passenger_id',
-        'reservation_status'
+        'reservation_status',
+        'identification'
     ];
 }

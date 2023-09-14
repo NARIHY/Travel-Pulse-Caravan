@@ -11,6 +11,7 @@ use App\Models\Reservation;
 use App\Models\Travel;
 use App\Models\Trip;
 use Dompdf\Dompdf;
+use Dompdf\Options;
 use Egulias\EmailValidator\EmailValidator;
 use Egulias\EmailValidator\Validation\DNSCheckValidation;
 use Egulias\EmailValidator\Validation\MultipleValidationWithAnd;
@@ -193,12 +194,19 @@ public function passenger_add(PassengerRequest $request): RedirectResponse
      */
     public function success(string $passenger_id, string $purcount, string $depart, string $arrivals, string $tripId) : RedirectResponse
     {
+        //for securisate reservation ticket
+        // Generate random token of 32 octets (256 bits)
+        $token = bin2hex(random_bytes(32));
+
+        // Hach token le hachage SHA-256 du token
+        $securityTicket = hash('sha256', $token);
 
         $data = [
             'trip_id' => $tripId,
             'passenger_id' => $passenger_id,
             'reservation_date' => date('Y-m-d H:i:s'),
-            'reservation_status' => 'reserver'
+            'reservation_status' => 'reserver',
+            'identification' => $securityTicket
         ];
         $reservation = Reservation::create($data);
         return redirect()->route($this->routes().'passenger.city.finale', ['purcount' => $purcount + 25,'passenger_id' => $passenger_id, 'tripId' => $tripId]);
@@ -229,20 +237,27 @@ public function passenger_add(PassengerRequest $request): RedirectResponse
 
         // Convert date of depart
         $date = strtotime($trip->date_depart);
+        //time of depart
+        $time = strtotime($trip->heure_depart);
+
         //car plate_number
         $car = Car::findOrFail($trip->car);
-
+        $reservation = Reservation::where('trip_id', $trip->id)
+                        ->value('identification');
+        /* decoment if needed
         $array = [
             'compagnie' => 'Travel Pulse Caravan',
             'flote' => $flotte->flotte,
             'trajet' => $trip->place_depart .'-'.$trip->place_arrivals,
-            'heure de départ' => date('D d M Y', $date),
+            'date de départ' => date('D d M Y', $date),
+            'heure de départ' => date('H:m:s', $time),
             'Immatriculation' => $car->plate_number,
             'nom du passager' => $passenger->name,
             'prenon du passager' => $passenger->last_name,
             'telephone du passager' => $passenger->phone_number,
             'email du passager' => $passenger->email,
-            'prix du trajet' => number_format($trip->price, 0, '.', ' ')
+            'prix du trajet' => number_format($trip->price, 0, '.', ' '),
+            'Tiket info' => $reservation
         ];
 
 
@@ -252,12 +267,14 @@ public function passenger_add(PassengerRequest $request): RedirectResponse
         }
 
         $string = implode("\n", $items);
-
+        */
         $qrCode = QrCode::size(125)
                         ->color(200, 150, 0)
-                        ->generate($string);
+                        ->generate($reservation);
 
         $carDepart = date('D d M Y', $date);
+        $timesDepart = date('H:m:s', $time);
+        $tiket = date('D d M Y H:m:s', strtotime($trip->created_at));
         // Générer le contenu HTML pour le PDF
         $html = view('pdf.reservation', [
             'car' => $car,
@@ -265,7 +282,9 @@ public function passenger_add(PassengerRequest $request): RedirectResponse
             'qrCode' => $qrCode,
             'trip' => $trip,
             'flotte' => $flotte,
-            'carDepart' => $carDepart
+            'carDepart' => $carDepart,
+            'timesDepart' => $timesDepart,
+            'tiket' => $tiket
         ])->render();
 
 
