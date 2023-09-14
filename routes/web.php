@@ -8,6 +8,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeAdminController;
 use App\Http\Controllers\InformationController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PublicityController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\TravelController;
 use App\Http\Controllers\TripController;
@@ -130,4 +131,15 @@ Route::prefix('/Administration')->name('Admin.')->group( function() {
         Route::delete('/{id}/Suprimer-une-information', [InformationController::class, 'delete'])->name('delete');
     });
 
+    //Route for publicity
+    Route::prefix('/Publicite')->name('Publicite.')->group( function() {
+        Route::get('/Liste-des-publicites-publier', [PublicityController::class, 'listing'])->name('listing');
+        Route::get('/Ajouter-d-une-publicite',[PublicityController::class,'create'])->name('create');
+        Route::post('/Ajouter-d-une-publicite',[PublicityController::class,'store'])->name('store');
+        //Route for edition
+        Route::get('/{id}/edition-d-une-publicite', [PublicityController::class, 'edit'])->name('edit');
+        Route::put('/{id}/edition-d-une-publicite', [PublicityController::class, 'update'])->name('update');
+        //deleting information
+        Route::delete('/{id}/Suprimer-une-publicite', [PublicityController::class, 'delete'])->name('delete');
+    });
 }) ;

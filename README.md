@@ -57,13 +57,13 @@ Travel Pulse Caravan est une compagnie de transport terrestre a madagascar, et n
 ## ---- Pour la gestion des flotte -----
 Gestion de flotte de voiture
 Bien sûr, voici une description textuelle de chaque fonctionnalité pour la gestion de la flotte de véhicules chez "Travel Pulse Caravan" :
-1. Enregistrement des véhicules :
+1. Enregistrement des véhicules : x
 Cette fonctionnalité permet à l'entreprise d'enregistrer tous les véhicules de sa flotte en collectant des informations détaillées sur chaque véhicule, telles que le modèle, la marque, l'année de fabrication, le numéro d'immatriculation, et les caractéristiques spécifiques.
 2. Suivi de l'entretien :
 Grâce à cette fonctionnalité, l'entreprise peut suivre les dates d'entretien régulier pour chaque véhicule de sa flotte. Cela inclut la planification des changements d'huile, des vérifications techniques, et la gestion des réparations nécessaires pour maintenir les véhicules en bon état de fonctionnement.
 3. Gestion des inspections :
 Cette fonctionnalité permet à l'entreprise de planifier et de réaliser des inspections régulières des véhicules pour s'assurer qu'ils répondent aux normes de sécurité et de performance requises.
-4. Disponibilité des véhicules :
+4. Disponibilité des véhicules : x
 Grâce à cette fonctionnalité, l'entreprise peut vérifier la disponibilité des véhicules de sa flotte en temps réel. Cela aide à répondre efficacement à la demande des voyageurs et à optimiser l'utilisation des véhicules.
 5. Attribution des véhicules :
 Cette fonctionnalité permet à l'entreprise d'attribuer les véhicules à chaque trajet en fonction de la capacité, des besoins spécifiques des voyageurs, et de la disponibilité des véhicules.
@@ -75,7 +75,7 @@ Cette fonctionnalité permet à l'entreprise de gérer les réparations et la ma
 Grâce à cette fonctionnalité, l'entreprise surveille la consommation de carburant de chaque véhicule. Cela permet d'évaluer l'efficacité des véhicules et d'identifier des possibilités d'économies.
 9. Renouvellement de la flotte :
 Cette fonctionnalité aide l'entreprise à planifier le renouvellement de sa flotte en remplaçant les véhicules vieillissants par de nouveaux modèles plus efficaces et sécurisés.
-10. Assurance des véhicules :
+10. Assurance des véhicules : x
 Grâce à cette fonctionnalité, l'entreprise s'assure que tous les véhicules de sa flotte sont couverts par une assurance adéquate pour protéger ses actifs et ses voyageurs.
 11. Gestion des documents :
 Cette fonctionnalité centralise la gestion des documents liés aux véhicules, tels que les contrats d'achat, les certificats d'assurance, et les rapports d'entretien, pour une meilleure organisation et traçabilité.
@@ -94,7 +94,7 @@ Pour la gestion de la flotte de véhicules, voici toutes les fonctionnalités im
 - Alerter le personnel d'entretien pour planifier et effectuer les services requis.
 3. Gestion des inspections :
 - Planifier et réaliser des inspections régulières des véhicules pour s'assurer qu'ils respectent les normes de sécurité et de performance.
-4. Disponibilité des véhicules :
+4. Disponibilité des véhicules : x
 - Vérifier la disponibilité des véhicules pour répondre à la demande des voyageurs et optimiser l'utilisation de la flotte.
 5. Attribution des véhicules :
 - Assigner les véhicules aux trajets en fonction de la capacité, des besoins spécifiques des voyageurs, et de la disponibilité.

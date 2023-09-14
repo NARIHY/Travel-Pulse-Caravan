@@ -279,7 +279,7 @@
             </a>
           </li>
           <li>
-            <a href="">
+            <a href="{{route('Admin.Publicite.listing')}}">
               <i class="bi bi-circle"></i><span>Publicité</span>
             </a>
           </li>
