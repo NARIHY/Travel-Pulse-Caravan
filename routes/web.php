@@ -5,6 +5,7 @@ use App\Http\Controllers\CarController;
 use App\Http\Controllers\CarInformationController;
 use App\Http\Controllers\CarListingController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeAdminController;
 use App\Http\Controllers\InformationController;
 use App\Http\Controllers\ProfileController;
@@ -142,4 +143,9 @@ Route::prefix('/Administration')->name('Admin.')->group( function() {
         //deleting information
         Route::delete('/{id}/Suprimer-une-publicite', [PublicityController::class, 'delete'])->name('delete');
     });
+    //Route for contact
+    Route::prefix('/Contact')->name('Contact.')->group( function () {
+        Route::get('/Liste-de-tous-les-messages-recu', [ContactController::class, 'listing'])->name('listing');
+        Route::get('/2365Aki8/Pmo{id}25sa587Auz/Message', [ContactController::class, 'view'])->name('view');
+     });
 }) ;
