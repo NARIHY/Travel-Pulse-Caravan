@@ -228,7 +228,7 @@ $user = Auth::user();
             <li>
               <a class="dropdown-item d-flex align-items-center" href="{{route('Admin.Utilisateur.edit')}}">
                 <i class="bi bi-gear"></i>
-                <span>Account Settings</span>
+                <span>Paramètre</span>
               </a>
             </li>
             <li>
@@ -238,7 +238,7 @@ $user = Auth::user();
             <li>
               <a class="dropdown-item d-flex align-items-center" href="">
                 <i class="bi bi-question-circle"></i>
-                <span>Need Help?</span>
+                <span>Besoin d'aide</span>
               </a>
             </li>
             <li>
@@ -246,10 +246,15 @@ $user = Auth::user();
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="#">
-                <i class="bi bi-box-arrow-right"></i>
-                <span>Sign Out</span>
-              </a>
+                <form action="{{route('logout')}}" method="post">
+                    @csrf
+                    <div class="dropdown-item d-flex align-items-center">
+                        <i class="bi bi-box-arrow-right"></i>
+                      <input type="submit" value="Déconnexion" style="background: transparent; border:transparent">
+                    </div>
+
+                </form>
+
             </li>
 
           </ul><!-- End Profile Dropdown Items -->
