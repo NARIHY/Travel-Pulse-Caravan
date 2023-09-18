@@ -5,6 +5,7 @@ use App\Http\Controllers\CarController;
 use App\Http\Controllers\CarInformationController;
 use App\Http\Controllers\CarListingController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CompteControllers;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeAdminController;
 use App\Http\Controllers\InformationController;
@@ -31,7 +32,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('Public.index');
 
 /*
 Route::get('/dashboard', function () {
@@ -153,9 +154,22 @@ Route::prefix('/Administration')->middleware(['auth', 'verified'])->name('Admin.
         Route::get('/2365Aki8/Pmo{id}25sa587Auz/Message', [ContactController::class, 'view'])->name('view');
      });
 
+     //Route for personale users
     Route::prefix('/UtilisateurX')->name('Utilisateur.')->group( function () {
         Route::get('/Mon-profile', [UsersController::class, 'profile'])->name('profile');
         Route::get('/Edition-de-mon-profile', [UsersController::class, 'edit'])->name('edit');
         Route::put('/Edition-de-mon-profile', [UsersController::class, 'update'])->name('update');
     });
+
+    //Routes for compte management
+    Route::prefix('/Gestion-des-compte')->name('Compte.')->group( function () {
+        Route::get('/', [CompteControllers::class, 'listing'])->name('listing');
+        Route::get('/edition/125{id}7954', [CompteControllers::class, 'edit'])->name('edit');
+        Route::put('/edition/125{id}7954', [CompteControllers::class, 'updateRole'])->name('updateRole');
+        Route::delete('/supression/125{id}7954', [CompteControllers::class, 'deleteUser'])->name('deleteUser');
+        //forbiden error
+        Route::get('/acces-refuser', [CompteControllers::class, 'forbiden'])->name('forbiden');
+    });
+
+
 }) ;

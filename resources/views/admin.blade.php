@@ -1,6 +1,7 @@
 @php
 use Illuminate\Support\Facades\Auth;
 $user = Auth::user();
+
 @endphp
 <!DOCTYPE html>
 <html lang="en">
@@ -209,7 +210,10 @@ $user = Auth::user();
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
               <h6>{{$user->name}}</h6>
-              <span>{{$user->role}}</span>
+              @php
+                $role = App\Models\Roles::findOrFail($user->role)
+              @endphp
+              <span>{{$role->title}}</span>
             </li>
             <li>
               <hr class="dropdown-divider">
@@ -365,6 +369,8 @@ $user = Auth::user();
         </ul>
       </li><!-- End Charts Nav -->
 
+
+
      <!-- End Icons Nav -->
 
       <li class="nav-heading">Pages</li>
@@ -375,6 +381,15 @@ $user = Auth::user();
           <span>Profile</span>
         </a>
       </li><!-- End Profile Page Nav -->
+      @if ($user->role == 3)
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{{route('Admin.Compte.listing')}}">
+            <i class="bi bi-person"></i>
+          <span>Gestion des comptes</span>
+        </a>
+      </li>
+      @endif
+
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="">
@@ -389,6 +404,7 @@ $user = Auth::user();
           <span>Message reçu</span>
         </a>
       </li><!-- End Contact Page Nav -->
+
 
 
 
@@ -438,3 +454,9 @@ $user = Auth::user();
 </body>
 
 </html>
+@php
+/*
+$roli = new Nari\Role($user);
+dd($roli->verify());
+*/
+@endphp
