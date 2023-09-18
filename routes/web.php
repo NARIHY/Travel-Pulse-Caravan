@@ -13,6 +13,7 @@ use App\Http\Controllers\PublicityController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\TravelController;
 use App\Http\Controllers\TripController;
+use App\Http\Controllers\UsersController;
 use App\Models\CarInformation;
 use Illuminate\Support\Facades\Route;
 
@@ -36,17 +37,20 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+*/
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-*/
+
 require __DIR__.'/auth.php';
 
 
-Route::prefix('/Administration')->name('Admin.')->group( function() {
+
+
+Route::prefix('/Administration')->middleware('auth')->name('Admin.')->group( function() {
     Route::get('/', [AdminController::class, 'index'])->name('index');
 
     //Home Admin Routes
@@ -148,4 +152,10 @@ Route::prefix('/Administration')->name('Admin.')->group( function() {
         Route::get('/Liste-de-tous-les-messages-recu', [ContactController::class, 'listing'])->name('listing');
         Route::get('/2365Aki8/Pmo{id}25sa587Auz/Message', [ContactController::class, 'view'])->name('view');
      });
+
+    Route::prefix('/UtilisateurX')->name('Utilisateur.')->group( function () {
+        Route::get('/Mon-profile', [UsersController::class, 'profile'])->name('profile');
+        Route::get('/Edition-de-mon-profile', [UsersController::class, 'edit'])->name('edit');
+        Route::put('/Edition-de-mon-profile', [UsersController::class, 'update'])->name('update');
+    });
 }) ;
