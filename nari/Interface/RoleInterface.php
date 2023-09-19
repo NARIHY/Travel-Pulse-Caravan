@@ -4,11 +4,7 @@ use Illuminate\Http\RedirectResponse;
 
 interface RoleInterface
 {
-    /**
-     * get only the role of users
-     * @return bool
-     */
-    public function verify(): bool;
+
     /**
      * get only the role of administrator
      * @return bool

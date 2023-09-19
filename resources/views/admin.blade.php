@@ -1,7 +1,8 @@
 @php
 use Illuminate\Support\Facades\Auth;
 $user = Auth::user();
-
+$roli = new Nari\Role($user);
+$roli->redirect();
 @endphp
 <!DOCTYPE html>
 <html lang="en">
@@ -454,9 +455,4 @@ $user = Auth::user();
 </body>
 
 </html>
-@php
-/*
-$roli = new Nari\Role($user);
-dd($roli->verify());
-*/
-@endphp
+

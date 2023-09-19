@@ -9,26 +9,30 @@ class Role implements RoleInterface
 {
     public $user;
 
-    public function verify(): bool
+    private function userRoles(): string
     {
-
         $roles = $this->user->role;
-        //if user has member return true
-        if ($roles === 1) {
-            return true;
-        } else {
-            return false;
-        }
+        return $roles;
     }
+
+    private function verify(): bool
+    {
+        if ($this->userRoles() == 1) {
+            return true;
+        }
+        return false;
+    }
+
+
     public function roles(): bool
     {
-        $roles = $this->user->role;
+
         //if user has member return true
-        if ($roles !== 2) {
+        if ($this->userRoles() == 2) {
             return true;
-        } else {
-            return false;
         }
+        return false;
+
     }
 
     public function redirect(): RedirectResponse | null

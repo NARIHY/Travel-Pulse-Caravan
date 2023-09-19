@@ -193,7 +193,7 @@ svg.key {
   <div class="container">
     <h1>403</h1>
     <p>access refusé</p>
-    <a href="{{route('Admin.index')}}" style="color: white; text-decoration:none">Retour à l'acceuil</a>
+
     <svg class="keyhole">
       <use href="#keyhole"/>
     </svg>
