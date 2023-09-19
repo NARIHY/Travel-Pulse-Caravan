@@ -17,7 +17,7 @@ $roli->redirect();
 
 
   <!-- Vendor CSS Files -->
-  <link href="{{ asset('bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <link href="{{ asset('admin/assets/vendor/bootstrap-icons/bootstrap-icons.css')}}" rel="stylesheet">
   <link href="{{ asset('admin/assets/vendor/boxicons/css/boxicons.min.css')}}" rel="stylesheet">
   <link href="{{ asset('admin/assets/vendor/quill/quill.snow.css')}}" rel="stylesheet">
@@ -130,6 +130,19 @@ $roli->redirect();
 
         </li><!-- End Notification Nav -->
 
+        @php
+            //recuperer tous les message ou l'expediteur est l'utilisateur connecter
+            $userId = $user->id;
+            $participantId = App\Models\Participant::where(function ($query) use ($userId) {
+                                                        $query->where('expediteur', $userId)
+                                                            ->orWhere('destinataire', $userId);
+                                                    })
+                                                    ->orderBy('created_at', 'desc')
+                                                    ->limit(5)
+                                                    ->get();
+
+
+            @endphp
         <li class="nav-item dropdown">
 
           <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
@@ -146,47 +159,79 @@ $roli->redirect();
               <hr class="dropdown-divider">
             </li>
 
-            <li class="message-item">
-              <a href="#">
-                <img src="assets/img/messages-1.jpg" alt="" class="rounded-circle">
-                <div>
-                  <h4>Maria Hudson</h4>
-                  <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                  <p>4 hrs. ago</p>
-                </div>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
+            @forelse ($participantId as $participant)
+                        @php
+                            $message = App\Models\Message::where('participant', $participant->id)
+                                                            ->orderBy('created_at', 'desc')
+                                                            ->value('content');
 
-            <li class="message-item">
-              <a href="#">
-                <img src="assets/img/messages-2.jpg" alt="" class="rounded-circle">
-                <div>
-                  <h4>Anna Nelson</h4>
-                  <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                  <p>6 hrs. ago</p>
-                </div>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
+                            $d = App\Models\Message::where('participant', $participant->id)
+                                ->orderBy('created_at', 'desc')
+                                ->get();
 
+
+
+                            //
+                            $differentUser = "";
+                            if ($participant->expediteur != $user->id) {
+                                $differentUser = $participant->expediteur;
+                            }
+
+                            if ($participant->destinataire != $user->id) {
+                                $differentUser = $participant->destinataire;
+                            }
+                            //recuperation de l'user different de l'user actuel
+                            $diffUser = App\Models\User::findOrFail($differentUser);
+
+                        @endphp
+
+                @if (!empty($message))
+                    <li class="message-item">
+                        <a href="#">
+                            @if (empty($diffUser->picture))
+                                <img src="{{asset('admin/users-default/default.png')}}" alt="Profile" class="rounded-circle">
+                            @else
+                                <img src="/storage/{{$diffUser->picture}}" alt="{{$diffUser->name}}" class="rounded-circle">
+
+                            @endif
+
+                        <div>
+
+                            <h4>{{$diffUser->name}}</h4>
+                            <p>{{$message}}</p>
+                            @foreach ($d as $date)
+                            @php
+                            $formattedDate = Carbon\Carbon::parse($date->created_at)->diffForHumans();
+
+                            @endphp
+                            <p>{{$formattedDate}}</p>
+                            @endforeach
+
+                        </div>
+                        </a>
+                    </li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                @endif
+            @empty
             <li class="message-item">
-              <a href="#">
-                <img src="assets/img/messages-3.jpg" alt="" class="rounded-circle">
-                <div>
-                  <h4>David Muldon</h4>
-                  <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                  <p>8 hrs. ago</p>
-                </div>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
+                <a href="#">
+
+                  <div>
+                    <h4></h4>
+                    <p>Aucun message pour le moment</p>
+                    <p></p>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+            @endforelse
+
+
+
 
             <li class="dropdown-footer">
               <a href="#">Show all messages</a>
@@ -441,7 +486,8 @@ $roli->redirect();
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
   <script src="{{ asset('admin/assets/vendor/apexcharts/apexcharts.min.js')}}"></script>
-  <script src="{{ asset('bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
   <script src="{{ asset('admin/assets/vendor/chart.js/chart.umd.js')}}"></script>
   <script src="{{ asset('admin/assets/vendor/echarts/echarts.min.js')}}"></script>
   <script src="{{ asset('admin/assets/vendor/quill/quill.min.js')}}"></script>
