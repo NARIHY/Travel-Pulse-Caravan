@@ -131,6 +131,12 @@ class MessageController extends Controller
     }
 
     //post discution
+    /**
+     * Send message
+     * @param string $participant
+     * @param \App\Http\Requests\MessageRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function send(string $participant, MessageRequest $request): RedirectResponse
     {
 

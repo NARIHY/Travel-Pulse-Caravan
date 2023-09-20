@@ -64,7 +64,7 @@
 
         </div>
 
-    @elseif ($expediteurId == $diffUserSender->id)
+    @elseif ( $diffUserSender !== null)
         <div class="left">
             <div class="message-item">
                 <div style="float: left">
@@ -83,7 +83,29 @@
             </div>
 
         </div>
+
+        @elseif ( $diffUserExpeditor !== null)
+        <div class="left">
+            <div class="message-item">
+                <div style="float: left">
+                    @if (empty($diffUserExpeditor->picture))
+                    <img src="{{asset('admin/users-default/default.png')}}" alt="Profile" class="rounded-circle" width="50px">
+                    @else
+                        <img src="/storage/{{$diffUserExpeditor->picture}}" alt="{{$diffUserExpeditor->name}}" class="rounded-circle" width="50px">
+                    @endif
+                </div>
+                <div style="float: left; margin-left: 20px">
+                    <h5>{{$diffUserExpeditor->name}}</h5>
+                <h6 class="message">{{$content}}</h6>
+                    <p>{{$formattedDate}}</p>
+                </div>
+
+            </div>
+
+
+        </div>
     @endif
+
 
 @empty
     <div>

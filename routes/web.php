@@ -10,6 +10,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeAdminController;
 use App\Http\Controllers\InformationController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\ParticipantController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PublicityController;
 use App\Http\Controllers\ReservationController;
@@ -181,5 +182,9 @@ Route::prefix('/Administration')->middleware(['auth', 'verified'])->name('Admin.
         //Get conversation
         Route::get('/az8-z{participant}54sa58-89/conversation', [MessageController::class, 'discutionOneOne'])->name('discutionOneOne');
     });
-
+    //Routes for creation of new message
+    Route::prefix('/Message-Création')->name('Message.Creation.')->group( function (){
+        Route::get('/',[ParticipantController::class, 'index'])->name('index');
+        Route::post('/',[ParticipantController::class, 'create'])->name('create');
+     });
 }) ;

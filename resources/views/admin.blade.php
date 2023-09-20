@@ -153,7 +153,7 @@ $roli->redirect();
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
             <li class="dropdown-header">
               Messagerie de l'application
-              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">Commencer</span></a>
+              <a href="{{route('Admin.Message.Creation.index')}}"><span class="badge rounded-pill bg-primary p-2 ms-2">Commencer</span></a>
             </li>
             <li>
               <hr class="dropdown-divider">
@@ -184,13 +184,14 @@ $roli->redirect();
 
                             $d = App\Models\Message::where('participant', $participant->id)
                                                             ->where('expediteur', '!=', $user->id)
+                                                            ->limit(1)
                                                             ->orderBy('created_at', 'desc')
                                                             ->get();
                         @endphp
 
                 @if (!empty($message))
                     <li class="message-item">
-                        <a href="#">
+                        <a href="{{route('Admin.Message.discution', ['participant' => $participant->id])}}">
                             @if (empty($diffUser->picture))
                                 <img src="{{asset('admin/users-default/default.png')}}" alt="Profile" class="rounded-circle">
                             @else
