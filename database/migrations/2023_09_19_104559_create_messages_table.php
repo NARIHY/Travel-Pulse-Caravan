@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
-            $table->string('participant');
+            $table->string('participant')->nullable();
             $table->longText('content');
             $table->timestamps();
         });

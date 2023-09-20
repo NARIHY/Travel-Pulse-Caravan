@@ -152,8 +152,8 @@ $roli->redirect();
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
             <li class="dropdown-header">
-              You have 3 new messages
-              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+              Messagerie de l'application
+              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">Commencer</span></a>
             </li>
             <li>
               <hr class="dropdown-divider">
@@ -165,9 +165,7 @@ $roli->redirect();
                                                             ->orderBy('created_at', 'desc')
                                                             ->value('content');
 
-                            $d = App\Models\Message::where('participant', $participant->id)
-                                ->orderBy('created_at', 'desc')
-                                ->get();
+
 
 
 
@@ -183,6 +181,11 @@ $roli->redirect();
                             //recuperation de l'user different de l'user actuel
                             $diffUser = App\Models\User::findOrFail($differentUser);
 
+
+                            $d = App\Models\Message::where('participant', $participant->id)
+                                                            ->where('expediteur', '!=', $user->id)
+                                                            ->orderBy('created_at', 'desc')
+                                                            ->get();
                         @endphp
 
                 @if (!empty($message))
@@ -234,7 +237,7 @@ $roli->redirect();
 
 
             <li class="dropdown-footer">
-              <a href="#">Show all messages</a>
+              <a href="{{route('Admin.Message.allMessage')}}">Voir tous les message</a>
             </li>
 
           </ul><!-- End Messages Dropdown Items -->

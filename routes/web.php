@@ -9,6 +9,7 @@ use App\Http\Controllers\CompteControllers;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeAdminController;
 use App\Http\Controllers\InformationController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PublicityController;
 use App\Http\Controllers\ReservationController;
@@ -170,6 +171,15 @@ Route::prefix('/Administration')->middleware(['auth', 'verified'])->name('Admin.
         //forbiden error
         Route::get('/acces-refuser', [CompteControllers::class, 'forbiden'])->name('forbiden');
     });
-
+    //Routes for message
+    Route::prefix('/Message')->name('Message.')->group( function (){
+        Route::get('/', [MessageController::class, 'allMessage'])->name('allMessage');
+        // get discution One to One
+        Route::get('/az8-z{participant}54sa58-89/message', [MessageController::class, 'discution'])->name('discution');
+        // post discution One to One
+        Route::post('/az8-z{participant}54sa58-89/message', [MessageController::class, 'send'])->name('send');
+        //Get conversation
+        Route::get('/az8-z{participant}54sa58-89/conversation', [MessageController::class, 'discutionOneOne'])->name('discutionOneOne');
+    });
 
 }) ;

@@ -1232,3 +1232,15 @@ h6 {
   font-size: 13px;
   color: #012970;
 }
+
+/* message perso to user*/
+.left {
+    float: left;
+}
+
+.message {
+    background-color: #0400ff; /* Remplacez par la couleur de fond souhaitée */
+    padding: 10px; /* Ajoutez un espacement pour séparer le texte du fond */
+    border-radius: 5px; /* Ajoutez des coins arrondis pour l'élément */
+    color: white;
+}
