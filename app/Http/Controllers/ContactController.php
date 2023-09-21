@@ -20,7 +20,7 @@ class ContactController extends Controller
      * @param \App\Http\Requests\ContactRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    /*
+
     public function store(ContactRequest $request): RedirectResponse
     {
         try {
@@ -40,17 +40,17 @@ class ContactController extends Controller
                 // The email address is valid
                 // Create an instance of the contact model with the validated data
                 $contact = Contact::create($data);
-                return redirect()->route('Public.home')->with('success', 'Merci, de nous avoir contacter');
+                return redirect()->route('Public.index')->with('success', 'Merci, de nous avoir contacter');
             } else {
                 // The email address is not valid
-                return redirect()->route('Public.home')->with('Oups', 'Votre email n\'existe pas ou n\'est pas valide');
+                return redirect()->route('Public.index')->with('Oups', 'Votre email n\'existe pas ou n\'est pas valide');
             }
         } catch (\Exception $e) {
-            return redirect()->route('Public.home')->with('Oups', 'il y a eu une erreur lors de l\'envoie du message');
+            return redirect()->route('Public.index')->with('Oups', 'il y a eu une erreur lors de l\'envoie du message');
         }
 
     }
-*/
+
     /**
      * listing contact send by users
      * @return \Illuminate\View\View
