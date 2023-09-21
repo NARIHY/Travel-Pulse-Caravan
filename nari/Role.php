@@ -38,7 +38,7 @@ class Role implements RoleInterface
     public function redirect(): RedirectResponse | null
     {
         if($this->verify() === true) {
-            return redirect()->route('Pubic.index');
+            return redirect()->route('Public.index');
         } else {
             return null;
         }

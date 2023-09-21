@@ -53,7 +53,7 @@ require __DIR__.'/auth.php';
 
 
 
-Route::prefix('/Administration')->middleware(['auth', 'verified'])->name('Admin.')->group( function() {
+Route::prefix('/Administration')->middleware(['auth', 'verified', 'checkRole:1'])->name('Admin.')->group( function() {
     Route::get('/', [AdminController::class, 'index'])->name('index');
 
     //Home Admin Routes
