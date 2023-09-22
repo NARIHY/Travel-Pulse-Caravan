@@ -7,7 +7,7 @@ $roli->redirect();
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+<head><script src="{{asset('bootstrap/js/color-modes.js')}}"></script>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
@@ -454,6 +454,12 @@ $roli->redirect();
           <span>Message reçu</span>
         </a>
       </li><!-- End Contact Page Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{{route('Public.index')}}">
+            <i class="bi bi-globe2"></i>
+          <span>Site</span>
+        </a>
+      </li><!-- Sites -->
 
 
 

@@ -557,6 +557,6 @@ Pour modéliser un système de messagerie similaire à celui de Facebook, nous p
    - Un Message appartient à une Conversation.
    - Une Conversation peut contenir plusieurs Messages.
 
-Avec ces entités et relations, vous pouvez modéliser un système de messagerie similaire à celui de Facebook, où les utilisateurs peuvent participer à des conversations, envoyer des messages dans ces conversations et voir les messages envoyés par d'autres utilisateurs dans ces conversations.
-
-N'oubliez pas que la conception d'un système de messagerie complet comme celui-ci peut devenir assez complexe en fonction des fonctionnalités que vous souhaitez inclure, telles que les notifications, les réponses aux messages, la gestion des médias, etc. Vous pouvez personnaliser davantage ce MCD en ajoutant des entités et des attributs spécifiques à votre application.
+## Bug reporting sur le message
+   - lors de la suppression d'un utilisateur
+   

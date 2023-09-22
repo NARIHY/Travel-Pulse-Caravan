@@ -38,11 +38,11 @@
         <ul>
           <li><a class="nav-link scrollto @if (request()->routeIS('Public.index')) active @endif" href="{{route('Public.index')}}">Acceuil</a></li>
 
-          <li><a class="nav-link scrollto" href="">Services</a></li>
-          <li><a class="nav-link scrollto " href="">Réserver</a></li>
+          <li><a class="nav-link scrollto @if (request()->routeIS('Public.service')) active @endif" href="{{route('Public.service')}}">Nos préstation</a></li>
+          <li><a class="nav-link scrollto " href="#">Réserver</a></li>
 
 
-          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+          <li><a class="nav-link scrollto @if (request()->routeIS('Public.contacts')) active @endif" href="{{route('Public.contacts')}}">Contact</a></li>
           <li><a class="nav-link scrollto" href="">Information</a></li>
           @if (!Illuminate\Support\Facades\Auth::check())
             <li><a class="nav-link scrollto" href="{{route('register')}}">S'inscrire</a></li>
@@ -151,7 +151,7 @@
   <script src="{{asset('public/assets/vendor/glightbox/js/glightbox.min.js')}}"></script>
   <script src="{{asset('public/assets/vendor/isotope-layout/isotope.pkgd.min.js')}}"></script>
   <script src="{{asset('public/assets/vendor/swiper/swiper-bundle.min.js')}}"></script>
-  <script src="{{asset('public/assets/vendor/php-email-form/validate.js')}}"></script>
+
 
   <!-- Template Main JS File -->
   <script src="{{asset('public/assets/js/main.js')}}"></script>

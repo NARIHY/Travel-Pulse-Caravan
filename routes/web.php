@@ -53,6 +53,11 @@ require __DIR__.'/auth.php';
 Route::prefix('/')->name('Public.')->group( function (){
     Route::get('/', [PublicController::class, 'index'])->name('index');
     Route::post('/', [ContactController::class, 'store'])->name('store');
+    //Service
+    Route::get('/Nos-prestation', [PublicController::class, 'service'])->name('service');
+    //Contacte page
+    Route::get('/nous-contacter',[PublicController::class, 'contact'])->name('contacts');
+    Route::post('/nous-contacter',[ContactController::class, 'stores'])->name('contacts.store');
 });
 
 
