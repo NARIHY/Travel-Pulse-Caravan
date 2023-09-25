@@ -1,0 +1,79 @@
+.hzi{
+    width: 100%;
+    height: 40vh;
+    background: url("../img/1250.jpeg") top center;
+    background-size: cover;
+    position: relative;
+}
+@media (min-width: 750px) and (max-width: 900px) {
+    .hzi {
+        background: url("../img/travel.jpeg") top center;
+    }
+}
+
+@media (max-width:749px) {
+    .hzi {
+        height: 36vh;
+        background: url("../img/750.jpeg") top center;
+    }
+}
+
+/* Style pour les titres */
+.tpc-title {
+    font-size: 24px;
+    color: #333;
+    margin-top: 20px;
+    border-bottom: 2px solid #333;
+    padding-bottom: 10px;
+  }
+
+
+    /* Style pour le contenu */
+    .tpc-content {
+        font-size: 16px;
+        color: #666;
+        line-height: 1.5;
+        text-align: justify;
+        /* Styles de base pour l'animation */
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+  /* Style pour la liste à puces */
+  ol {
+    list-style-type: decimal;
+    margin-left: 20px;
+  }
+ /* Style pour les éléments de liste à puces */
+ ol li {
+    font-size: 14px;
+    color: #fa3b3b;
+    margin-top: 5px;
+
+}
+  /* Animation pour les titres */
+  .tpc-title {
+    transform: translateY(-10px);
+    opacity: 0;
+    animation: fadeInUp 0.5s ease-in-out 0.2s forwards;
+  }
+
+  /* Animation pour le contenu */
+  .tpc-content {
+    opacity: 0;
+    animation: fadeInUp 0.5s ease-in-out 0.2s forwards;
+  }
+
+  /* Animation générale */
+  @keyframes fadeInUp {
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+.hidden {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}

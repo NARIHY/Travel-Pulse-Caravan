@@ -22,6 +22,7 @@
 
   <!-- Template Main CSS File -->
   <link href="{{asset('public/assets/css/style.css')}}" rel="stylesheet">
+  <link href="{{asset('public/assets/css/myStyle.css')}}" rel="stylesheet">
 </head>
 
 <body>
@@ -30,7 +31,7 @@
   <header id="header" class="fixed-top header-transparent">
     <div class="container d-flex align-items-center justify-content-between">
 
-      <h1 class="logo"><a href="index.html">Travel Pulse Caravan</a></h1>
+      <h1 class="logo"><a href="{{route('Public.index')}}">Travel Pulse Caravan</a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
@@ -43,7 +44,7 @@
 
 
           <li><a class="nav-link scrollto @if (request()->routeIS('Public.contacts')) active @endif" href="{{route('Public.contacts')}}">Contact</a></li>
-          <li><a class="nav-link scrollto" href="">Information</a></li>
+          <li><a class="nav-link scrollto @if (request()->routeIS('Public.information')) active  @endif" href="{{route('Public.information')}}">Information</a></li>
           @if (!Illuminate\Support\Facades\Auth::check())
             <li><a class="nav-link scrollto" href="{{route('register')}}">S'inscrire</a></li>
             <li><a class="nav-link scrollto" href="{{route('login')}}">Se connecter</a></li>
@@ -97,7 +98,7 @@
             <h4>Lien utile</h4>
             <ul>
               <li><i class="bx bx-chevron-right"></i> <a href="{{route('Public.index')}}">Acceuil</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Information</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{{route('Public.information')}}">Information</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="#">Nos service</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="#">Conditions d'utilisation</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="#">Politique de confidentialité</a></li>

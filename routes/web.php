@@ -58,6 +58,8 @@ Route::prefix('/')->name('Public.')->group( function (){
     //Contacte page
     Route::get('/nous-contacter',[PublicController::class, 'contact'])->name('contacts');
     Route::post('/nous-contacter',[ContactController::class, 'stores'])->name('contacts.store');
+    //infromation
+    Route::get('/Information', [PublicController::class, 'information'])->name('information');
 });
 
 

@@ -10,6 +10,10 @@ use Illuminate\View\View;
 
 class PublicController extends Controller
 {
+    /**
+     * Home view
+     * @return \Illuminate\View\View
+     */
     public function index(): View
     {
         $home = HomeAdmin::orderBy('created_at', 'desc')
@@ -22,6 +26,10 @@ class PublicController extends Controller
         ]);
     }
 
+    /**
+     * Prestation view
+     * @return \Illuminate\View\View
+     */
     public function service(): View
     {
         $lite = Information::orderBy('created_at', 'desc')
@@ -54,8 +62,17 @@ class PublicController extends Controller
         ]);
     }
 
+    /**
+     * Contact public view
+     * @return \Illuminate\View\View
+     */
     public function contact(): View
     {
         return view('public.contact.contact');
+    }
+
+    public function information(): View
+    {
+        return view('public.information.index');
     }
 }

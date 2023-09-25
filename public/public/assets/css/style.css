@@ -279,7 +279,7 @@ h6 {
 .navbar-mobile a:hover,
 .navbar-mobile .active,
 .navbar-mobile li:hover>a {
-  color: #ffc107;
+  color: #ff0707;
 }
 
 .navbar-mobile .dropdown ul {
@@ -1447,7 +1447,7 @@ section {
 
 #footer .footer-top .footer-links ul i {
   padding-right: 2px;
-  color: #ffc107;
+  color: #ff0707;
   font-size: 18px;
   line-height: 1;
 }
@@ -1471,7 +1471,7 @@ section {
 
 #footer .footer-top .footer-links ul a:hover {
   text-decoration: none;
-  color: #ffc107;
+  color: #ff0707;
 }
 
 #footer .footer-newsletter {
@@ -1519,7 +1519,7 @@ section {
 }
 
 #footer .footer-newsletter form input[type=submit]:hover {
-  background: #ffce3a;
+  background: #ff0000;
 }
 
 #footer .credits {
