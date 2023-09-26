@@ -5,6 +5,7 @@ use App\Http\Controllers\CarController;
 use App\Http\Controllers\CarInformationController;
 use App\Http\Controllers\CarListingController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ColisController;
 use App\Http\Controllers\CompteControllers;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PublicController;
@@ -60,6 +61,11 @@ Route::prefix('/')->name('Public.')->group( function (){
     Route::post('/nous-contacter',[ContactController::class, 'stores'])->name('contacts.store');
     //infromation
     Route::get('/Information', [PublicController::class, 'information'])->name('information');
+
+    //for colis express
+    Route::prefix('/colis')->name('Colis.')->group( function () {
+        Route::get('/', [ColisController::class, 'index'])->name('index');
+    });
 });
 
 

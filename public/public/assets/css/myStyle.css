@@ -77,3 +77,170 @@
     transform: translateY(20px);
     transition: opacity 0.5s ease, transform 0.5s ease;
 }
+
+/* pour la colis express */
+
+/* Styles pour le titre */
+/* Styles pour le titre */
+.colis-title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center; /* Centrer le texte */
+}
+
+/* Animation pour le titre */
+@keyframes slideIn {
+    0% {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.colis-title {
+    animation: slideIn 1s ease-in-out;
+}
+
+/* Styles pour la version responsive */
+@media (max-width: 768px) {
+    .colis-title {
+        font-size: 24px;
+    }
+}
+
+/* Styles pour le contenu */
+.colis-content {
+    font-size: 18px;
+    line-height: 1.5;
+    color: #666;
+    text-align: justify; /* Justifier le texte */
+    margin-bottom: 20px;
+}
+
+/* Animation pour le contenu */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.colis-content {
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Styles pour la version responsive */
+@media (max-width: 768px) {
+    .colis-content {
+        font-size: 16px;
+    }
+}
+
+/* Styles pour la vidéo */
+.myVid {
+    max-width: 100%;
+    display: block;
+    margin: 0 auto;
+    border: 5px solid transparent; /* Ajoute une bordure à la vidéo */
+    border-radius: 10px; /* Ajoute des coins arrondis à la bordure */
+    box-shadow: 0 0 10px rgba(188, 188, 188, 0.3); /* Ajoute une ombre à la vidéo */
+}
+
+/* Animation pour la vidéo */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.myVid {
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Styles pour la version responsive */
+@media (max-width: 768px) {
+    .myVid {
+        width: 100%; /* Ajuste la largeur à 100% pour les écrans plus petits */
+        height: auto; /* Assure une hauteur automatique proportionnelle */
+    }
+}
+
+/* Styles pour la section des conditions */
+.colis-next {
+    background-color: #f9f9f9; /* Couleur de fond */
+    border: 1px solid #ddd; /* Bordure légère */
+    border-radius: 10px; /* Coins arrondis */
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre douce */
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.colis-titre {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.colis-content {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.colis-ol-content {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #777;
+    margin-bottom: 5px;
+    text-align: justify;
+}
+
+.colis-next ol {
+    margin-bottom: 10px;
+}
+
+.colis-next li {
+    margin-bottom: 5px;
+}
+
+/* Animation pour la section des conditions */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.colis-next {
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Styles pour la version responsive */
+@media (max-width: 768px) {
+    .colis-titre {
+        font-size: 20px;
+    }
+
+    .colis-content, .colis-ol-content {
+        font-size: 14px;
+    }
+}
