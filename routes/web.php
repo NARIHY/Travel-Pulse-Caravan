@@ -8,6 +8,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ColisController;
 use App\Http\Controllers\CompteControllers;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\PersonnelController;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\HomeAdminController;
 use App\Http\Controllers\InformationController;
@@ -65,6 +66,10 @@ Route::prefix('/')->name('Public.')->group( function (){
     //for colis express
     Route::prefix('/colis')->name('Colis.')->group( function () {
         Route::get('/', [ColisController::class, 'index'])->name('index');
+    });
+
+    Route::prefix('/transport')->name('Personel.')->group( function () {
+        Route::get('/', [PersonnelController::class, 'index'])->name('index');
     });
 });
 

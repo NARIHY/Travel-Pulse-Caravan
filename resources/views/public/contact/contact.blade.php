@@ -3,7 +3,7 @@
 
 @section('content')
 <!-- ======= Contact Section ======= -->
-<section id="contact" class="contact">
+<section id="contact" class="contact" style="margin-top: 40px">
     <div class="container">
 
       <div class="section-title">

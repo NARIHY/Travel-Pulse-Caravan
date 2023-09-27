@@ -108,7 +108,7 @@
           <div class="col-lg-3 col-md-6 footer-links">
             <h4>Notre service</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Transport personnelle</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{{route('Public.Personel.index')}}">Transport personnelle</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="{{route('Public.Colis.index')}}">Colis express</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="#">Location de voiture</a></li>
 

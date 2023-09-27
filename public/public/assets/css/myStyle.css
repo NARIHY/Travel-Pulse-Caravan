@@ -244,3 +244,39 @@
         font-size: 14px;
     }
 }
+
+/* pour transport personnel */
+.introduction p {
+    font-size: 18px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    text-align: justify;
+    animation: slideFromTop 2s ease forwards;
+}
+
+/* Animation personnalisée */
+@keyframes slideFromTop {
+    0% {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.introduction h5 {
+    animation: slideFromBack 2s ease forwards;
+}
+@keyframes slideFromBack {
+    0% {
+        opacity: 0;
+        transform: translateY(100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
