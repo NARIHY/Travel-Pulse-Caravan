@@ -20,7 +20,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
-use Nari\Reservation\Reservation;
+//use Nari\Reservation\Reservation;
 use Dompdf\Dompdf;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -105,8 +105,16 @@ class ReservationPublicController extends Controller
             }
 
             // Verify if there are already places
-            $verify = new Reservation($tripId, $carId);
-            $verif = $verify->verify();
+            try {
+                $verify = new \Nari\Reservation\Reservation($tripId, $carId);
+                $verif = $verify->verify();
+            } catch (\Exception $e) {
+                // Enregistrez l'exception dans les journaux Laravel pour le débogage
+                \Log::error('Erreur lors de la vérification de la réservation : ' . $e->getMessage());
+                // Vous pouvez également afficher un message d'erreur personnalisé ici si nécessaire
+                $verif = false; // Par exemple
+            }
+
             // If true, redirect
             if ($verif === true) {
                 return redirect()->route('Public.Reservation.Auth.passenger', ['tripId' => $tripId, 'carId' => $carId])->with('error', 'Oups, la réservation n\'est plus disponible');
@@ -145,6 +153,11 @@ class ReservationPublicController extends Controller
 }
 
 
+    /**
+     * active when user validate information on reservation
+     * @param string $reservationId
+     * @return \Illuminate\View\View
+     */
     public function success(string $reservationId): View
     {
         $reservation = \App\Models\Reservation::findOrFail($reservationId);
@@ -162,6 +175,11 @@ class ReservationPublicController extends Controller
         ]);
     }
 
+    /**
+     * generate pdf from ticke attachement to mail
+     * @param mixed $reservationId
+     * @return mixed
+     */
     public function generatePDF($reservationId)
 {
     $reservation = \App\Models\Reservation::findOrFail($reservationId);

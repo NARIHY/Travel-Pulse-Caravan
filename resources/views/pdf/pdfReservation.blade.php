@@ -30,7 +30,7 @@
 
         .headers {
             text-align: center;
-            background-color: #007bff;
+            background-color: #000000;
             color: #fff;
             margin-top: -20px;
             height: 80px;

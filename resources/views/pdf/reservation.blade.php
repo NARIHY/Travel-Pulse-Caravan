@@ -22,7 +22,7 @@
             top: 0;
             font-size: 20px;
             height: 100px;
-            background-color: #0074E4;
+            background-color: #000000;
             color: white;
             padding-top: 20px;
         }

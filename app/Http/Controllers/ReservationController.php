@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\DestinationRequest;
 use App\Http\Requests\PassengerRequest;
+use App\Mail\UserReservationMail;
 use App\Models\Car;
 use App\Models\Category;
 use App\Models\Passenger;
@@ -18,6 +19,7 @@ use Egulias\EmailValidator\Validation\MultipleValidationWithAnd;
 use Egulias\EmailValidator\Validation\RFCValidation;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\View\View;
 use Nari\Pdf;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
@@ -208,7 +210,9 @@ class ReservationController extends Controller
             'reservation_status' => 'reserver',
             'identification' => $securityTicket
         ];
+        $passenger = Passenger::findOrFail($passenger_id);
         $reservation = Reservation::create($data);
+        Mail::to($passenger->email)->send(new UserReservationMail($reservation->id));
         return redirect()->route($this->routes().'passenger.city.finale', ['purcount' => $purcount + 25,'passenger_id' => $passenger_id, 'tripId' => $tripId]);
     }
     //s
@@ -221,83 +225,37 @@ class ReservationController extends Controller
         ]);
     }
 
+
     /**
-     * export pdf
+     * generate pdf from ticke attachement to mail
+     * @param mixed $reservationId
+     * @return mixed
      */
-    public function pdf(string $purcount, string $tripId, string $passenger_id)
-    {
-        //for passengers information
-        $passenger = Passenger::findOrFail($passenger_id);
+    public function generatePDF($reservationId)
+{
+    $reservation = Reservation::findOrFail($reservationId);
+    $qrCode = QrCode::size(175)
+                    ->color(200, 150, 0)
+                    ->generate($reservation->identification);
+    $trip = Trip::findOrFail($reservation->trip_id);
+    $passenger = Passenger::findOrFail($reservation->passenger_id);
 
-        //for trip information
-        $trip = Trip::findOrFail($tripId);
+    // Générer le contenu HTML pour le PDF
+    $html = view('pdf.pdfReservation', [
+        'reservation' => $reservation,
+        'qrCode' => $qrCode,
+        'trip' => $trip,
+        'passenger' => $passenger
+    ])->render();
 
-        //get trip categories
-        $flotte = Category::findOrFail($trip->flote);
+    // Générer le PDF avec Dompdf
+    $pdf = new Dompdf();
+    $pdf->loadHtml($html);
+    $pdf->setPaper('A5', 'landscape');
+    $pdf->render();
 
-        // Convert date of depart
-        $date = strtotime($trip->date_depart);
-        //time of depart
-        $time = strtotime($trip->heure_depart);
-
-        //car plate_number
-        $car = Car::findOrFail($trip->car);
-        $reservation = Reservation::where('trip_id', $trip->id)
-                        ->value('identification');
-        /* decoment if needed
-        $array = [
-            'compagnie' => 'Travel Pulse Caravan',
-            'flote' => $flotte->flotte,
-            'trajet' => $trip->place_depart .'-'.$trip->place_arrivals,
-            'date de départ' => date('D d M Y', $date),
-            'heure de départ' => date('H:m:s', $time),
-            'Immatriculation' => $car->plate_number,
-            'nom du passager' => $passenger->name,
-            'prenon du passager' => $passenger->last_name,
-            'telephone du passager' => $passenger->phone_number,
-            'email du passager' => $passenger->email,
-            'prix du trajet' => number_format($trip->price, 0, '.', ' '),
-            'Tiket info' => $reservation
-        ];
-
-
-        $items = [];
-        foreach ($array as $key => $value) {
-            $items[] = "$key: $value";
-        }
-
-        $string = implode("\n", $items);
-        */
-        $qrCode = QrCode::size(125)
-                        ->color(200, 150, 0)
-                        ->generate($reservation);
-
-        $carDepart = date('D d M Y', $date);
-        $timesDepart = date('H:m:s', $time);
-        $tiket = date('D d M Y H:m:s', strtotime($trip->created_at));
-        // Générer le contenu HTML pour le PDF
-        $html = view('pdf.reservation', [
-            'car' => $car,
-            'passenger' => $passenger,
-            'qrCode' => $qrCode,
-            'trip' => $trip,
-            'flotte' => $flotte,
-            'carDepart' => $carDepart,
-            'timesDepart' => $timesDepart,
-            'tiket' => $tiket
-        ])->render();
-
-
-
-        // Générer le PDF avec Dompdf
-        $pdf = new Dompdf();
-        $pdf->loadHtml($html);
-        $pdf->setPaper('A5', 'landscape');
-        $pdf->render();
-
-        // Retourner le PDF en tant que réponse HTTP
-        return $pdf->stream('reservation_'.$purcount.'_'.$tripId.'_'.$passenger_id.'_'.$car->brand.'.pdf');
-    }
+    return $pdf->stream('reservation_'.$reservation->id.'_'.$passenger->id.'.pdf');
+}
     /**
      * this is already the same
      * view path directory

@@ -54,8 +54,17 @@
                         </td>
                         <td>
                             @php
+                            try {
                                 $verify = new Nari\Reservation\Reservation($trips->id, $trips->car);
                                 $verif = $verify->verify();
+                            } catch (\Exception $e) {
+                                // Enregistrez l'exception dans les journaux Laravel pour le débogage
+                                \Log::error('Erreur lors de la vérification de la réservation : ' . $e->getMessage());
+                                // Vous pouvez également afficher un message d'erreur personnalisé ici si nécessaire
+                                $verif = false; // Par exemple
+                            }
+
+
                             @endphp
 
                             @if ($verif === false)
