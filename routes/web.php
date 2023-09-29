@@ -211,7 +211,7 @@ Route::prefix('/Administration')->middleware(['auth', 'verified', 'checkRole:1']
         Route::delete('/supression/125{id}7954', [CompteControllers::class, 'deleteUser'])->name('deleteUser');
         //forbiden error
         Route::get('/acces-refuser', [CompteControllers::class, 'forbiden'])->name('forbiden');
-    });
+    })->middleware('is_admin');
     //Routes for message
     Route::prefix('/Message')->name('Message.')->group( function (){
         Route::get('/', [MessageController::class, 'allMessage'])->name('allMessage');

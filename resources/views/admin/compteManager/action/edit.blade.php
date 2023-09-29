@@ -5,8 +5,7 @@
 @section('content')
 @php
 $use = Auth::user();
-$roli = new Nari\Role($use);
-$roles = $roli->roles();
+
 @endphp
 <div class="pagetitle">
     <h1>Gestion des comptes</h1>
@@ -19,9 +18,7 @@ $roles = $roli->roles();
     </nav>
   </div>
 
-  @if ($roles === true)
-  <iframe src="{{route('Admin.Compte.forbiden')}}" frameborder="0" style="margin: 0; width:100%; height:70vh"></iframe>
-  @else
+
   <div class="container">
     @if(session('success'))
     <div class="text-center" style="color: green">
@@ -53,5 +50,5 @@ $roles = $roli->roles();
         </div>
     </form>
   </div>
-  @endif
+
 @endsection
