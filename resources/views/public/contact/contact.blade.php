@@ -29,14 +29,14 @@
               <div class="info-box mt-4">
                 <i class="bx bx-envelope"></i>
                 <h3>Notre addresse email</h3>
-                <p>info@example.mg<br>contact@example.mg</p>
+                <p>travelpulsecaravan@gmail.com</p>
               </div>
             </div>
             <div class="col-md-6">
               <div class="info-box mt-4">
                 <i class="bx bx-phone-call"></i>
                 <h3>Appeler nous</h3>
-                <p>+261 00 000 00<br>+261 00 000 00</p>
+                <p>+261 00 00 000 00</p>
               </div>
             </div>
           </div>

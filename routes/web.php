@@ -17,6 +17,7 @@ use App\Http\Controllers\ParticipantController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PublicityController;
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\ReservationPublicController;
 use App\Http\Controllers\TravelController;
 use App\Http\Controllers\TripController;
 use App\Http\Controllers\UsersController;
@@ -67,9 +68,27 @@ Route::prefix('/')->name('Public.')->group( function (){
     Route::prefix('/colis')->name('Colis.')->group( function () {
         Route::get('/', [ColisController::class, 'index'])->name('index');
     });
-
+    // for transport
     Route::prefix('/transport')->name('Personel.')->group( function () {
         Route::get('/', [PersonnelController::class, 'index'])->name('index');
+    });
+
+    //for reservation
+    Route::prefix('/reservation')->name('Reservation.')->middleware('auth')->group( function () {
+        Route::get('/', [ReservationPublicController::class, 'index'])->name('index');
+        //information sur une voiture
+        Route::get('/voiture/a5{id}6z', [ReservationPublicController::class, 'car'])->name('car');
+        //only for user connected
+        Route::prefix('/Authentified-user')->name('Auth.')->group( function () {
+            //request for initiate the reservation
+            Route::get('/za89{tripId}13aaz-c22{carId}-87s', [ReservationPublicController::class, 'passenger'])->name('passenger');
+            Route::post('/za89{tripId}13aaz-c22{carId}-87s', [ReservationPublicController::class, 'passenger_add'])->name('passenger_add');
+            //success
+            Route::get('/P85-oi{reservationId}7-Z742b', [ReservationPublicController::class, 'success'])->name('success');
+
+            //Download pdf
+            Route::get('/Download-Reservation-pdf/St87{reservationId}752tp', [ReservationPublicController::class, 'generatePDF'])->name('PdfG');
+        });
     });
 });
 

@@ -5,7 +5,7 @@ use App\Models\Car;
 
 use Nari\Reservation\Interface\ReservationInterface;
 
-class Reservation implements ReservationInterface
+class Reservation
 {
     private $reservation;
     private $car;

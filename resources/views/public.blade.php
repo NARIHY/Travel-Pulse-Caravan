@@ -19,6 +19,7 @@
   <link href="{{asset('public/assets/vendor/boxicons/css/boxicons.min.css')}}" rel="stylesheet">
   <link href="{{asset('public/assets/vendor/glightbox/css/glightbox.min.css')}}" rel="stylesheet">
   <link href="{{asset('public/assets/vendor/swiper/swiper-bundle.min.css')}}" rel="stylesheet">
+  <link href="{{ asset('admin/assets/vendor/simple-datatables/style.css')}}" rel="stylesheet">
 
   <!-- Template Main CSS File -->
   <link href="{{asset('public/assets/css/style.css')}}" rel="stylesheet">
@@ -40,7 +41,7 @@
           <li><a class="nav-link scrollto @if (request()->routeIS('Public.index')) active @endif" href="{{route('Public.index')}}">Acceuil</a></li>
 
           <li><a class="nav-link scrollto @if (request()->routeIS('Public.service')) active @endif" href="{{route('Public.service')}}">Nos préstation</a></li>
-          <li><a class="nav-link scrollto " href="#">Réserver</a></li>
+          <li><a class="nav-link scrollto @if (request()->routeIS('Public.Reservation.index')) active @endif" href="{{ route('Public.Reservation.index')}}">Réserver</a></li>
 
 
           <li><a class="nav-link scrollto @if (request()->routeIS('Public.contacts')) active @endif" href="{{route('Public.contacts')}}">Contact</a></li>
@@ -52,6 +53,7 @@
           @php
                 $user = Illuminate\Support\Facades\Auth::user();
           @endphp
+          <li><a class="nav-link scrollto " href="#">Blog</a></li>
           @if ($user->role != 1)
             <li><a class="nav-link scrollto" href="{{route('Admin.index')}}">Administration</a></li>
           @endif
@@ -90,7 +92,7 @@
               ANTANANARIVO<br>
               MADAGASCAR <br><br>
               <strong>Phone:</strong> +261 00 000 00<br>
-              <strong>Email:</strong> contact@exemple.mg<br>
+              <strong>Email:</strong> travelpulsecaravan@gmail.com<br>
             </p>
           </div>
 
@@ -152,7 +154,7 @@
   <script src="{{asset('public/assets/vendor/glightbox/js/glightbox.min.js')}}"></script>
   <script src="{{asset('public/assets/vendor/isotope-layout/isotope.pkgd.min.js')}}"></script>
   <script src="{{asset('public/assets/vendor/swiper/swiper-bundle.min.js')}}"></script>
-
+  <script src="{{ asset('admin/assets/vendor/simple-datatables/simple-datatables.js')}}"></script>
 
   <!-- Template Main JS File -->
   <script src="{{asset('public/assets/js/main.js')}}"></script>

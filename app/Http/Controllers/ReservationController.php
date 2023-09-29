@@ -54,45 +54,45 @@ class ReservationController extends Controller
     }
 
     /**
- * Add a passenger to the passenger list with email verification.
- *
- * @param PassengerRequest $request
- * @return RedirectResponse
- */
-public function passenger_add(PassengerRequest $request): RedirectResponse
-{
-    try {
-        // Get the validated data from the request
-        $data = $request->validated();
-        // Get the validated email address from the request
-        $email = $request->validated('email');
-        // Create an instance of the email validator
-        $validator = new EmailValidator();
-        // Configure multiple validations to apply (RFCValidation and DNSCheckValidation)
-        $multipleValidations = new MultipleValidationWithAnd([
-            new RFCValidation(),
-            new DNSCheckValidation()
-        ]);
-        // Check if the email address is valid using the configured validations
-        if ($validator->isValid($email, $multipleValidations)) {
-            // The email address is valid
-            // Check if the traveler's phone number is the same as the emergency contact's
-            if ($request->validated('phone_number') === $request->validated('emergency_contact')) {
-                return redirect()->route($this->routes().'create.passenger')->with('error', 'The traveler\'s phone number cannot be the same as the emergency contact\'s');
+     * Add a passenger to the passenger list with email verification.
+     *
+     * @param PassengerRequest $request
+     * @return RedirectResponse
+     */
+    public function passenger_add(PassengerRequest $request): RedirectResponse
+    {
+        try {
+            // Get the validated data from the request
+            $data = $request->validated();
+            // Get the validated email address from the request
+            $email = $request->validated('email');
+            // Create an instance of the email validator
+            $validator = new EmailValidator();
+            // Configure multiple validations to apply (RFCValidation and DNSCheckValidation)
+            $multipleValidations = new MultipleValidationWithAnd([
+                new RFCValidation(),
+                new DNSCheckValidation()
+            ]);
+            // Check if the email address is valid using the configured validations
+            if ($validator->isValid($email, $multipleValidations)) {
+                // The email address is valid
+                // Check if the traveler's phone number is the same as the emergency contact's
+                if ($request->validated('phone_number') === $request->validated('emergency_contact')) {
+                    return redirect()->route($this->routes().'create.passenger')->with('error', 'The traveler\'s phone number cannot be the same as the emergency contact\'s');
+                }
+                // Create an instance of the Passenger model with the validated data
+                $passenger = Passenger::create($data);
+                // Redirect to the passenger.city page with parameters and a success message
+                return redirect()->route($this->routes().'passenger.city', ['passenger_id' => $passenger->id, 'purcount' => 25])->with('success', '25');
+            } else {
+                // The email address is not valid
+                return redirect()->route($this->routes().'create.passenger')->with('error', 'The email address you entered is not valid or does not exist');
             }
-            // Create an instance of the Passenger model with the validated data
-            $passenger = Passenger::create($data);
-            // Redirect to the passenger.city page with parameters and a success message
-            return redirect()->route($this->routes().'passenger.city', ['passenger_id' => $passenger->id, 'purcount' => 25])->with('success', '25');
-        } else {
-            // The email address is not valid
-            return redirect()->route($this->routes().'create.passenger')->with('error', 'The email address you entered is not valid or does not exist');
+        } catch (\Exception $e) {
+            // In case of an error, redirect with an error message
+            return redirect()->route($this->routes().'create.passenger')->with('error', 'An error occurred: ' . $e->getMessage());
         }
-    } catch (\Exception $e) {
-        // In case of an error, redirect with an error message
-        return redirect()->route($this->routes().'create.passenger')->with('error', 'An error occurred: ' . $e->getMessage());
     }
-}
 
 
     /**
