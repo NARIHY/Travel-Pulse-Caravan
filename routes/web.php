@@ -8,6 +8,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ColisController;
 use App\Http\Controllers\CompteControllers;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\PassengerVerificationController;
 use App\Http\Controllers\PersonnelController;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\HomeAdminController;
@@ -95,43 +96,54 @@ Route::prefix('/')->name('Public.')->group( function (){
 
 Route::prefix('/Administration')->middleware(['auth', 'verified', 'checkRole:1'])->name('Admin.')->group( function() {
     Route::get('/', [AdminController::class, 'index'])->name('index');
-
     //Home Admin Routes
-    Route::get('/Acceuil-administration', [HomeAdminController::class, 'index'])->name('Home.index');
-    Route::get('/Acceuil-administration/ajouter-pub', [HomeAdminController::class, 'create'])->name('Home.create');
-    Route::post('/Acceuil-administration/ajouter-pub', [HomeAdminController::class, 'store'])->name('Home.store');
-    Route::get('/Acceuil-administration/{id}/editer', [HomeAdminController::class, 'edit'])->name('Home.edit');
-    Route::put('/Acceuil-administration/{id}/editer', [HomeAdminController::class, 'update'])->name('Home.update');
-    Route::delete('/Acceuil-administration/{id}/delete', [HomeAdminController::class, 'delete'])->name('Home.delete');
+    Route::prefix('/Acceuil-administration')->name('Home.')->group( function() {
+        Route::get('/',[HomeAdminController::class, 'index'])->name('index');
+        //Adding routes
+        Route::get('/ajouter-pub', [HomeAdminController::class, 'create'])->name('create');
+        Route::post('/ajouter-pub', [HomeAdminController::class, 'store'])->name('store');
+        //edition routes
+        Route::get('/{id}/editer', [HomeAdminController::class, 'edit'])->name('edit');
+        Route::put('/{id}/editer', [HomeAdminController::class, 'update'])->name('update');
+        //deleting
+        Route::delete('/{id}/delete', [HomeAdminController::class, 'delete'])->name('delete');
+    });
 
     //flote
-    Route::get('/Entreprise/nos-flote', [CategoryController::class, 'index'])->name('Entreprise.flote.index');
-    Route::get('/Entreprise/nos-flote/creation', [CategoryController::class, 'create'])->name('Entreprise.flote.create');
-    Route::post('/Entreprise/nos-flote/creation', [CategoryController::class, 'store'])->name('Entreprise.flote.store');
-    Route::get('/Entreprise/nos-flote/{id}/mis-a-jour', [CategoryController::class, 'edit'])->name('Entreprise.flote.edit');
-    Route::put('/Entreprise/nos-flote/{id}/mis-a-jour', [CategoryController::class, 'update'])->name('Entreprise.flote.update');
+    Route::prefix('/Entreprise/nos-flote')->name('Entreprise.flote.')->group( function () {
+        //listing
+        Route::get('/', [CategoryController::class, 'index'])->name('index');
+        //creation view
+        Route::get('/creation', [CategoryController::class, 'create'])->name('create');
+        Route::post('/creation', [CategoryController::class, 'store'])->name('store');
+        //edition
+        Route::get('/{id}/mis-a-jour',[CategoryController::class, 'edit'])->name('edit');
+        Route::put('/{id}/mis-a-jour', [CategoryController::class, 'update'])->name('update');
+    });
 
     //Cars
-    Route::get('/Entreprise/nos-flote/voiture', [CarController::class, 'index'])->name('Entreprise.flote.car.index');
-    Route::get('/Entreprise/nos-flote/voiture/Ajout-d-un-voiture', [CarController::class, 'create'])->name('Entreprise.flote.car.create');
-    Route::post('/Entreprise/nos-flote/voiture/Ajout-d-un-voiture', [CarController::class, 'store'])->name('Entreprise.flote.car.store');
-    Route::get('/Entreprise/nos-flote/voiture/{id}/Edition-d-un-voiture', [CarController::class, 'edit'])->name('Entreprise.flote.car.edit');
-    Route::put('/Entreprise/nos-flote/voiture/{id}/Edition-d-un-voiture', [CarController::class, 'update'])->name('Entreprise.flote.car.update');
-    Route::delete('/Entreprise/nos-flote/voiture/{id}/Supression-d-un-voiture', [CarController::class, 'delete'])->name('Entreprise.flote.car.delete');
-    Route::get('/Entreprise/nos-flote/voiture/{id}/Vue-d-un-voiture', [CarController::class, 'view'])->name('Entreprise.flote.car.view');
-    //return pdf download
-    Route::get('/Entreprise/nos-flote/voiture/{id}/pdf', [CarController::class, 'generatePDF'])->name('Entreprise.flote.car.generatePDF');
+    Route::prefix('/Entreprise/nos-flote')->name('Entreprise.flote.car.')->group( function () {
+        Route::get('/voiture', [CarController::class, 'index'])->name('index');
+        Route::get('/voiture/Ajout-d-un-voiture', [CarController::class, 'create'])->name('create');
+        Route::post('/voiture/Ajout-d-un-voiture', [CarController::class, 'store'])->name('store');
+        Route::get('/voiture/{id}/Edition-d-un-voiture', [CarController::class, 'edit'])->name('edit');
+        Route::put('/voiture/{id}/Edition-d-un-voiture', [CarController::class, 'update'])->name('update');
+        Route::delete('/voiture/{id}/Supression-d-un-voiture', [CarController::class, 'delete'])->name('delete');
+        //view of one car
+        Route::get('/voiture/{id}/Vue-d-un-voiture', [CarController::class, 'view'])->name('view');
+        //return pdf download
+        Route::get('/voiture/{id}/pdf', [CarController::class, 'generatePDF'])->name('generatePDF');
+
+        //car listing by float
+        Route::get('/liste-des-voiture-par-flote', [CarListingController::class, 'index'])->name('listing.flote.index');
+        Route::get('/liste-des-voiture-par-flote/{id}/{category}', [CarListingController::class, 'listing'])->name('listing.flote.listing');
+        //car information
+        Route::get('/voiture/information', [CarInformationController::class, 'index'])->name('carInformation.index');
+        Route::get('/voiture/information/ajouter-information-pour-un-voiture', [CarInformationController::class, 'create'])->name('carInformation.create');
+        Route::post('/voiture/information/ajouter-information-pour-un-voiture', [CarInformationController::class, 'store'])->name('carInformation.store');
+    });
 
 
-    //float cars listing
-    Route::get('/Entreprise/nos-flote/liste-des-voiture-par-flote', [CarListingController::class, 'index'])->name('Entreprise.flote.car.listing.flote.index');
-    Route::get('/Entreprise/nos-flote/liste-des-voiture-par-flote/{id}/{category}', [CarListingController::class, 'listing'])->name('Entreprise.flote.car.listing.flote.listing');
-
-    //CAr Information routes
-    $routesCarInformation = "Entreprise.flote.car.carInformation.";
-    Route::get('/Entreprise/nos-flote/voiture/information', [CarInformationController::class, 'index'])->name($routesCarInformation.'index');
-    Route::get('/Entreprise/nos-flote/voiture/information/ajouter-information-pour-un-voiture', [CarInformationController::class, 'create'])->name($routesCarInformation.'create');
-    Route::post('/Entreprise/nos-flote/voiture/information/ajouter-information-pour-un-voiture', [CarInformationController::class, 'store'])->name($routesCarInformation.'store');
 
 
     //trip
@@ -226,5 +238,10 @@ Route::prefix('/Administration')->middleware(['auth', 'verified', 'checkRole:1']
     Route::prefix('/Message-Création')->name('Message.Creation.')->group( function (){
         Route::get('/',[ParticipantController::class, 'index'])->name('index');
         Route::post('/',[ParticipantController::class, 'create'])->name('create');
-     });
+    });
+
+     //Route for passenger verification and passenger list
+    Route::prefix('/Verification-passager')->name('Verification.Passenger.')->group( function() {
+        Route::get('/', [PassengerVerificationController::class, 'verification'])->name('listing');
+    });
 }) ;

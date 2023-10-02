@@ -39,7 +39,10 @@
             <h4 style="color: blue">Date d'inscription</h4>
         </div>
         <div class="col-md-6">
-            <h4>{{$user->role}}</h4>
+            @php
+                $role = App\Models\Roles::findOrFail($user->role);
+            @endphp
+            <h4>{{$role->title}}</h4>
             <h4>{{$user->email}}</h4>
             @php
             $date = Carbon\Carbon::parse($user->created_at);
