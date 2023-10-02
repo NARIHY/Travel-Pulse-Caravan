@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Reservation;
 use App\Models\Trip;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -20,6 +21,28 @@ class PassengerVerificationController extends Controller
                         ->paginate(15);
         return view('admin.entreprise.reservation.index', [
             'trip' => $trip
+        ]);
+    }
+
+    /**
+     * Go to listing all of all passenger in the reservation
+     * @return \Illuminate\View\View
+     */
+    public function verify(string $id): View
+    {
+        $reservation = Reservation::where('trip_id', $id)
+                                        ->paginate(15);
+        return view('admin.entreprise.reservation.passenger', [
+            'reservation' => $reservation
+        ]);
+    }
+
+    public function passenger(string $identification): View
+    {
+        $passenger = Reservation::where('identification', $identification)
+                                    ->get();
+        return view('admin.entreprise.reservation.view', [
+            'passenger' => $passenger
         ]);
     }
 }

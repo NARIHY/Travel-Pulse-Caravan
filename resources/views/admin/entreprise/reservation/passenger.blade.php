@@ -12,47 +12,50 @@
       </ol>
     </nav>
 </div>
-  <div class="container">
+
+<div class="container">
     <div>
         <table class="table datatable">
             <thead>
               <tr>
                 <th scope="col">#</th>
                 <th scope="col">Immatriculation</th>
-                <th scope="col">Trajet</th>
-                <th scope="col">Status</th>
+                <th scope="col">Passager</th>
+
                 <th scope="col">Horaire</th>
-                <th scope="col">Action</th>
 
               </tr>
             </thead>
             <tbody>
-                @forelse ($trip as $trips)
+                @forelse ($reservation as $reservations)
                     <tr>
-                        <th scope="row">{{$trips->id}}</th>
+                        <th scope="row">{{$reservations->id}}</th>
                         @php
-                        $car = App\Models\Car::findOrFail($trips->car);
+                            $trip = App\Models\Trip::findOrFail($reservations->trip_id);
+                            $car = App\Models\Car::findOrFail($trip->car);
                         @endphp
-                        <td>{{$car->plate_number}}</td>
                         <td>
-                            {{$trips->place_depart}} - {{$trips->place_arrivals}}
+                            {{$car->plate_number}}
                         </td>
-                        <td>
-                            {{$trips->status}}
-                        </td>
+
                         @php
-                            $dateDepart = Carbon\Carbon::parse($trips->date_depart); // Convertit la date en objet Carbon
-                            $heureDepart = Carbon\Carbon::parse($trips->heure_depart); // Convertit l'heure en objet Carbon
+                        $passenger = App\Models\Passenger::findOrFail($reservations->passenger_id);
+                        @endphp
+                        <td>
+                            {{$passenger->name}} {{$passenger->last_name}}
+                        </td>
+
+
+                        @php
+                            $dateDepart = Carbon\Carbon::parse($reservations->created_at); // Convertit la date en objet Carbon
+
                             // Formate la date et l'heure selon le format souhaité
-                            $dateFormatee = $dateDepart->format('d/m/Y'); // Format de date (par exemple, "10/12/2023")
-                            $heureFormatee = $heureDepart->format('H:i:s');
+                            $dateFormatee = $dateDepart->format('d/m/Y H:i:s'); // Format de date (par exemple, "10/12/2023")
+
                         @endphp
-                        <td>
-                            {{$dateFormatee}} {{$heureFormatee}}
-                        </td>
-                        <td>
-                            <a href="{{route('Admin.Verification.Passenger.verify', ['id' => $trips->id])}}" class="btn btn-primary">Voir</a>
-                        </td>
+                        <td> {{$dateFormatee}} </td>
+
+
 
                     </tr>
                 @empty
@@ -68,16 +71,12 @@
                         <td>
 
                         </td>
-                        <td>
-
-                        </td>
 
                     </tr>
                 @endforelse
 
             </tbody>
           </table>
-          {{$trip->links()}}
+          {{$reservation->links()}}
     </div>
-  </div>
 @endsection

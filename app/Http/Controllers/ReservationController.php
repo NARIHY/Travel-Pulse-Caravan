@@ -236,7 +236,7 @@ class ReservationController extends Controller
     $reservation = Reservation::findOrFail($reservationId);
     $qrCode = QrCode::size(175)
                     ->color(200, 150, 0)
-                    ->generate($reservation->identification);
+                    ->generate(route('Admin.Verification.Passenger.view',['identification' => $reservation->identification]));
     $trip = Trip::findOrFail($reservation->trip_id);
     $passenger = Passenger::findOrFail($reservation->passenger_id);
 

@@ -242,6 +242,8 @@ Route::prefix('/Administration')->middleware(['auth', 'verified', 'checkRole:1']
 
      //Route for passenger verification and passenger list
     Route::prefix('/Verification-passager')->name('Verification.Passenger.')->group( function() {
-        Route::get('/', [PassengerVerificationController::class, 'verification'])->name('listing');
+        Route::get('/', [PassengerVerificationController::class, 'reservation'])->name('listing');
+        Route::get('/{id}/Liste-des-passager', [PassengerVerificationController::class, 'verify'])->name('verify');
+        Route::get('/{identification}', [PassengerVerificationController::class, 'passenger'])->name('view');
     });
 }) ;
