@@ -4,7 +4,7 @@
     if(request()->routeIS('Admin.Entreprise.trip.planified.create')){
         $title = 'Planification d\'un trajet';
     } else {
-        $title = 'PModification d\'un trajet planifier';
+        $title = 'Modification d\'un trajet planifier';
     }
 @endphp
 @section('title', $title)
@@ -132,7 +132,10 @@
         @method('PUT')
         <label for="car"> Selectionner une voiture</label>
         <select name="car" id="car" class="form-control @error('car') is-invalid @enderror">
-            <option value="{{$trip->car}}">{{$trip->car}}</option>
+            <option value="">Selectionner une voiture</option>
+            @foreach ($car as $k=>$v)
+                <option value="{{$v}}" @if ($v == $trip->car) selected @endif>{{$k}}</option>
+            @endforeach
 
         </select>
         @error('car')
@@ -203,8 +206,8 @@
 
                 <div class="input-group mb-3">
 
-                    <span class="input-group-text" id="basic-addon3">Ar1</span>
-                    <input type="text" name="price" id="price" class="form-control @error('price') is-invalid @enderror" value="{{@old('price')}}">
+                    <span class="input-group-text" id="basic-addon3">Ar</span>
+                    <input type="text" name="price" id="price" class="form-control @error('price') is-invalid @enderror" value="{{$trip->price}}">
                     @error('price')
                     <p style="color: rgb(114, 19, 19)">{{$message}}</p>
                     @enderror

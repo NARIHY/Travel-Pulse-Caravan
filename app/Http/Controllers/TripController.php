@@ -5,10 +5,13 @@ namespace App\Http\Controllers;
 use App\Http\Requests\TripRequest;
 use App\Models\Car;
 use App\Models\Category;
+use App\Models\Passenger;
+use App\Models\Reservation;
 use App\Models\Statement;
 use App\Models\Status;
 use App\Models\Travel;
 use App\Models\Trip;
+use App\Notifications\TripChangingNotification;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -86,7 +89,7 @@ class TripController extends Controller
     {
         $city = Travel::pluck('place');
         $car = Car::where('vehicule_info', 'apte')
-                        ->pluck('id');
+                        ->pluck('id','plate_number');
         //for the flote category we only get the car category
         $statement = Status::pluck('status');
         $trip = Trip::findOrFail($id);
@@ -109,8 +112,35 @@ class TripController extends Controller
     {
         try {
             $data = $request->validated();
+            //get the trip identification
             $trip = Trip::findOrFail($id);
+            //verify if the car already have an trips, if not continu the script
+            $car = $request->validated('car');
+            //verify if the car is different to the car reservation in the trip
+            if ($trip->car !== $car) {
+                $verify = Trip::where('car', $car)
+                            ->where('created_at', $trip->created_at)
+                            ->get();
+                // if verify === true
+                if(empty($verify)) {
+                    return redirect()->route($this->routes().'update', ['id' => $id])->with('error', 'La voiture est disponible pour cette date');
+                }
+            }
+            //Now we notify every passenger who follow the trip
+            //Get every passenger in the travel
+            $passenger = Reservation::where('trip_id', $trip->id)
+                                        ->get();
+            //boucle to get every passenger
+            foreach($passenger as $passengers) {
+                //to differency the id of trip and the id of many passenger to send notification
+                $i = $passengers->passenger_id;
+                $pass = Passenger::findOrFail($i);
+                $pass->notify(new TripChangingNotification($trip));
+            }
+            //after save the modification
             $trip->update($data);
+
+
             return redirect()->route($this->routes().'update', ['id' => $id])->with('success', 'Modification réussi');
         } catch (\Exception $e) {
             return redirect()->route($this->routes().'update', ['id' => $id])->with('error', 'il y a eu une erreur lors de la modification'.$e->getMessage());

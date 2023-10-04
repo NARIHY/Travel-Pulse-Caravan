@@ -37,6 +37,11 @@ class PassengerVerificationController extends Controller
         ]);
     }
 
+    /**
+     * To do for ticket verifications
+     * @param string $identification
+     * @return \Illuminate\View\View
+     */
     public function passenger(string $identification): View
     {
         $passenger = Reservation::where('identification', $identification)

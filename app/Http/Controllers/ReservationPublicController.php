@@ -103,7 +103,17 @@ class ReservationPublicController extends Controller
             if ($data['phone_number'] === $data['emergency_contact']) {
                 return redirect()->route('Public.Reservation.Auth.passenger', ['tripId' => $tripId, 'carId' => $carId])->with('error', 'Les deux numéros ne doivent pas correspondre');
             }
-
+            //Verify if the email already exists in the reservation
+            //get every email
+            $emailGet = \App\Models\Reservation::where('trip_id', $tripId)
+                                                    ->get();
+            foreach($emailGet as $emails) {
+                $passengersId = Passenger::findOrFail($emails->passenger_id);
+                // if true -> error redirections
+                if($passengersId->email === $email) {
+                    return redirect()->route('Public.Reservation.Auth.passenger', ['tripId' => $tripId, 'carId' => $carId])->with('error', 'Le passager ne peut pas s\'inscrire deux fois dans cette réservation');
+                }
+            }
             // Verify if there are already places
             try {
                 $verify = new \Nari\Reservation\Reservation($tripId, $carId);
@@ -114,21 +124,16 @@ class ReservationPublicController extends Controller
                 // Vous pouvez également afficher un message d'erreur personnalisé ici si nécessaire
                 $verif = false; // Par exemple
             }
-
             // If true, redirect
             if ($verif === true) {
                 return redirect()->route('Public.Reservation.Auth.passenger', ['tripId' => $tripId, 'carId' => $carId])->with('error', 'Oups, la réservation n\'est plus disponible');
             }
-
             // Create an instance of the Passenger model with the validated data
             $passenger = Passenger::create($data);
-
             // Generate a random token of 32 bytes (256 bits)
             $token = bin2hex(random_bytes(32));
-
             // Hash the token using SHA-256
             $securityTicket = hash('sha256', $token);
-
             $datas = [
                 'trip_id' => $tripId,
                 'passenger_id' => $passenger->id,
@@ -136,10 +141,8 @@ class ReservationPublicController extends Controller
                 'reservation_status' => 'reserve', // Fixed a typo here
                 'identification' => $securityTicket
             ];
-
             // Create a Reservation instance
             $reservation = \App\Models\Reservation::create($datas);
-
             // Redirect to the success page with parameters and a success message
             return redirect()->route('Public.Reservation.Auth.success', ['reservationId' => $reservation->id]);
         } else {
@@ -181,34 +184,29 @@ class ReservationPublicController extends Controller
      * @return mixed
      */
     public function generatePDF($reservationId)
-{
-    $reservation = \App\Models\Reservation::findOrFail($reservationId);
-    $qrCode = QrCode::size(175)
-                    ->color(200, 150, 0)
-                    ->generate(route('Admin.Verification.Passenger.view',['identification' => $reservation->identification]));
-    $trip = Trip::findOrFail($reservation->trip_id);
-    $passenger = Passenger::findOrFail($reservation->passenger_id);
+    {
+        $reservation = \App\Models\Reservation::findOrFail($reservationId);
+        $qrCode = QrCode::size(175)
+                        ->color(200, 150, 0)
+                        ->generate(route('Admin.Verification.Passenger.view',['identification' => $reservation->identification]));
+        $trip = Trip::findOrFail($reservation->trip_id);
+        $passenger = Passenger::findOrFail($reservation->passenger_id);
 
-    // Générer le contenu HTML pour le PDF
-    $html = view('pdf.pdfReservation', [
-        'reservation' => $reservation,
-        'qrCode' => $qrCode,
-        'trip' => $trip,
-        'passenger' => $passenger
-    ])->render();
+        // Générer le contenu HTML pour le PDF
+        $html = view('pdf.pdfReservation', [
+            'reservation' => $reservation,
+            'qrCode' => $qrCode,
+            'trip' => $trip,
+            'passenger' => $passenger
+        ])->render();
 
-    // Générer le PDF avec Dompdf
-    $pdf = new Dompdf();
-    $pdf->loadHtml($html);
-    $pdf->setPaper('A5', 'landscape');
-    $pdf->render();
+        // Générer le PDF avec Dompdf
+        $pdf = new Dompdf();
+        $pdf->loadHtml($html);
+        $pdf->setPaper('A5', 'landscape');
+        $pdf->render();
 
-    return $pdf->stream('reservation_'.$reservation->id.'_'.$passenger->id.'.pdf');
-}
-
-
-
-
-
+        return $pdf->stream('reservation_'.$reservation->id.'_'.$passenger->id.'.pdf');
+    }
 
 }
