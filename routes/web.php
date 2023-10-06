@@ -5,6 +5,7 @@ use App\Http\Controllers\CarController;
 use App\Http\Controllers\CarInformationController;
 use App\Http\Controllers\CarListingController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ClientSpaceController;
 use App\Http\Controllers\ColisController;
 use App\Http\Controllers\CompteControllers;
 use App\Http\Controllers\ContactController;
@@ -95,6 +96,12 @@ Route::prefix('/')->name('Public.')->group( function (){
             Route::get('/Download-Reservation-pdf/St87{reservationId}752tp', [ReservationPublicController::class, 'generatePDF'])->name('PdfG');
         });
     });
+});
+
+//for User client only
+Route::prefix('Client')->middleware(['auth', 'verified'])->name('Client.')->group( function () {
+    Route::get('/', [ClientSpaceController::class, 'client'])->name('index');
+    Route::post('/286{reservationId}548-abord', [ClientSpaceController::class, 'abord'])->name('abord');
 });
 
 

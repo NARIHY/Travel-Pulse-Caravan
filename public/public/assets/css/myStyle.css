@@ -353,3 +353,9 @@
         display: none;
     }
 }
+
+/*client space*/
+#top-bars {
+    width: 100%;
+    background-color: black;
+}

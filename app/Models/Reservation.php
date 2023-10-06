@@ -14,6 +14,7 @@ class Reservation extends Model
         'reservation_date',
         'passenger_id',
         'reservation_status',
-        'identification'
+        'identification',
+        'stat'
     ];
 }

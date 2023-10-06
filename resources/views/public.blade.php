@@ -60,7 +60,9 @@
           @php
                 $user = Illuminate\Support\Facades\Auth::user();
           @endphp
-
+            @if ($user->role == 1)
+                <li><a class="nav-link scrollto" href="{{route('Client.index')}}">Mon espace</a></li>
+            @endif
           @if ($user->role != 1)
             <li><a class="nav-link scrollto" href="{{route('Admin.index')}}">Administration</a></li>
           @endif

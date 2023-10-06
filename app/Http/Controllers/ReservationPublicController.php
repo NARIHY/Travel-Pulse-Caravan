@@ -17,6 +17,7 @@ use Egulias\EmailValidator\Validation\MultipleValidationWithAnd;
 use Egulias\EmailValidator\Validation\RFCValidation;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
@@ -106,6 +107,7 @@ class ReservationPublicController extends Controller
             //Verify if the email already exists in the reservation
             //get every email
             $emailGet = \App\Models\Reservation::where('trip_id', $tripId)
+                                                    ->where('stat', '!=', 'abord')
                                                     ->get();
             foreach($emailGet as $emails) {
                 $passengersId = Passenger::findOrFail($emails->passenger_id);
@@ -130,6 +132,12 @@ class ReservationPublicController extends Controller
             }
             // Create an instance of the Passenger model with the validated data
             $passenger = Passenger::create($data);
+            //Add user id to the passenger
+            $user = Auth::user();
+            $u = [
+                'user_id' => $user->id
+            ];
+            $passenger->update($u);
             // Generate a random token of 32 bytes (256 bits)
             $token = bin2hex(random_bytes(32));
             // Hash the token using SHA-256

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Reservation;
 use App\Models\Trip;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -40,12 +41,18 @@ class PassengerVerificationController extends Controller
     /**
      * To do for ticket verifications
      * @param string $identification
-     * @return \Illuminate\View\View
+     * @return \Illuminate\View\View | \Illuminate\Http\RedirectResponse
      */
-    public function passenger(string $identification): View
+    public function passenger(string $identification): View | RedirectResponse
     {
         $passenger = Reservation::where('identification', $identification)
                                     ->get();
+        foreach($passenger as $p) {
+            $p = $p->stat;
+            if($p->stat == "abord") {
+                return redirect()->route('Admin.Verification.Passenger.listing')->with('error', 'ce ticket n\'est plus disponnible.');
+            }
+        }
         return view('admin.entreprise.reservation.view', [
             'passenger' => $passenger
         ]);

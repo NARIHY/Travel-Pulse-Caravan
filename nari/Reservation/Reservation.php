@@ -44,6 +44,7 @@ class Reservation
     private function countReservation(): string
     {
         $verify = \App\Models\Reservation::where('trip_id', $this->reservation)
+                                            ->where('stat', '!=', 'abord')
                                             ->count();
         return $verify;
     }

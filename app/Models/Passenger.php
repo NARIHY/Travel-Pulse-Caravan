@@ -16,6 +16,7 @@ class Passenger extends Model
         'phone_number',
         'email',
         'emergency_contact',
-        'address'
+        'address',
+        'user_id'
     ];
 }
