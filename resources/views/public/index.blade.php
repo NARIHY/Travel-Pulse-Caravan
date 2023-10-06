@@ -8,7 +8,7 @@
     <div class="container position-relative">
       <h1>Bienvenue chez Travel Pulse Caravan</h1>
       <h2>Votre partenaire de confiance pour des voyages inoubliables.</h2>
-      <a href="" class="btn-get-started scrollto">Commencer</a>
+      <a href="{{route('register')}}" class="btn-get-started scrollto">Commencer</a>
     </div>
   </section><!-- End Hero -->
 

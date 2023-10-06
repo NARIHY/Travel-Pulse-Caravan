@@ -60,7 +60,7 @@
           @php
                 $user = Illuminate\Support\Facades\Auth::user();
           @endphp
-          <li><a class="nav-link scrollto " href="#">Blog</a></li>
+
           @if ($user->role != 1)
             <li><a class="nav-link scrollto" href="{{route('Admin.index')}}">Administration</a></li>
           @endif
@@ -108,9 +108,9 @@
             <ul>
               <li><i class="bx bx-chevron-right"></i> <a href="{{route('Public.index')}}">Acceuil</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="{{route('Public.information')}}">Information</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Nos service</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Conditions d'utilisation</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Politique de confidentialité</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{{route('Public.service')}}">Nos service</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{{route('Public.condition')}}">Conditions d'utilisation</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{{route('Public.terme')}}">Politique de confidentialité</a></li>
             </ul>
           </div>
 
@@ -119,17 +119,18 @@
             <ul>
               <li><i class="bx bx-chevron-right"></i> <a href="{{route('Public.Personel.index')}}">Transport personnelle</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="{{route('Public.Colis.index')}}">Colis express</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Location de voiture</a></li>
+                <!--
+                    <li><i class="bx bx-chevron-right"></i> <a href="#">Location de voiture</a></li>
+                -->
 
             </ul>
           </div>
 
           <div class="col-lg-4 col-md-6 footer-newsletter">
-            <h4>Joinniez vous à notre NewsLetter</h4>
-            <p>Restez à l'affût de l'extraordinaire avec les dernières nouvelles et offres exclusives de Travel Pulse Caravan. Bienvenue dans notre newsletter !</p>
-            <form action="" method="post">
-              <input type="email" name="email"><input type="submit" value="S'inscrire">
-            </form>
+            <h4>Restez Connectés avec Travel Pulse Caravan : Inscrivez-vous pour nos Actualités Exclusives !</h4>
+            <p>
+                Rejoignez notre communauté en créant un compte dès aujourd'hui et ne manquez aucune de nos actualités passionnantes. Soyez les premiers informés de nos offres exclusives, de nos nouveautés et de nos conseils de voyage. Inscrivez-vous maintenant pour rester connectés avec Travel Pulse Caravan !
+            </p>
           </div>
 
         </div>

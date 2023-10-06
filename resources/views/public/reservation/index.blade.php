@@ -13,93 +13,95 @@
 
         <div class="planing">
             <h3 class="planing-title">Nos plans de voyage</h3>
-            <table class="table datatable">
-                <thead>
-                <tr>
-                  <th scope="col">Flotte</th>
-                  <th scope="col">Trajet</th>
-                  <th scope="col">Date et Heure</th>
-                  <th scope="col">Voiture</th>
-                  <th scope="col">Reservation</th>
-                  <th scope="col">Status</th>
-                  @php
-                    $user = Illuminate\Support\Facades\Auth::user();
-                  @endphp
-
-                  @if ($user)
-                    <th scope="col">Action</th>
-                  @endif
-                </tr>
-                </thead>
-                <tbody>
-
-                    @forelse ($trip as $trips)
+            <div class="table-responsive">
+                <table class="table datatable">
+                    <thead>
                     <tr>
-                        @php
-                        $flote = App\Models\Category::findOrFail($trips->flote);
-                        @endphp
-                        <th scope="row">{{$flote->flotte}}</th>
-                        <td>{{$trips->place_depart}} - {{$trips->place_arrivals}} </td>
-                        @php
-                            $date = Carbon\Carbon::parse($trips->date_depart);
-                            $dateFormatee = $date->format('d/m/Y');
-                        @endphp
-                        <td>{{$dateFormatee}} {{$trips->heure_depart}} </td>
-                        @php
-                            $car = App\Models\Car::findOrFail($trips->car)
-                        @endphp
+                      <th scope="col">Flotte</th>
+                      <th scope="col">Trajet</th>
+                      <th scope="col">Date et Heure</th>
+                      <th scope="col">Voiture</th>
+                      <th scope="col">Reservation</th>
+                      <th scope="col">Status</th>
+                      @php
+                        $user = Illuminate\Support\Facades\Auth::user();
+                      @endphp
 
-                        <td>
-                            <a href="{{route('Public.Reservation.car', ['id' => $car->id])}}" style="color: green">{{$car->plate_number}}</a>
-                        </td>
-                        <td>
+                      @if ($user)
+                        <th scope="col">Action</th>
+                      @endif
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                        @forelse ($trip as $trips)
+                        <tr>
                             @php
-                            try {
-                                $verify = new Nari\Reservation\Reservation($trips->id, $trips->car);
-                                $verif = $verify->verify();
-                            } catch (\Exception $e) {
-                                // Enregistrez l'exception dans les journaux Laravel pour le débogage
-                                \Log::error('Erreur lors de la vérification de la réservation : ' . $e->getMessage());
-                                // Vous pouvez également afficher un message d'erreur personnalisé ici si nécessaire
-                                $verif = false; // Par exemple
-                            }
-
-
+                            $flote = App\Models\Category::findOrFail($trips->flote);
+                            @endphp
+                            <th scope="row">{{$flote->flotte}}</th>
+                            <td>{{$trips->place_depart}} - {{$trips->place_arrivals}} </td>
+                            @php
+                                $date = Carbon\Carbon::parse($trips->date_depart);
+                                $dateFormatee = $date->format('d/m/Y');
+                            @endphp
+                            <td>{{$dateFormatee}} {{$trips->heure_depart}} </td>
+                            @php
+                                $car = App\Models\Car::findOrFail($trips->car)
                             @endphp
 
-                            @if ($verif === false)
-                                <p style="color: blue">Disponible</p>
-                            @else
-                                <p style="color: red">Indisponible</p>
+                            <td>
+                                <a href="{{route('Public.Reservation.car', ['id' => $car->id])}}" style="color: green">{{$car->plate_number}}</a>
+                            </td>
+                            <td>
+                                @php
+                                try {
+                                    $verify = new Nari\Reservation\Reservation($trips->id, $trips->car);
+                                    $verif = $verify->verify();
+                                } catch (\Exception $e) {
+                                    // Enregistrez l'exception dans les journaux Laravel pour le débogage
+                                    \Log::error('Erreur lors de la vérification de la réservation : ' . $e->getMessage());
+                                    // Vous pouvez également afficher un message d'erreur personnalisé ici si nécessaire
+                                    $verif = false; // Par exemple
+                                }
+
+
+                                @endphp
+
+                                @if ($verif === false)
+                                    <p style="color: blue">Disponible</p>
+                                @else
+                                    <p style="color: red">Indisponible</p>
+                                @endif
+
+                            </td>
+                            <td>{{$trips->status}}</td>
+                            @if ($user)
+                                <td>
+                                    <a href="{{route('Public.Reservation.Auth.passenger', ['tripId' => $trips->id, 'carId' => $trips->car])}}" class="btn btn-primary" style="color: white">Reserver</a>
+                                </td>
                             @endif
 
-                        </td>
-                        <td>{{$trips->status}}</td>
-                        @if ($user)
-                            <td>
-                                <a href="{{route('Public.Reservation.Auth.passenger', ['tripId' => $trips->id, 'carId' => $trips->car])}}" class="btn btn-primary" style="color: white">Reserver</a>
-                            </td>
-                        @endif
-
-                    </tr>
-                    @empty
-                    <tr>
-                        <th scope="row"></th>
-                        <td></td>
-                        <td></td>
-                        <td> Aucune reservation disponible pour le moment</td>
-                        <td></td>
-                        <td></td>
-                        @if ($user)
+                        </tr>
+                        @empty
+                        <tr>
+                            <th scope="row"></th>
                             <td></td>
-                        @endif
+                            <td></td>
+                            <td> Aucune reservation disponible pour le moment</td>
+                            <td></td>
+                            <td></td>
+                            @if ($user)
+                                <td></td>
+                            @endif
 
-                    </tr>
-                    @endforelse
+                        </tr>
+                        @endforelse
 
 
-                </tbody>
-              </table>
+                    </tbody>
+                  </table>
+            </div>
         </div>
     </div>
 @endsection

@@ -11,4 +11,13 @@ class ColisController extends Controller
     {
         return view('public.colis.index');
     }
+
+    public function condition()
+    {
+        return view('public.policy.condition');
+    }
+    public function terme()
+    {
+        return view('public.policy.terme');
+    }
 }

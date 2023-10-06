@@ -55,6 +55,10 @@ require __DIR__.'/auth.php';
 //Routes for public generals
 
 Route::prefix('/')->name('Public.')->group( function (){
+    //for policy
+    Route::get('/policy', [ColisController::class, 'condition'])->name('condition');
+    Route::get('/terms-of-policy', [ColisController::class, 'terme'])->name('terme');
+    //for public
     Route::get('/', [PublicController::class, 'index'])->name('index');
     Route::post('/', [ContactController::class, 'store'])->name('store');
     //Service
