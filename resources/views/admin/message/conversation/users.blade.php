@@ -109,7 +109,7 @@
 
 @empty
     <div>
-        Aucun message pour le moment
+        No message for moments
     </div>
 @endforelse
 

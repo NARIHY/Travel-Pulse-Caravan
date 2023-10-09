@@ -5,11 +5,11 @@
 @section('content')
 <div class="pagetitle">
 
-    <h1>Gestion de trajet</h1>
+    <h1>Journey management</h1>
     <nav>
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{{route('Admin.index')}}">Tableau de bord</a></li>
-        <li class="breadcrumb-item">Liste des réservation disponible</li>
+        <li class="breadcrumb-item"><a href="{{route('Admin.index')}}">Dashboard</a></li>
+        <li class="breadcrumb-item">List of reservations available</li>
       </ol>
     </nav>
   </div>
@@ -24,12 +24,12 @@
     <thead>
       <tr>
         <th scope="col">#</th>
-        <th scope="col">Voiture</th>
-        <th scope="col">Lieu de départ</th>
-        <th scope="col">Lieu de d'arriver</th>
-        <th scope="col">flote</th>
-        <th scope="col">Date de départ</th>
-        <th scope="col">Heure de départ</th>
+        <th scope="col">Car</th>
+        <th scope="col">Place of departure</th>
+        <th scope="col">Place of arrivals</th>
+        <th scope="col">fleet</th>
+        <th scope="col">Date of departure</th>
+        <th scope="col">departure time</th>
         <th scope="col">status</th>
         <th scope="col">Action</th>
 
@@ -78,7 +78,7 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td style="text-align: center">Aucune trajet disponible pour le moment</td>
+                <td style="text-align: center">Empty</td>
                 <td></td>
                 <td></td>
                 <td></td>

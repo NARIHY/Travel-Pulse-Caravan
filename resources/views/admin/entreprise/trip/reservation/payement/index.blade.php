@@ -5,10 +5,10 @@
 @section('content')
 <div class="pagetitle">
 
-    <h1>Gestion de trajet</h1>
+    <h1>Journey management</h1>
     <nav>
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{{route('Admin.index')}}">Tableau de bord</a></li>
+        <li class="breadcrumb-item"><a href="{{route('Admin.index')}}">Dashboard</a></li>
         <li class="breadcrumb-item">Payement</li>
       </ol>
     </nav>
@@ -24,16 +24,16 @@
     <div class="card" style="padding: 20px 20px 20px 20px">
         <div class="row mb-3">
             <div class="col-6">
-                <h4 style="color: blue">Nom du client:</h4>
-                <h4 style="color: blue">Prénon du client:</h4>
-                <h4 style="color: blue">Date de reservation:</h4>
-                <h4 style="color: blue">Compagnie:</h4>
-                <h4 style="color: blue">Flote:</h4>
-                <h4 style="color: blue">Immatriculation voiture:</h4>
-                <h4 style="color: blue">Date de départ:</h4>
-                <h4 style="color: blue">Heure de départ:</h4>
-                <h4 style="color: blue">Lieu de départ:</h4>
-                <h4 style="color: blue">Lieu d'arriver:</h4>
+                <h4 style="color: blue">Client name:</h4>
+                <h4 style="color: blue">Client lastname:</h4>
+                <h4 style="color: blue">Reservation date:</h4>
+                <h4 style="color: blue">Company:</h4>
+                <h4 style="color: blue">Fleet:</h4>
+                <h4 style="color: blue">Car registration:</h4>
+                <h4 style="color: blue">Date of departure:</h4>
+                <h4 style="color: blue">departure time:</h4>
+                <h4 style="color: blue">Place of departure:</h4>
+                <h4 style="color: blue">Arrival location:</h4>
             </div>
             <div class="col-6">
                 @php

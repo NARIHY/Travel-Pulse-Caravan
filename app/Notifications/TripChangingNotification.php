@@ -54,7 +54,7 @@ class TripChangingNotification extends Notification
                 ->line('Voici les détails de la modification :')
                 ->line('Voiture : '. $car->plate_number)
                 ->line('Trajet:' . $trip->place_depart. '-' . $trip->place_arrivals)
-                ->line('Date et heure de départ : '. $date.' ' . $heure)
+                ->line('Date et departure time : '. $date.' ' . $heure)
                 ->line('Ne vous inquittiez pas, même s\'il y a eu des modification, votre ticket de réservation reste toujours utilisable.')
                 ->line('Nous vous remercions pour votre compréhension et votre utilisation de notre service.');
     }

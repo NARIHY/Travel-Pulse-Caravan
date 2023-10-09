@@ -17,7 +17,7 @@
                     <th scope="col">Flotte</th>
                     <th scope="col">Status</th>
 
-                    <th scope="col">Date et heure de départ</th>
+                    <th scope="col">Date et departure time</th>
                     <th scope="col">Action</th>
                 </tr>
                 </thead>

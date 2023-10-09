@@ -347,11 +347,7 @@
         font-size: 14px;
     }
 
-    /* Cacher la colonne "Action" sur les petits écrans */
-    .table th:last-child,
-    .table td:last-child {
-        display: none;
-    }
+
 }
 
 /*client space*/

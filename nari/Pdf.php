@@ -36,7 +36,7 @@ class Pdf implements PdfInterface
             'compagnie' => 'Travel Pulse Caravan',
             'flote' => $flotte->flotte,
             'trajet' => $trip->place_depart .'-'.$trip->place_arrivals,
-            'heure de départ' => date('D d M Y', $date),
+            'departure time' => date('D d M Y', $date),
             'Immatriculation' => $car->plate_number,
             'nom du passager' => $passenger->name,
             'prenon du passager' => $passenger->last_name,

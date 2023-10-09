@@ -7,8 +7,8 @@
     <h1>Messagerie</h1>
     <nav>
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{{route('Admin.index')}}">Tableau de bord</a></li>
-        <li class="breadcrumb-item">Message de vous et {{$diffUser->name}}</li>
+        <li class="breadcrumb-item"><a href="{{route('Admin.index')}}">Dashboard</a></li>
+        <li class="breadcrumb-item">Message from you and {{$diffUser->name}}</li>
       </ol>
     </nav>
 </div>
@@ -22,7 +22,7 @@
                     <input type="text" name="content" id="content" class="form-control" value="{{@old('content')}}" placeholder="Votre message...">
                 </div>
                 <div class="col-md-2">
-                    <button type="submit" class="btn btn-primary">Envoyer <i class="bi bi-send"></i></button>
+                    <button type="submit" class="btn btn-primary">Send <i class="bi bi-send"></i></button>
 
                 </div>
             </div>

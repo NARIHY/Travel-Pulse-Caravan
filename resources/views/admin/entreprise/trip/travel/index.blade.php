@@ -4,12 +4,12 @@
 
 @section('content')
 <div class="pagetitle">
-    <a href="{{route('Admin.Entreprise.trip.travel.create')}}" class="btn btn-success" style="float: right">Ajouter une ville</a>
-    <h1>Gestion de trajet</h1>
+    <a href="{{route('Admin.Entreprise.trip.travel.create')}}" class="btn btn-success" style="float: right">Add new cities</a>
+    <h1>Journey management</h1>
     <nav>
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{{route('Admin.index')}}">Tableau de bord</a></li>
-        <li class="breadcrumb-item"><a href="{{route('Admin.Entreprise.trip.travel.index')}}">Nos ville de départ et destination</a></li>
+        <li class="breadcrumb-item"><a href="{{route('Admin.index')}}">Dashboard</a></li>
+        <li class="breadcrumb-item"><a href="{{route('Admin.Entreprise.trip.travel.index')}}">Our departure and destination cities</a></li>
       </ol>
     </nav>
   </div>
@@ -29,7 +29,7 @@
       <thead>
       <tr>
         <th scope="col">#</th>
-        <th scope="col">Ville</th>
+        <th scope="col">City</th>
 
       </tr>
       </thead>

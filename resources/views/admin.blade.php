@@ -38,7 +38,7 @@ $user = Auth::user();
     <div class="d-flex align-items-center justify-content-between">
       <a href="{{route('Admin.index')}}" class="logo d-flex align-items-center">
         <img src="assets/img/logo.png" alt="">
-        <span class="d-none d-lg-block">Administration</span>
+        <span class="d-none d-lg-block">Dashboard</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
@@ -85,8 +85,8 @@ $user = Auth::user();
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
             <li class="dropdown-header">
-              Messagerie de l'application
-              <a href="{{route('Admin.Message.Creation.index')}}"><span class="badge rounded-pill bg-primary p-2 ms-2">Commencer</span></a>
+                App messaging
+              <a href="{{route('Admin.Message.Creation.index')}}"><span class="badge rounded-pill bg-primary p-2 ms-2">Start</span></a>
             </li>
             <li>
               <hr class="dropdown-divider">
@@ -157,7 +157,7 @@ $user = Auth::user();
 
                   <div>
                     <h4></h4>
-                    <p>Aucun message pour le moment</p>
+                    <p>No message for the moment</p>
                     <p></p>
                   </div>
                 </a>
@@ -171,7 +171,7 @@ $user = Auth::user();
 
 
             <li class="dropdown-footer">
-              <a href="{{route('Admin.Message.allMessage')}}">Voir tous les message</a>
+              <a href="{{route('Admin.Message.allMessage')}}">Show all message</a>
             </li>
 
           </ul><!-- End Messages Dropdown Items -->
@@ -205,7 +205,7 @@ $user = Auth::user();
             <li>
               <a class="dropdown-item d-flex align-items-center" href="{{route('Admin.Utilisateur.profile')}}">
                 <i class="bi bi-person"></i>
-                <span>Mon Profile</span>
+                <span>My profile</span>
               </a>
             </li>
             <li>
@@ -215,7 +215,7 @@ $user = Auth::user();
             <li>
               <a class="dropdown-item d-flex align-items-center" href="{{route('Admin.Utilisateur.edit')}}">
                 <i class="bi bi-gear"></i>
-                <span>Paramètre</span>
+                <span>Parameters</span>
               </a>
             </li>
             <li>
@@ -225,7 +225,7 @@ $user = Auth::user();
             <li>
               <a class="dropdown-item d-flex align-items-center" href="">
                 <i class="bi bi-question-circle"></i>
-                <span>Besoin d'aide</span>
+                <span>Need help ?</span>
               </a>
             </li>
             <li>
@@ -237,7 +237,7 @@ $user = Auth::user();
                     @csrf
                     <div class="dropdown-item d-flex align-items-center">
                         <i class="bi bi-box-arrow-right"></i>
-                      <input type="submit" value="Déconnexion" style="background: transparent; border:transparent">
+                      <input type="submit" value="Log out" style="background: transparent; border:transparent">
                     </div>
 
                 </form>
@@ -260,18 +260,18 @@ $user = Auth::user();
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{route('Admin.index')}}">
           <i class="bi bi-grid"></i>
-          <span>Tableau de bord</span>
+          <span>Dashboard</span>
         </a>
       </li><!-- End Dashboard Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-menu-button-wide"></i><span>Interface visuel</span><i class="bi bi-chevron-down ms-auto"></i>
+          <i class="bi bi-menu-button-wide"></i><span>Visual Interface</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
             <a href="{{route('Admin.Home.index')}}">
-              <i class="bi bi-circle"></i><span>Acceuil</span>
+              <i class="bi bi-circle"></i><span>Home</span>
             </a>
           </li>
           <li>
@@ -281,7 +281,7 @@ $user = Auth::user();
           </li>
           <li>
             <a href="{{route('Admin.Publicite.listing')}}">
-              <i class="bi bi-circle"></i><span>Publicité</span>
+              <i class="bi bi-circle"></i><span>Publicity</span>
             </a>
           </li>
         </ul>
@@ -289,17 +289,17 @@ $user = Auth::user();
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-journal-text"></i><span>Entreprise</span><i class="bi bi-chevron-down ms-auto"></i>
+          <i class="bi bi-journal-text"></i><span>Company</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
             <a href="">
-              <i class="bi bi-circle"></i><span>Information sur l'entreprise</span>
+              <i class="bi bi-circle"></i><span>Company Information</span>
             </a>
           </li>
           <li>
             <a href="{{route('Admin.Entreprise.flote.index')}}">
-              <i class="bi bi-circle"></i><span>Nos flotes</span>
+              <i class="bi bi-circle"></i><span>Our fleets</span>
             </a>
           </li>
 
@@ -308,22 +308,22 @@ $user = Auth::user();
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-layout-text-window-reverse"></i><span>Flote de véhicule</span><i class="bi bi-chevron-down ms-auto"></i>
+          <i class="bi bi-layout-text-window-reverse"></i><span>Vehicle fleet</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
             <a href="{{route('Admin.Entreprise.flote.car.index')}}">
-              <i class="bi bi-circle"></i><span>Liste de nos voiture</span>
+              <i class="bi bi-circle"></i><span>List of our cars</span>
             </a>
           </li>
           <li>
             <a href="{{route('Admin.Entreprise.flote.car.listing.flote.index')}}">
-              <i class="bi bi-circle"></i><span>Liste de nos voiture par flote</span>
+              <i class="bi bi-circle"></i><span>List of our cars by fleet</span>
             </a>
           </li>
           <li>
             <a href="{{route('Admin.Entreprise.flote.car.carInformation.index')}}">
-              <i class="bi bi-circle"></i><span>Information sur nos voiture</span>
+              <i class="bi bi-circle"></i><span>Information about our cars</span>
             </a>
           </li>
         </ul>
@@ -331,27 +331,27 @@ $user = Auth::user();
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-globe2"></i><span>Gestion de voyage</span><i class="bi bi-chevron-down ms-auto"></i>
+          <i class="bi bi-globe2"></i><span>Travel management</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
             <a href="{{route('Admin.Entreprise.trip.travel.index')}}">
-              <i class="bi bi-circle"></i><span>Depart et destination</span>
+              <i class="bi bi-circle"></i><span>Departs and Destinations</span>
             </a>
           </li>
           <li>
             <a href="{{route('Admin.Entreprise.trip.planified.index')}}">
-              <i class="bi bi-circle"></i><span>Planification des trajet</span>
+              <i class="bi bi-circle"></i><span>Journey planning</span>
             </a>
           </li>
           <li>
             <a href="{{route('Admin.Entreprise.trip.reservation.index')}}">
-              <i class="bi bi-circle"></i><span>Reservation</span>
+              <i class="bi bi-circle"></i><span>Reservations</span>
             </a>
           </li>
           <li>
             <a href="{{route('Admin.Verification.Passenger.listing')}}">
-              <i class="bi bi-circle"></i><span>Liste des reservation</span>
+              <i class="bi bi-circle"></i><span>List of reservations</span>
             </a>
           </li>
         </ul>
@@ -373,7 +373,7 @@ $user = Auth::user();
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{route('Admin.Compte.listing')}}">
             <i class="bi bi-person"></i>
-          <span>Gestion des comptes</span>
+          <span>Account management</span>
         </a>
       </li>
       @endif
@@ -384,7 +384,7 @@ $user = Auth::user();
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{route('Admin.Contact.listing')}}">
           <i class="bi bi-envelope"></i>
-          <span>Message reçu</span>
+          <span>Message received</span>
         </a>
       </li><!-- End Contact Page Nav -->
       <li class="nav-item">

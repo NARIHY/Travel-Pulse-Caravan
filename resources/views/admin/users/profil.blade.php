@@ -4,11 +4,11 @@
 
 @section('content')
 <div class="pagetitle">
-    <h1>Mon espace personnelle</h1>
+    <h1>My personal space</h1>
     <nav>
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{{route('Admin.index')}}">Tableau de bord</a></li>
-        <li class="breadcrumb-item">Mon profile</li>
+        <li class="breadcrumb-item"><a href="{{route('Admin.index')}}">Dashboard</a></li>
+        <li class="breadcrumb-item">My profile</li>
       </ol>
     </nav>
   </div>
@@ -34,9 +34,9 @@
 
       <div class="row mb-3 text-center">
         <div class="col-md-6">
-            <h4 style="color: blue">Rôle</h4>
+            <h4 style="color: blue">Role</h4>
             <h4 style="color: blue">Email</h4>
-            <h4 style="color: blue">Date d'inscription</h4>
+            <h4 style="color: blue">Registration date</h4>
         </div>
         <div class="col-md-6">
             @php

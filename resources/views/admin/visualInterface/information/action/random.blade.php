@@ -11,12 +11,12 @@
 
 @section('content')
 <div class="pagetitle">
-    <h1>Interface visuelle</h1>
+    <h1>Visual interface</h1>
     <nav>
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{{route('Admin.index')}}">Tableau de bord</a></li>
-        <li class="breadcrumb-item">Nos informations</li>
-        <li class="breadcrumb-item">ajout d'une information</li>
+        <li class="breadcrumb-item"><a href="{{route('Admin.index')}}">Dashboard</a></li>
+        <li class="breadcrumb-item">Our information</li>
+        <li class="breadcrumb-item">adding information</li>
       </ol>
     </nav>
   </div>
@@ -35,9 +35,9 @@
     @if (request()->routeIS('Admin.Information.create'))
         <form action="" method="post" enctype="multipart/form-data">
             @csrf
-            <label for="title">Selectionner une titre</label>
+            <label for="title">Select a title</label>
             <select name="title" id="title" class="form-control @error('title') is-invalid @enderror">
-                <option value="">Selectionner une titre</option>
+                <option value="">Select a title</option>
 
                 @foreach ($category as $k=>$v)
                     <option value="{{$v}}">{{$k}}</option>
@@ -51,20 +51,20 @@
             @error('content')
             <div class="invalid-feedback">{{$message}}</div>
             @enderror
-            <label for="media">Inserer une video ou une photo</label>
+            <label for="media">Insert a video or photo</label>
             <input type="file" name="media" id="media" class="form-control @error('media') is-invalid @enderror">
 
             <div class="d-grid gap-2" style="margin-top: 20px">
-                <button class="btn btn-primary" type="submit">Enregistrer</button>
+                <button class="btn btn-primary" type="submit">Save</button>
             </div>
         </form>
     @else
     <form action="" method="post" enctype="multipart/form-data">
         @csrf
         @method('PUT')
-        <label for="title">Selectionner une titre</label>
+        <label for="title">Select a title</label>
         <select name="title" id="title" class="form-control @error('title') is-invalid @enderror">
-            <option value="">Selectionner une titre</option>
+            <option value="">Select a title</option>
 
             @foreach ($category as $k=>$v)
                 <option value="{{$v}}" @if ($information->title == $v) selected  @endif>{{$k}}</option>
@@ -80,7 +80,7 @@
         @enderror
         <div class="row mb-3" style="margin-top: 20px">
             <div class="col-6">
-                <label for="media">Inserer une video ou une photo</label>
+                <label for="media">Insert a video or photo</label>
                 <input type="file" name="media" id="media" class="form-control @error('media') is-invalid @enderror">
                 @error('media')
                     <div class="invalid-feedback">{{$message}}</div>
@@ -104,7 +104,7 @@
 
 
         <div class="d-grid gap-2" style="margin-top: 20px">
-            <button class="btn btn-primary" type="submit">Sauvgarder les modifications</button>
+            <button class="btn btn-primary" type="submit">Save</button>
         </div>
     </form>
     @endif

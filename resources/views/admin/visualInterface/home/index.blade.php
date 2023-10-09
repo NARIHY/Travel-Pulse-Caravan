@@ -5,12 +5,12 @@
 @section('content')
 
 <div class="pagetitle">
-    <a href="{{route('Admin.Home.create')}}" class="btn btn-success" style="float: right">Ajouter une publication</a>
-    <h1>Interface visuelle</h1>
+    <a href="{{route('Admin.Home.create')}}" class="btn btn-success" style="float: right">Add new publication</a>
+    <h1>Visual interface</h1>
     <nav>
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{{route('Admin.index')}}">Tableau de bord</a></li>
-        <li class="breadcrumb-item"><a href="{{route('Admin.Home.index')}}">acceuil du site</a></li>
+        <li class="breadcrumb-item"><a href="{{route('Admin.index')}}">Dashboard</a></li>
+        <li class="breadcrumb-item"><a href="{{route('Admin.Home.index')}}">site home</a></li>
       </ol>
     </nav>
   </div>
@@ -33,7 +33,7 @@
             <thead>
               <tr>
                 <th scope="col">#</th>
-                <th scope="col">Titre</th>
+                <th scope="col">Title</th>
                 <th scope="col">Action</th>
 
               </tr>
@@ -47,13 +47,13 @@
 
                            <div class="row mb-3">
                                 <div class="col-6">
-                                    <a href="{{route('Admin.Home.edit', ['id'=> $homes->id])}}" class="btn btn-primary">Modifier</a>
+                                    <a href="{{route('Admin.Home.edit', ['id'=> $homes->id])}}" class="btn btn-primary">Modify</a>
                                 </div>
                                 <div class="col-6">
                                     <form action="{{route('Admin.Home.delete', ['id' => $homes->id])}}" method="post">
                                         @csrf
                                         @method('DELETE')
-                                        <input type="submit" class="btn btn-danger" value="Supprimer">
+                                        <input type="submit" class="btn btn-danger" value="Delete">
                                     </form>
                                 </div>
                            </div>
@@ -63,7 +63,7 @@
                 @empty
                     <tr>
                         <th scope="row"></th>
-                        <td style="text-align: center">Aucune publication pour le moment</td>
+                        <td style="text-align: center">No Publication for the moments</td>
                         <td>
 
                         </td>

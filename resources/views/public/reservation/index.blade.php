@@ -14,24 +14,23 @@
         <div class="planing">
             <h3 class="planing-title">Nos plans de voyage</h3>
             <div class="table-responsive">
-                <table class="table datatable">
+                <table class="table">
                     <thead>
-                    <tr>
-                      <th scope="col">Flotte</th>
-                      <th scope="col">Trajet</th>
-                      <th scope="col">Date et Heure</th>
-                      <th scope="col">Voiture</th>
-                      <th scope="col">Reservation</th>
-                      <th scope="col">Status</th>
-                      @php
+                        <tr>
+                          <th scope="col"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Flotte</font></font></th>
+                          <th scope="col"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Trajet</font></font></th>
+                          <th scope="col"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Date et Heure</font></font></th>
+                          <th scope="col"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Voiture</font></font></th>
+                          <th scope="col"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Reservation</font></font></th>
+                          <th scope="col"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Status</font></font></th>
+                          @php
                         $user = Illuminate\Support\Facades\Auth::user();
                       @endphp
+                          <th scope="col"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Action</font></font></th>
 
-                      @if ($user)
-                        <th scope="col">Action</th>
-                      @endif
-                    </tr>
-                    </thead>
+                        </tr>
+                      </thead>
+
                     <tbody>
 
                         @forelse ($trip as $trips)
@@ -39,48 +38,74 @@
                             @php
                             $flote = App\Models\Category::findOrFail($trips->flote);
                             @endphp
-                            <th scope="row">{{$flote->flotte}}</th>
-                            <td>{{$trips->place_depart}} - {{$trips->place_arrivals}} </td>
+                            <th scope="row">
+                                <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+                                    {{$flote->flotte}}
+                                </font></font>
+                                </th>
+                            <td>
+                                <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+                                    {{$trips->place_depart}} - {{$trips->place_arrivals}}
+                                </font></font>
+                            </td>
                             @php
                                 $date = Carbon\Carbon::parse($trips->date_depart);
                                 $dateFormatee = $date->format('d/m/Y');
                             @endphp
-                            <td>{{$dateFormatee}} {{$trips->heure_depart}} </td>
+                            <td>
+                                <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+                                    {{$dateFormatee}} {{$trips->heure_depart}}
+                                </font></font>
+                            </td>
                             @php
                                 $car = App\Models\Car::findOrFail($trips->car)
                             @endphp
 
                             <td>
-                                <a href="{{route('Public.Reservation.car', ['id' => $car->id])}}" style="color: green">{{$car->plate_number}}</a>
+                                <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+                                    <a href="{{route('Public.Reservation.car', ['id' => $car->id])}}" style="color: green">{{$car->plate_number}}</a>
+                                </font></font>
+
+                            </td>
+
+
+
+                            <td>
+                                <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+                                    @php
+                                    try {
+                                        $verify = new Nari\Reservation\Reservation($trips->id, $trips->car);
+                                        $verif = $verify->verify();
+                                    } catch (\Exception $e) {
+                                        // Enregistrez l'exception dans les journaux Laravel pour le débogage
+                                        \Log::error('Erreur lors de la vérification de la réservation : ' . $e->getMessage());
+                                        // Vous pouvez également afficher un message d'erreur personnalisé ici si nécessaire
+                                        $verif = false; // Par exemple
+                                    }
+
+
+                                    @endphp
+
+                                    @if ($verif === false)
+                                        <p style="color: blue">Disponible</p>
+                                    @else
+                                        <p style="color: red">Indisponible</p>
+                                    @endif
+                                </font></font>
+
+
                             </td>
                             <td>
-                                @php
-                                try {
-                                    $verify = new Nari\Reservation\Reservation($trips->id, $trips->car);
-                                    $verif = $verify->verify();
-                                } catch (\Exception $e) {
-                                    // Enregistrez l'exception dans les journaux Laravel pour le débogage
-                                    \Log::error('Erreur lors de la vérification de la réservation : ' . $e->getMessage());
-                                    // Vous pouvez également afficher un message d'erreur personnalisé ici si nécessaire
-                                    $verif = false; // Par exemple
-                                }
+                                <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+                                    {{$trips->status}}</td>
+                                </font></font>
 
-
-                                @endphp
-
-                                @if ($verif === false)
-                                    <p style="color: blue">Disponible</p>
-                                @else
-                                    <p style="color: red">Indisponible</p>
-                                @endif
-
-                            </td>
-                            <td>{{$trips->status}}</td>
-                            @if ($user)
-                                <td>
+                            <td >
+                                <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
                                     <a href="{{route('Public.Reservation.Auth.passenger', ['tripId' => $trips->id, 'carId' => $trips->car])}}" class="btn btn-primary" style="color: white">Reserver</a>
-                                </td>
-                            @endif
+
+                                </font></font>
+                            </td>
 
                         </tr>
                         @empty
@@ -91,9 +116,9 @@
                             <td> Aucune reservation disponible pour le moment</td>
                             <td></td>
                             <td></td>
-                            @if ($user)
+
                                 <td></td>
-                            @endif
+
 
                         </tr>
                         @endforelse

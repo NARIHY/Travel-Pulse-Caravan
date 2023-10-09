@@ -4,11 +4,11 @@
 
 @section('content')
 <div class="pagetitle">
-    <h1>Messagerie</h1>
+    <h1>Messaging</h1>
     <nav>
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{{route('Admin.index')}}">Tableau de bord</a></li>
-        <li class="breadcrumb-item">Liste de tous les messages reçu</li>
+        <li class="breadcrumb-item"><a href="{{route('Admin.index')}}">Dashboard</a></li>
+        <li class="breadcrumb-item">List of all messages received</li>
       </ol>
     </nav>
   </div>
@@ -80,7 +80,7 @@
 
                 @endif
             @empty
-                Aucun message pour le moments
+                Empty for the moments
             @endforelse
         </ul>
         {{$participantId->links()}}

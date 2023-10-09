@@ -82,9 +82,9 @@
                     <p><strong>Compagnie :</strong> Travel Pulse Caravan</p>
                     <p><strong>Flote :</strong> {{$categ->flotte}}</p>
                     <p><strong>Immatriculation Voiture :</strong> {{$car->plate_number}}</p>
-                    <p><strong>Date de Départ :</strong> {{$date}}</p>
-                    <p><strong>Heure de Départ :</strong> {{$time}}</p>
-                    <p><strong>Lieu de Départ :</strong> {{$trip->place_depart}}</p>
+                    <p><strong>Date of departure :</strong> {{$date}}</p>
+                    <p><strong>departure time :</strong> {{$time}}</p>
+                    <p><strong>Place of departure :</strong> {{$trip->place_depart}}</p>
                     <p><strong>Lieu d'Arrivée :</strong> {{$trip->place_arrivals}}</p>
                 </div>
             </div>

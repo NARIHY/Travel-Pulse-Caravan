@@ -78,11 +78,11 @@
                     <th colspan="2" style="text-align: center;">Réservation d'une place</th>
                 </tr>
                 <tr>
-                    <th>Flote:</th>
+                    <th>Fleet:</th>
                     <td>{{$flotte->flotte}}</td>
                 </tr>
                 <tr>
-                    <th>Immatriculation de la voiture</th>
+                    <th>Car registration</th>
                     <td>{{$car->plate_number}}</td>
                 </tr>
                 <tr>
@@ -94,19 +94,19 @@
                     <td>{{$trip->place_depart}} à {{$trip->place_arrivals}}</td>
                 </tr>
                 <tr>
-                    <th>Date de départ</th>
+                    <th>Date of departure</th>
                     <td>{{$carDepart}}</td>
                 </tr>
                 <tr>
-                    <th>Heure de départ</th>
+                    <th>departure time</th>
                     <td>{{$timesDepart}}</td>
                 </tr>
                 <tr>
-                    <th>Prix du ticket</th>
+                    <th>Ticket price</th>
                     <td>{{number_format($trip->price, 0, '.', ' ')}} Ar</td>
                 </tr>
                 <tr>
-                    <th>Ticket acheter le:</th>
+                    <th>Ticket buy:</th>
                     <td>{{$tiket}}</td>
                 </tr>
             </table>

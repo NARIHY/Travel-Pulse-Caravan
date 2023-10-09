@@ -11,10 +11,10 @@
 
 @section('content')
 <div class="pagetitle">
-    <h1>Interface visuelle</h1>
+    <h1>Visual interface</h1>
     <nav>
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{{route('Admin.index')}}">Tableau de bord</a></li>
+        <li class="breadcrumb-item"><a href="{{route('Admin.index')}}">Dashboard</a></li>
         <li class="breadcrumb-item">Nos informations</li>
         <li class="breadcrumb-item">publicité</li>
       </ol>

@@ -5,11 +5,11 @@
 @section('content')
 <div class="pagetitle">
 
-    <h1>Gestion de trajet</h1>
+    <h1>Journey management</h1>
     <nav>
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{{route('Admin.index')}}">Tableau de bord</a></li>
-        <li class="breadcrumb-item">Information sur le passager</li>
+        <li class="breadcrumb-item"><a href="{{route('Admin.index')}}">Dashboard</a></li>
+        <li class="breadcrumb-item">Passenger information</li>
       </ol>
     </nav>
   </div>
@@ -32,14 +32,14 @@
         @csrf
         <div class="row mb-3">
             <div class="col-6">
-                <label for="name">Nom du passager:</label>
+                <label for="name">Passenger Name:</label>
                 <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{@old('name')}}">
                 @error('name')
                 <p style="color: rgb(163, 0, 0)"> {{$message}} </p>
                 @enderror
             </div>
             <div class="col-6">
-                <label for="last_name">Prénon du passager:</label>
+                <label for="last_name">Passenger last name:</label>
                 <input type="text" name="last_name" id="last_name" class="form-control @error('last_name') is-invalid @enderror" value="{{@old('last_name')}}">
                 @error('last_name')
                 <p style="color: rgb(163, 0, 0)"> {{$message}} </p>
@@ -48,7 +48,7 @@
         </div>
         <div class="row mb-3">
             <div class="col-6">
-                <label for="phone_number">Téléphone du passager:</label>
+                <label for="phone_number">Phone number of the passenger:</label>
                 <div class="input-group mb-3">
 
                     <span class="input-group-text" id="basic-addon3">+261</span>
@@ -60,7 +60,7 @@
                 @enderror
             </div>
             <div class="col-6">
-                <label for="emergency_contact">Téléphone du personne à contacter en cas d'urgence:</label>
+                <label for="emergency_contact">Passenger emergency contact:</label>
                 <div class="input-group mb-3">
 
                     <span class="input-group-text" id="basic-addon3">+261</span>
@@ -74,7 +74,7 @@
         </div>
 
         <div>
-            <label for="email">Addresse email:</label>
+            <label for="email">Email address of passengers:</label>
             <input type="email" name="email" id="email" class="form-control @error('email') is-invalid @enderror" value="{{@old('email')}}">
             @error('email')
             <p style="color: rgb(163, 0, 0)"> {{$message}} </p>
@@ -82,7 +82,7 @@
         </div>
 
         <div>
-            <label for="address">Lieu de résidence:</label>
+            <label for="address">Place of residence of the passenger:</label>
             <input type="text" name="address" id="address" class="form-control @error('address') is-invalid @enderror" value="{{@old('address')}}">
             @error('address')
             <p style="color: rgb(163, 0, 0)"> {{$message}} </p>
@@ -91,7 +91,7 @@
 
         <div class="d-grid gap-2" style="margin-top: 20px">
 
-            <button class="btn btn-primary" type="submit">Continuer</button>
+            <button class="btn btn-primary" type="submit">Continue</button>
         </div>
 
     </form>

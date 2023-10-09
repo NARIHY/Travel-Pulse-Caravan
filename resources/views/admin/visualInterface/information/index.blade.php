@@ -4,12 +4,12 @@
 
 @section('content')
 <div class="pagetitle">
-    <a href="{{route('Admin.Information.create')}}" class="btn btn-success" style="float: right">Ajouter une information</a>
-    <h1>Interface visuelle</h1>
+    <a href="{{route('Admin.Information.create')}}" class="btn btn-success" style="float: right">Add new  information</a>
+    <h1>Visual interface</h1>
     <nav>
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{{route('Admin.index')}}">Tableau de bord</a></li>
-        <li class="breadcrumb-item">Nos informations</li>
+        <li class="breadcrumb-item"><a href="{{route('Admin.index')}}">Dashboard</a></li>
+        <li class="breadcrumb-item">Our information</li>
       </ol>
     </nav>
   </div>
@@ -28,7 +28,7 @@
     <thead>
       <tr>
         <th scope="col">#</th>
-        <th scope="col">Titre</th>
+        <th scope="col">Tilte</th>
         <th scope="col">Action</th>
 
       </tr>

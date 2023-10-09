@@ -76,16 +76,16 @@
                 <div class="col-md-6">
                     <div class="info" style="margin-left: 10px">
                         <h4>Informations sur la Réservation :</h4>
-                        <p><strong>Nom du Client :</strong> {{$passenger->name}}</p>
-                        <p><strong>Prénom du Client :</strong> {{$passenger->last_name}}</p>
-                        <p><strong>Date de Réservation :</strong> {{$now}}</p>
-                        <p><strong>Compagnie :</strong> Travel Pulse Caravan</p>
-                        <p><strong>Flote :</strong> {{$categ->flotte}}</p>
-                        <p><strong>Immatriculation Voiture :</strong> {{$car->plate_number}}</p>
-                        <p><strong>Date de Départ :</strong> {{$date}}</p>
-                        <p><strong>Heure de Départ :</strong> {{$time}}</p>
-                        <p><strong>Lieu de Départ :</strong> {{$trip->place_depart}}</p>
-                        <p><strong>Lieu d'Arrivée :</strong> {{$trip->place_arrivals}}</p>
+                        <p><strong>Client name:</strong> {{$passenger->name}}</p>
+                        <p><strong>Client Lastname :</strong> {{$passenger->last_name}}</p>
+                        <p><strong>Booking Date :</strong> {{$now}}</p>
+                        <p><strong>Company :</strong> Travel Pulse Caravan</p>
+                        <p><strong>Fleet :</strong> {{$categ->flotte}}</p>
+                        <p><strong>Car registration :</strong> {{$car->plate_number}}</p>
+                        <p><strong>Date of departure :</strong> {{$date}}</p>
+                        <p><strong>departure time :</strong> {{$time}}</p>
+                        <p><strong>Place of departure :</strong> {{$trip->place_depart}}</p>
+                        <p><strong>Place of arrivals :</strong> {{$trip->place_arrivals}}</p>
                     </div>
                     <img src="data:image/png;base64, {{base64_encode($qrCode)}}" alt="codeQr" class="qrCode">
                 </div>

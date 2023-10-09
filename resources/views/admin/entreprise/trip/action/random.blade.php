@@ -12,12 +12,12 @@
 @section('content')
 
 <div class="pagetitle">
-    <h1>Gestion de trajet</h1>
+    <h1>Journey management</h1>
     <nav>
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{{route('Admin.index')}}">Tableau de bord</a></li>
+        <li class="breadcrumb-item"><a href="{{route('Admin.index')}}">Dashboard</a></li>
         <li class="breadcrumb-item"><a href="{{route('Admin.Entreprise.trip.planified.index')}}">Nos trajets</a></li>
-        <li class="breadcrumb-item">gestion de trajet</li>
+        <li class="breadcrumb-item">journey management</li>
       </ol>
     </nav>
   </div>
@@ -39,9 +39,9 @@
         <form action="" method="post">
 
             @csrf
-            <label for="car">Selectionner une voiture</label>
+            <label for="car">Select a car</label>
             <select name="car" id="car" class="form-control @error('car') is-invalid @enderror">
-                <option value="">Selectionner la voiture</option>
+                <option value="">Select a car</option>
                 @foreach ($car as $k=>$v)
                     <option value="{{$v}}">{{$k}}</option>
                 @endforeach
@@ -52,9 +52,9 @@
 
             <div class="row mb-3">
                 <div class="col-6">
-                    <label for="place_depart">Lieu de départ</label>
+                    <label for="place_depart">Place of departure</label>
                     <select name="place_depart" id="place_depart" class="form-control @error('place_depart') is-invalid @enderror">
-                        <option value="">Selectionner le lieu de départ</option>
+                        <option value="">Select departure location</option>
                         @foreach ($city as $cities)
                             <option value="{{$cities}}">{{$cities}}</option>
                         @endforeach
@@ -64,9 +64,9 @@
                     @enderror
                 </div>
                 <div class="col-6">
-                    <label for="place_arrivals">Lieu d'arriver</label>
+                    <label for="place_arrivals">Arrival location</label>
                     <select name="place_arrivals" id="place_arrivals" class="form-control @error('place_arrivals') is-invalid @enderror">
-                        <option value="">Selectionner le lieu de d'arriver</option>
+                        <option value="">Select the location of arrival</option>
                         @foreach ($city as $cities)
                             <option value="{{$cities}}">{{$cities}}</option>
                         @endforeach
@@ -79,14 +79,14 @@
 
             <div class="row mb-3">
                 <div class="col-6">
-                    <label for="date_depart">Date de départ</label>
+                    <label for="date_depart">Date of departure</label>
                     <input type="date" name="date_depart" id="date_depart" class="form-control @error('date_depart') is-invalid @enderror">
                     @error('date_depart')
                     <p style="color: rgb(114, 19, 19)">{{$message}}</p>
                     @enderror
                 </div>
                 <div class="col-6">
-                    <label for="heure_depart">heure de départ</label>
+                    <label for="heure_depart">departure time</label>
                     <input type="time" name="heure_depart" id="date_depart" class="form-control @error('heure_depart') is-invalid @enderror">
                     @error('heure_depart')
                     <p style="color: rgb(114, 19, 19)">{{$message}}</p>
@@ -97,7 +97,7 @@
                 <div class="col-6">
                     <label for="status">Status</label>
                     <select name="status" id="status" class="form-control @error('status') is-invalid @enderror">
-                        <option value="">Selectionner le status</option>
+                        <option value="">Select status</option>
                         @foreach ($statement as $statues)
                             <option value="{{$statues}}">{{$statues}}</option>
                         @endforeach
@@ -107,7 +107,7 @@
                     @enderror
                 </div>
                 <div class="col-6">
-                    <label for="price">Tarif</label>
+                    <label for="price">Price</label>
                     <div class="input-group mb-3">
 
                         <span class="input-group-text" id="basic-addon3">Ar</span>
@@ -123,16 +123,16 @@
 
                     <div class="d-grid gap-2" style="margin-top: 20px">
 
-                        <button class="btn btn-primary" type="submit">Sauvgarder</button>
+                        <button class="btn btn-primary" type="submit">Save</button>
                     </div>
         </form>
     @else
     <form action="" method="post">
         @csrf
         @method('PUT')
-        <label for="car"> Selectionner une voiture</label>
+        <label for="car"> Select a car</label>
         <select name="car" id="car" class="form-control @error('car') is-invalid @enderror">
-            <option value="">Selectionner une voiture</option>
+            <option value="">Select a car</option>
             @foreach ($car as $k=>$v)
                 <option value="{{$v}}" @if ($v == $trip->car) selected @endif>{{$k}}</option>
             @endforeach
@@ -144,9 +144,9 @@
 
         <div class="row mb-3">
             <div class="col-6">
-                <label for="place_depart">Lieu de départ</label>
+                <label for="place_depart">Place of departure</label>
                 <select name="place_depart" id="place_depart" class="form-control @error('place_depart') is-invalid @enderror">
-                    <option value="">Selectionner le lieu de départ</option>
+                    <option value="">Select departure location</option>
                     @foreach ($city as $cities)
                         <option value="{{$cities}}" @if($cities === $trip->place_depart) selected @endif>{{$cities}}</option>
                     @endforeach
@@ -156,9 +156,9 @@
                 @enderror
             </div>
             <div class="col-6">
-                <label for="place_arrivals">Lieu d'arriver</label>
+                <label for="place_arrivals">Arrival location</label>
                 <select name="place_arrivals" id="place_arrivals" class="form-control @error('place_arrivals') is-invalid @enderror">
-                    <option value="">Selectionner le lieu de d'arriver</option>
+                    <option value="">Select the location of arrival</option>
                     @foreach ($city as $cities)
                         <option value="{{$cities}}" @if($cities === $trip->place_arrivals) selected @endif>{{$cities}}</option>
                     @endforeach
@@ -174,14 +174,14 @@
                $time = Carbon\Carbon::parse($trip->heure_depart)->format('H:m');
             @endphp
             <div class="col-6">
-                <label for="date_depart">Date de départ</label>
+                <label for="date_depart">Date of departure</label>
                 <input type="date" name="date_depart" id="date_depart" class="form-control @error('date_depart') is-invalid @enderror" value="{{$trip->date_depart}}">
                 @error('date_depart')
                 <p style="color: rgb(114, 19, 19)">{{$message}}</p>
                 @enderror
             </div>
             <div class="col-6">
-                <label for="heure_depart">heure de départ</label>
+                <label for="heure_depart">departure time</label>
                 <input type="time" name="heure_depart" id="date_depart" class="form-control @error('heure_depart') is-invalid @enderror" value="{{$time}}">
                 @error('heure_depart')
                 <p style="color: rgb(114, 19, 19)">{{$message}}</p>
@@ -192,7 +192,7 @@
             <div class="col-6">
                 <label for="status">Status</label>
                 <select name="status" id="status" class="form-control @error('status') is-invalid @enderror">
-                    <option value="">Selectionner le status</option>
+                    <option value="">Select status</option>
                     @foreach ($statement as $statues)
                         <option value="{{$statues}}"  @if($statues === $trip->status) selected @endif>{{$statues}}</option>
                     @endforeach
@@ -202,7 +202,7 @@
                 @enderror
             </div>
             <div class="col-6">
-                <label for="price">Tarif</label>
+                <label for="price">Price</label>
 
                 <div class="input-group mb-3">
 
@@ -219,7 +219,7 @@
 
                 <div class="d-grid gap-2" style="margin-top: 20px">
 
-                    <button class="btn btn-success" type="submit">Sauvgarder</button>
+                    <button class="btn btn-success" type="submit">Save</button>
                 </div>
     </form>
     @endif

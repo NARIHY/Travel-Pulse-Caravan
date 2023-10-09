@@ -5,11 +5,11 @@
 @section('content')
 <div class="pagetitle">
 
-    <h1>Gestion de trajet</h1>
+    <h1>Journey management</h1>
     <nav>
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{{route('Admin.index')}}">Tableau de bord</a></li>
-        <li class="breadcrumb-item">choisir le depart et l'ariver</li>
+        <li class="breadcrumb-item"><a href="{{route('Admin.index')}}">Dashboard</a></li>
+        <li class="breadcrumb-item">choose the departure and arrival</li>
       </ol>
     </nav>
   </div>
@@ -23,9 +23,9 @@
         @csrf
         <div class="row mb-3">
             <div class="col-6">
-                <label for="place_depart">Lieu de départ</label>
+                <label for="place_depart">Place of departure</label>
                 <select name="place_depart" id="place_depart" class="form-control @error('place_depart') is-invalid @enderror">
-                    <option value="">Selectionner le lieu de départ</option>
+                    <option value="">Select the Place of departure</option>
                     @foreach ($city as $cities)
                         <option value="{{$cities}}">{{$cities}}</option>
                     @endforeach
@@ -35,9 +35,9 @@
                 @enderror
             </div>
             <div class="col-6">
-                <label for="place_arrivals">Votre destination:</label>
+                <label for="place_arrivals">Your destination:</label>
                 <select name="place_arrivals" id="place_arrivals" class="form-control @error('place_arrivals') is-invalid @enderror">
-                    <option value="">Selectionner le lieu de d'arriver</option>
+                    <option value="">Select the location of arrival</option>
                     @foreach ($city as $cities)
                         <option value="{{$cities}}" >{{$cities}}</option>
                     @endforeach
@@ -50,7 +50,7 @@
 
         <div class="d-grid gap-2" style="margin-top: 20px">
 
-            <button class="btn btn-primary" type="submit">Continuer</button>
+            <button class="btn btn-primary" type="submit">Continue</button>
         </div>
 
     </form>

@@ -4,12 +4,12 @@
 
 @section('content')
 <div class="pagetitle">
-    <a href="{{route('Admin.Publicite.create')}}" class="btn btn-success" style="float: right">Ajouter une publicité</a>
-    <h1>Interface visuelle</h1>
+    <a href="{{route('Admin.Publicite.create')}}" class="btn btn-success" style="float: right">Add new publicity</a>
+    <h1>Visual interface</h1>
     <nav>
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{{route('Admin.index')}}">Tableau de bord</a></li>
-        <li class="breadcrumb-item">Nos Publicités</li>
+        <li class="breadcrumb-item"><a href="{{route('Admin.index')}}">Dashboard</a></li>
+        <li class="breadcrumb-item">Our Publicity</li>
       </ol>
     </nav>
   </div>
@@ -28,7 +28,7 @@
     <thead>
       <tr>
         <th scope="col">#</th>
-        <th scope="col">Titre</th>
+        <th scope="col">Title</th>
         <th scope="col">Action</th>
 
       </tr>
@@ -66,7 +66,7 @@
             <tr>
                 <th scope="row"></th>
 
-                <td style="text-align: center">Aucune publicité displonible pour le moment</td>
+                <td style="text-align: center">No advertising available at the moment</td>
 
 
                 <td>
