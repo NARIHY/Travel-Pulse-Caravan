@@ -9,7 +9,7 @@
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{route('Admin.index')}}">Dashboard</a></li>
-        <li class="breadcrumb-item"><a href="{{route('Admin.Entreprise.trip.planified.index')}}">Nos réservation</a></li>
+        <li class="breadcrumb-item"><a href="{{route('Admin.Entreprise.trip.planified.index')}}">Our reservation</a></li>
       </ol>
     </nav>
   </div>

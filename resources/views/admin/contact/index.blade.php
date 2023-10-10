@@ -1,14 +1,14 @@
 @extends('admin')
 
-@section('title', 'Message reçu')
+@section('title', 'Message received')
 
 @section('content')
 <div class="pagetitle">
-    <h1>Message reçu</h1>
+    <h1>Message received</h1>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="#">Home</a></li>
-        <li class="breadcrumb-item active">Message reçu</li>
+        <li class="breadcrumb-item active">Message received</li>
       </ol>
     </nav>
   </div>
@@ -34,7 +34,7 @@
           <td>{{$contacts->subject}}</td>
 
           <td>
-            <a href="{{route('Admin.Contact.view', ['id' => $contacts->id])}}" class="btn btn-primary">Voir</a>
+            <a href="{{route('Admin.Contact.view', ['id' => $contacts->id])}}" class="btn btn-primary">Show</a>
 
           </td>
         </tr>

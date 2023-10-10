@@ -193,7 +193,7 @@
                         <p style="color:rgb(114, 19, 19)"> {{$message}} </p>
                         @enderror
                         <div class="d-grid gap-2" style="margin-top: 20px">
-                            <button class="btn btn-primary" type="submit">Modifier</button>
+                            <button class="btn btn-primary" type="submit">Modify</button>
                         </div>
     </form>
 

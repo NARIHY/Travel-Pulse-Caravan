@@ -56,7 +56,7 @@
                             {{$dateFormatee}} {{$heureFormatee}}
                         </td>
                         <td>
-                            <a href="{{route('Admin.Verification.Passenger.verify', ['id' => $trips->id])}}" class="btn btn-primary">Voir</a>
+                            <a href="{{route('Admin.Verification.Passenger.verify', ['id' => $trips->id])}}" class="btn btn-primary">Show</a>
                         </td>
 
                     </tr>

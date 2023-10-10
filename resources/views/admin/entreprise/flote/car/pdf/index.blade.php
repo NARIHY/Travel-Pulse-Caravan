@@ -74,7 +74,7 @@
                 <td style="text-align: center">{{number_format($carInformation->kilometers, thousands_separator: ' ')}} Km</td>
             </tr>
             <tr>
-                <td style="color: blue">Capacité de la réservoir</td>
+                <td style="color: blue">Capacité de la réserShow</td>
                 <td style="text-align: center"> {{$carInformation->max_fuel}} l</td>
             </tr>
             <tr>
@@ -98,7 +98,7 @@
 
             <tr>
                 <td style="color: blue">Flote</td>
-                @php 
+                @php
                 $flote = App\Models\Category::where('id', $car->category)
                                         ->value('flotte');
                 @endphp

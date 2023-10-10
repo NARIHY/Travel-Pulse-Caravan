@@ -1,14 +1,14 @@
 @extends('admin')
 
-@section('title', 'Message reçu')
+@section('title', 'Message received')
 
 @section('content')
 <div class="pagetitle">
-    <h1>Message reçu</h1>
+    <h1>Message received</h1>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="#">Home</a></li>
-        <li class="breadcrumb-item"><a href="{{route('Admin.Contact.listing')}}">Message reçu</a></li>
+        <li class="breadcrumb-item"><a href="{{route('Admin.Contact.listing')}}">Message received</a></li>
         <li class="breadcrumb-item active">{{$contact->subject}}</li>
 
       </ol>
@@ -16,7 +16,7 @@
   </div>
   <div class="container">
         <div class="card" style="padding: 10px">
-            <h1 style="text-align: center; font-family:Verdana, Geneva, Tahoma, sans-serif">Message reçu</h1>
+            <h1 style="text-align: center; font-family:Verdana, Geneva, Tahoma, sans-serif">Message received</h1>
             <div style="text-align: left; margin-left:15px">
                 <p>{{$contact->last_name}} {{$contact->name}}</p>
                 <p style="color: blue">{{$contact->email}}</p>

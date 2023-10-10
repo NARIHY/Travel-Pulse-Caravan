@@ -22,6 +22,8 @@
                     $mediaCollection = Spatie\MediaLibrary\MediaCollections\Models\Media::where('collection_name', 'information_home')
                                         ->where('model_type', App\Models\Information::class)
                                         ->where('model_id', $lites->id)
+                                        ->orderBy('created_at','desc')
+                                        ->limit(1)
                                         ->get();
                     @endphp
                     @foreach ($mediaCollection as $media)
@@ -39,6 +41,8 @@
                 $mediaCollection = Spatie\MediaLibrary\MediaCollections\Models\Media::where('collection_name', 'information_home')
                                     ->where('model_type', App\Models\Information::class)
                                     ->where('model_id', $preniums->id)
+                                    ->orderBy('created_at','desc')
+                                    ->limit(1)
                                     ->get();
                 @endphp
                 @foreach ($mediaCollection as $media)
@@ -76,6 +80,8 @@
                 $mediaCollection = Spatie\MediaLibrary\MediaCollections\Models\Media::where('collection_name', 'information_home')
                                     ->where('model_type', App\Models\Information::class)
                                     ->where('model_id', $vips->id)
+                                    ->orderBy('created_at','desc')
+                                    ->limit(1)
                                     ->get();
                 @endphp
                 @foreach ($mediaCollection as $media)
@@ -94,6 +100,8 @@
                 $mediaCollection = Spatie\MediaLibrary\MediaCollections\Models\Media::where('collection_name', 'information_home')
                                     ->where('model_type', App\Models\Information::class)
                                     ->where('model_id', $vips->id)
+                                    ->orderBy('created_at','desc')
+                                    ->limit(1)
                                     ->get();
                 @endphp
                 @foreach ($mediaCollection as $media)
@@ -131,6 +139,8 @@
                 $mediaCollection = Spatie\MediaLibrary\MediaCollections\Models\Media::where('collection_name', 'information_home')
                                     ->where('model_type', App\Models\Information::class)
                                     ->where('model_id', $vips->id)
+                                    ->orderBy('created_at','desc')
+                                    ->limit(1)
                                     ->get();
                 @endphp
                 @foreach ($mediaCollection as $media)

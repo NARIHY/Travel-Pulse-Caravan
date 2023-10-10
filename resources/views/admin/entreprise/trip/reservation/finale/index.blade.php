@@ -19,11 +19,7 @@
     <div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="margin-bottom: 20px">
         <div class="progress-bar bg-success"></div>
       </div>
-
-
-      <h2 style="color: green">Reservation successful</h2>
-
-
+      <img src="{{asset('img/success.png')}}" alt="Success" width="100%">
 
 </div>
 @endsection

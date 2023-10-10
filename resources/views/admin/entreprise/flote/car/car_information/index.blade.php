@@ -59,7 +59,7 @@
 
                         <td>
 
-                            <a href="" class="btn btn-primary">Modifier</a>
+                            <a href="" class="btn btn-primary">Modify</a>
                         </td>
                     </tr>
                 @empty

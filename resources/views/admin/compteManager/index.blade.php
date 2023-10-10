@@ -71,7 +71,7 @@ $roles = $roli->roles();
                     <form action="{{route('Admin.Compte.deleteUser',['id' => $users->id])}}" method="post">
                         @csrf
                         @method('DELETE')
-                        <input type="submit" value="Suprimer" class="btn btn-danger">
+                        <input type="submit" value="Delete" class="btn btn-danger">
                     </form>
                 </div>
             </div>

@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Reservation Pdf</title>
+    <title>Reservation PDF</title>
     <style>
-       @page {
-            size: A5 landscape; /* Format A5 en mode paysage */
+        @page {
+            size: A5 landscape;
             margin: 0;
             height: 400px;
         }
@@ -17,85 +17,65 @@
             margin: 0;
             padding: 0;
         }
-
         .container {
             width: 100%;
             height: 100%;
             margin: 0;
             background-color: #fff;
-
             box-sizing: border-box;
-            font-size: 12px;
+            font-size: 14px;
         }
-
         .headers {
             text-align: center;
             background-color: #000000;
-            color: #fff;
-            margin-top: -20px;
-            height: 80px;
-            font-size: 20px;
-            margin-bottom: 20px;
+            color: #ffffff;
+            padding: 20px;
+            font-size: 24px;
         }
-
         .info {
-            text-align: left;
-            margin-left: 20px;
+            margin: 20px;
+            padding: 10px;
         }
-
-        .info h4 {
+        .info h2 {
             color: #007bff;
-            margin-top: 10px;
         }
-
+        .info p {
+            margin-bottom: 10px;
+        }
         .qrCode {
-            float: right; /* Positionnement à droite */
-            margin-top: -140px; /* Ajustez la marge supérieure selon vos besoins */
-            margin-right: 20px; /* Ajustez la marge droite selon vos besoins */
+            float: right;
+            margin-top: -200px;
+            margin-right: 20px;
         }
-
     </style>
 </head>
 <body>
-    <section id="contact" class="contact" style="margin-top: 40px">
+    <section id="contact" class="contact">
         @php
-
-                                  $car = App\Models\Car::findOrFail($trip->car);
-                                  $categ = App\Models\Category::findOrFail($trip->flote);
-
-                                  $date = Carbon\Carbon::parse($trip->date_depart)->format('D d M Y');
-                                  $time = Carbon\Carbon::parse($trip->heure_depart)->format('H:m:s');
-                                  $now = date('D d M Y');
-                                  @endphp
-         <div class="container">
+            $car = App\Models\Car::findOrFail($trip->car);
+            $categ = App\Models\Category::findOrFail($trip->flote);
+            $date = Carbon\Carbon::parse($trip->date_depart)->format('l, d F Y');
+            $time = Carbon\Carbon::parse($trip->heure_depart)->format('H:i:s');
+            $now = date('l, d F Y');
+        @endphp
+        <div class="container">
             <div class="headers">
-                <h1>Ticket de reservation</h1>
+                <h1>Ticket de réservation</h1>
             </div>
-
-            <div class="row mb-3">
-                <div class="col-md-6">
-                    <div class="info" style="margin-left: 10px">
-                        <h4>Informations sur la Réservation :</h4>
-                        <p><strong>Client name:</strong> {{$passenger->name}}</p>
-                        <p><strong>Client Lastname :</strong> {{$passenger->last_name}}</p>
-                        <p><strong>Booking Date :</strong> {{$now}}</p>
-                        <p><strong>Company :</strong> Travel Pulse Caravan</p>
-                        <p><strong>Fleet :</strong> {{$categ->flotte}}</p>
-                        <p><strong>Car registration :</strong> {{$car->plate_number}}</p>
-                        <p><strong>Date of departure :</strong> {{$date}}</p>
-                        <p><strong>departure time :</strong> {{$time}}</p>
-                        <p><strong>Place of departure :</strong> {{$trip->place_depart}}</p>
-                        <p><strong>Place of arrivals :</strong> {{$trip->place_arrivals}}</p>
-                    </div>
-                    <img src="data:image/png;base64, {{base64_encode($qrCode)}}" alt="codeQr" class="qrCode">
-                </div>
-
+            <div class="info">
+                <h2>Informations sur la Réservation :</h2>
+                <p><strong>Client name:</strong> {{$passenger->name}} {{$passenger->last_name}}</p>
+                <p><strong>Booking date:</strong> {{$now}}</p>
+                <p><strong>Company:</strong> Travel Pulse Caravan</p>
+                <p><strong>Fleet:</strong> {{$categ->flotte}}</p>
+                <p><strong>Vehicle registration:</strong> {{$car->plate_number}}</p>
+                <p><strong>Date of departure:</strong> {{$date}}</p>
+                <p><strong>Departure time:</strong> {{$time}}</p>
+                <p><strong>Place of departure:</strong> {{$trip->place_depart}}</p>
+                <p><strong>Arrival point:</strong> {{$trip->place_arrivals}}</p>
             </div>
-
+            <img src="data:image/png;base64, {{base64_encode($qrCode)}}" alt="codeQr" class="qrCode">
         </div>
-
     </section>
 </body>
 </html>
-<!DOCTYPE html>
-<html>

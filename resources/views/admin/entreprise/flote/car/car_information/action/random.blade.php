@@ -52,7 +52,7 @@
             <p style="color: rgb(114, 19, 19)">{{$message}}</p>
         @enderror
 
-        <label for="max_fuel">maximum reservoir</label>
+        <label for="max_fuel">maximum reserShow</label>
         <input type="number" name="max_fuel" id="max_fuel" class="form-control @error('max_fuel') is-invalid @enderror" max="100" value="{{@old('max_fuel')}}">
         @error('max_fuel')
             <p style="color: rgb(114, 19, 19)">{{$message}}</p>

@@ -68,7 +68,7 @@
 
             <li>Modification des Conditions</li>
             <p class="colis-ol-content">
-                La société de transport se réserve généralement le droit de modifier ses conditions générales, et les utilisateurs doivent être informés de ces modifications.
+                La société de transport se réserve généralement le droit de Modifier ses conditions générales, et les utilisateurs doivent être informés de ces modifications.
             </p>
         </ol>
     </div>
