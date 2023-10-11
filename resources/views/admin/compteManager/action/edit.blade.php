@@ -8,11 +8,11 @@ $use = Auth::user();
 
 @endphp
 <div class="pagetitle">
-    <h1>Gestion des comptes</h1>
+    <h1>Account management</h1>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="#">Home</a></li>
-        <li class="breadcrumb-item">Gestion des comptes</li>
+        <li class="breadcrumb-item">Account management</li>
         <li class="breadcrumb-item active">Edition d'un compte</li>
       </ol>
     </nav>
@@ -33,20 +33,20 @@ $use = Auth::user();
     <form action="" method="post">
         @csrf
         @method('PUT')
-        <label for="name">Nom d'utilisateur</label>
+        <label for="name">Username</label>
         <input type="text" name="name" id="name" class="form-control" disabled value="{{$user->name}}">
-        <label for="email">Addresse email</label>
+        <label for="email">E-mail address</label>
         <input type="text" name="email" id="email" class="form-control" disabled value="{{$user->email}}">
 
-        <label for="role">Role de l'utilisateur</label>
+        <label for="role">User role</label>
         <select name="role" id="role" class="form-control">
-            <option value="">Choisir le rôle</option>
+            <option value="">Choose a role</option>
             @foreach ($role as $k=>$v)
             <option value="{{$v}}" @if ($user->role == $v) selected @endif> {{$k}}</option>
             @endforeach
         </select>
         <div class="d-grid gap-2" style="margin-top: 20px">
-            <button class="btn btn-primary" type="submit"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Enregistrer</font></font></button>
+            <button class="btn btn-primary" type="submit"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Save</font></font></button>
         </div>
     </form>
   </div>

@@ -8,34 +8,64 @@
     <div class="container">
         <div class="row mb-3">
             <div class="col-md-6">
-                <img src="https://picsum.photos/id/2/200/100" alt="lorem ipsum" width="100%">
+                <img src="{{asset('img/info.png')}}" alt="lorem ipsum" width="100%">
             </div>
             <div class="col-md-6">
-                <h3 style="color: rgb(65, 65, 65)">Lorem ipsum dolor</h3>
+                <h3 style="color: rgb(65, 65, 65)">Votre Voyage Personnalisé et Sans Souci chez nous</h3>
                 <p style="text-align: justify; color: rgb(39, 39, 39)">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur quam lectus, elementum ac venenatis eu, fringilla ut magna. Suspendisse eleifend risus cursus urna euismod eleifend. Donec vel ornare nunc, a consectetur arcu. Vestibulum felis nisl, hendrerit vel turpis non, faucibus rhoncus neque. Etiam lacus erat, facilisis sit amet vulputate mollis, iaculis sed nisi. Morbi arcu enim, cursus eu molestie vitae, rhoncus vitae ipsum. Nullam porttitor augue quis enim pretium ullamcorper. Proin sed nisi eget urna fermentum gravida vel ut nisi. Integer eros lorem, dignissim vitae scelerisque eget, cursus eget est. Ut fermentum accumsan metus. In est dui, aliquet sit amet sapien at, euismod molestie mi. Vestibulum vehicula, mi sed varius luctus, erat libero porta orci, nec interdum ipsum tellus nec ligula. Sed feugiat non nisl nec vulputate. Integer accumsan vitae neque sed egestas. Nunc vitae sem ligula.
+                    Bienvenue chez Travel Pulse Caravan, votre partenaire de confiance pour des solutions de transport terrestre personnalisées. Notre mission est de vous offrir une gamme complète de services de transport, alliant efficacité et fiabilité. Notre flotte diversifiée, comprenant les catégories Lite, Premium, Vip, V-Vip et Colis, offre des solutions sur mesure pour un large éventail de besoins. Que vous recherchiez une option économique, une expérience de voyage haut de gamme ou un moyen sécurisé de transporter des biens, Travel Pulse Caravan a la réponse. Nous sommes fiers de notre réputation en matière de fiabilité et d'excellence dans le secteur du transport terrestre, soutenue par des années d'expertise. Rejoignez-nous pour un voyage sans souci et découvrez comment Travel Pulse Caravan peut rendre vos déplacements plus pratiques et agréables.
                 </p>
             </div>
 
         </div>
         <div>
-            <h3 style="color: rgb(65, 65, 65)">Lorem ipsum dolor</h3>
+            <h3 style="color: rgb(65, 65, 65)">Acceptation des Conditions :</h3>
             <p style="text-align: justify; color: rgb(41, 41, 41)">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur quam lectus, elementum ac venenatis eu, fringilla ut magna. Suspendisse eleifend risus cursus urna euismod eleifend. Donec vel ornare nunc, a consectetur arcu. Vestibulum felis nisl, hendrerit vel turpis non, faucibus rhoncus neque. Etiam lacus erat, facilisis sit amet vulputate mollis, iaculis sed nisi. Morbi arcu enim, cursus eu molestie vitae, rhoncus vitae ipsum. Nullam porttitor augue quis enim pretium ullamcorper. Proin sed nisi eget urna fermentum gravida vel ut nisi. Integer eros lorem, dignissim vitae scelerisque eget, cursus eget est. Ut fermentum accumsan metus. In est dui, aliquet sit amet sapien at, euismod molestie mi. Vestibulum vehicula, mi sed varius luctus, erat libero porta orci, nec interdum ipsum tellus nec ligula. Sed feugiat non nisl nec vulputate. Integer accumsan vitae neque sed egestas. Nunc vitae sem ligula.
-
-Nulla a mauris ex. In quis nisi sollicitudin turpis dictum imperdiet id in neque. Fusce neque massa, feugiat ac libero vitae, vestibulum cursus urna. Praesent accumsan nisi ac dolor mattis sagittis. Nam pellentesque aliquam lacus et euismod. Nullam ut nibh et nisl sollicitudin malesuada ut sed dolor. Mauris accumsan viverra ipsum, ut sodales ex ultricies sit amet. Nam diam arcu, volutpat id elit scelerisque, pharetra euismod libero.
+                En accédant à notre site web et en utilisant nos services, vous acceptez de vous conformer aux présentes Conditions d'Utilisation. Il est important de les lire attentivement avant de continuer. Si vous n'êtes pas d'accord avec l'une des dispositions de ces conditions, nous vous prions de ne pas utiliser nos services. Votre utilisation continue de nos services sera interprétée comme une acceptation de ces conditions.
             </p>
 
-            <h3 style="color: rgb(65, 65, 65)">Lorem ipsum dolor</h3>
+            <h3 style="color: rgb(65, 65, 65)">Utilisation des Services :</h3>
             <p style="text-align: justify; color: rgb(41, 41, 41)">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin porttitor tempor tellus, ut laoreet urna feugiat eget. Proin est sem, iaculis ut pretium id, rhoncus at tortor. Praesent a massa lacinia dui luctus efficitur. Aenean sodales sed odio non posuere. Pellentesque magna justo, scelerisque sit amet mi at, vulputate efficitur metus. Proin rhoncus laoreet mauris non sagittis. Curabitur suscipit congue purus quis dignissim. Curabitur quis massa non metus efficitur tincidunt sit amet nec lorem. Aenean egestas purus vitae porttitor blandit. Sed vitae commodo ex, ac consequat arcu. Etiam euismod nulla sit amet orci bibendum tincidunt. Sed ac ipsum et quam ornare ultrices. Aliquam lobortis a magna et luctus. Donec ornare nulla vel congue fermentum. Vivamus interdum laoreet tortor, nec placerat erat porta et. Nam aliquam, ante sit amet suscipit blandit, metus sem convallis orci, non porta mauris enim quis felis.
+                En utilisant nos services, vous acceptez de respecter les règles et les restrictions suivantes :
+                <ol>
+                    <li>Droits de Propriété Intellectuelle : </li>
+                    Tout le contenu présent sur notre site web et nos services est protégé par des droits de propriété intellectuelle. Vous acceptez de ne pas copier, distribuer ou utiliser ce contenu sans autorisation.
+                    <li>Contenu Utilisateur : </li>
+                    Lorsque vous contribuez avec du contenu sur nos plateformes, vous devez vous assurer qu'il est légal, respecte les droits d'autrui, et ne viole pas nos politiques en matière de contenu.
+                    <li>Respect des Lois :</li>
+                    Vous acceptez de respecter toutes les lois et réglementations applicables lorsque vous utilisez nos services.
+                    <li>Sécurité :</li>
+                    Vous ne devez pas tenter de compromettre la sécurité de nos services, y compris en essayant d'accéder à des comptes ou des données sans autorisation.
+                    <li>Interdiction du Spam :</li>
+                    L'envoi de spam ou de contenu indésirable est strictement interdit.
+                    <li>Respect des Autres Utilisateurs :</li>
+                    Vous devez respecter les autres utilisateurs de nos services, en évitant tout comportement offensant, diffamatoire ou nuisible.
+                    <li>Modifications des Services :</li>
+                    Nous nous réservons le droit de modifier ou d'interrompre nos services à tout moment.
+                    <li>Responsabilité :</li>
+                    Vous êtes responsable de votre utilisation de nos services, y compris du contenu que vous publiez. Nous ne sommes pas responsables des actes ou du contenu des utilisateurs.
 
-Praesent pretium sollicitudin nisi, ut placerat lacus ullamcorper in. Suspendisse tincidunt mauris eget pulvinar ullamcorper. Sed consequat tempor ipsum, vitae malesuada ipsum porta tincidunt. Donec sit amet mauris velit. Nulla a dui elit. Phasellus eget ante molestie, iaculis diam at, elementum metus. Proin viverra efficitur nulla, eu lobortis justo. Nulla quis nunc sit amet dolor venenatis sodales vel in ex. Nullam libero lorem, tincidunt nec eleifend quis, posuere imperdiet odio. Phasellus elementum ullamcorper convallis. Maecenas hendrerit consequat elit, at sodales ipsum. Nulla placerat ipsum non ligula sodales commodo. Sed id imperdiet magna. Morbi augue erat, consectetur a eros efficitur, congue ornare libero. Ut semper nunc nec congue tincidunt. Mauris pharetra elementum nulla vel interdum.
-
-Proin rhoncus dui erat, id lobortis neque tristique ut. In posuere semper mauris sit amet porttitor. Pellentesque id dignissim justo. Sed cursus condimentum mauris at varius. Nam vulputate ut dolor eget sagittis. Proin blandit massa at libero malesuada, sed auctor urna hendrerit. Nulla quis pretium arcu. Pellentesque gravida erat vel erat accumsan, quis auctor metus maximus. Etiam nisl nisi, faucibus eu felis vitae, dictum condimentum nisi. Aenean ut scelerisque diam. Duis dignissim ullamcorper viverra. Nullam accumsan mi eu interdum eleifend. Nunc quis felis dui. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec in nibh arcu. Nam finibus sapien felis, in elementum elit faucibus non.
-
-Vestibulum in fermentum eros, in condimentum augue. Morbi pharetra metus nec mi condimentum dapibus. Nam porta diam vel fringilla vehicula. Mauris nec rhoncus magna. Morbi ultricies vestibulum sem, eget dapibus odio mattis eu. Aliquam erat volutpat. Suspendisse accumsan lacinia nibh ac interdum. Praesent dui enim, venenatis vel nibh at, varius viverra odio. Pellentesque euismod, ligula venenatis semper varius, felis neque semper quam, non sodales diam est a urna.
+                </ol>
+                Nous vous encourageons à lire ces règles attentivement, car elles régissent votre utilisation de nos services. Le non-respect de ces règles peut entraîner des mesures, y compris la résiliation de votre compte.
             </p>
+
+            <h3 style="color: rgb(65, 65, 65)">Garanties et Limitation de Responsabilité :</h3>
+            <p style="text-align: justify; color: rgb(41, 41, 41)">
+                <ol>
+                    <li>Garanties :</li>
+                    Nous nous efforçons de fournir nos services avec professionnalisme et diligence. Cependant, nous ne faisons aucune garantie expresse ou implicite quant à l'exactitude, à la fiabilité ou à l'adéquation de nos services à un usage particulier.
+                    <li>Limitation de Responsabilité : </li>
+                    En aucun cas, Travel Pulse Caravan, ses dirigeants, employés, ou affiliés ne seront responsables des dommages directs, indirects, accessoires, spéciaux ou consécutifs résultant de l'utilisation de nos services, y compris les pertes de données, les pertes de bénéfices ou les interruptions d'activité.
+                    <li>Force Majeure :</li>
+                    Nous ne serons pas responsables des retards ou des défauts d'exécution dus à des circonstances indépendantes de notre volonté, y compris, sans s'y limiter, des catastrophes naturelles, des actes de terrorisme, des grèves, des pannes de réseau ou des pannes de fournisseurs de services tiers.
+                    <li>Indemnisation :</li>
+                    Vous acceptez d'indemniser et de dégager Travel Pulse Caravan de toute responsabilité en cas de réclamation ou de litige découlant de votre utilisation de nos services.
+                    <li>Législation Applicable : </li>
+                    Ces garanties et limitations de responsabilité sont régies par la législation en vigueur.
+                </ol>
+                Nous vous encourageons à lire cette clause attentivement, car elle définit les garanties que nous offrons et les limites de notre responsabilité envers vous en tant qu'utilisateur de nos services.
+            </p>
+
         </div>
     </div>
 </section>

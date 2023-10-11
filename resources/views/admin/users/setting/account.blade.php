@@ -95,7 +95,7 @@
                   </div>
                 </div>
               </div>
-              <a class="btn btn-primary" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Update</a>
+              <a class="btn btn-primary" data-bs-toggle="modal" href="#exampleModalToggle" role="button" style="margin-top: 20px">Update</a>
         </div>
 
 
