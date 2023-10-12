@@ -59,14 +59,14 @@
         @enderror
 
         <label for="min-weight">Minimum load</label>
-        <input type="number" name="min_weight" id="min-weight" class="form-control @error('min-weight') is-invalid @enderror"  value="{{@old('min-weight')}}">
-        @error('min-weight')
+        <input type="number" name="min_weight" id="min-weight" class="form-control @error('min_weight') is-invalid @enderror"  value="{{@old('min_weight')}}">
+        @error('min_weight')
             <p style="color: rgb(114, 19, 19)">{{$message}}</p>
         @enderror
 
         <label for="max-weight">Maximum charge</label>
-        <input type="number" name="max_weight" id="max-weight" class="form-control @error('max-weight') is-invalid @enderror"  value="{{@old('max-weight')}}">
-        @error('max-weight')
+        <input type="number" name="max_weight" id="max_weight" class="form-control @error('max_weight') is-invalid @enderror"  value="{{@old('max_weight')}}">
+        @error('max_weight')
             <p style="color: rgb(114, 19, 19)">{{$message}}</p>
         @enderror
 
@@ -84,6 +84,56 @@
     </form>
 
     @else
+
+        <form action="" method="post">
+            @csrf
+            @method('PUT')
+            <label for="car">numberplate</label>
+
+            <select name="car" id="car" class="form-control @error('car') is-invalid @enderror">
+                <option value="">Select the car</option>
+                    @foreach($car as $k)
+                        <option value="{{$k->id}}" @if ($carInformation->car == $k->id) selected @endif>{{$k->plate_number}}</option>
+                    @endforeach
+            </select>
+            @error('car')
+                <p style="color: rgb(114, 19, 19)">{{$message}}</p>
+            @enderror
+
+            <label for="kilometers">Total number of kilometers</label>
+            <input type="text" name="kilometers" id="kilometers" class="form-control @error('kilometers') is-invalid @enderror" value="{{$carInformation->kilometers}}">
+            @error('kilometers')
+                <p style="color: rgb(114, 19, 19)">{{$message}}</p>
+            @enderror
+
+            <label for="max_fuel">maximum reserShow</label>
+            <input type="number" name="max_fuel" id="max_fuel" class="form-control @error('max_fuel') is-invalid @enderror" max="100" value="{{$carInformation->max_fuel}}">
+            @error('max_fuel')
+                <p style="color: rgb(114, 19, 19)">{{$message}}</p>
+            @enderror
+
+            <label for="min-weight">Minimum load</label>
+            <input type="number" name="min_weight" id="min-weight" class="form-control @error('min_weight') is-invalid @enderror"  value="{{$carInformation->min_weight}}">
+            @error('min_weight')
+                <p style="color: rgb(114, 19, 19)">{{$message}}</p>
+            @enderror
+
+            <label for="max-weight">Maximum charge</label>
+            <input type="number" name="max_weight" id="max_weight" class="form-control @error('max_weight') is-invalid @enderror"  value="{{$carInformation->max_weight}}">
+            @error('max_weight')
+                <p style="color: rgb(114, 19, 19)">{{$message}}</p>
+            @enderror
+
+            <label for="maintains">Technical visit expiry date</label>
+            <input type="date" name="maintains" id="maintains" class="form-control @error('maintains') is-invalid @enderror" value="{{$carInformation->maintains}}">
+            @error('maintains')
+            <p style="color: rgb(114, 19, 19)">{{$message}}</p>
+            @enderror
+            <div class="d-grid gap-2" style="margin-top: 20px">
+                <button class="btn btn-primary" type="submit">Update</button>
+            </div>
+        </form>
+
     @endif
 </div>
 @endsection

@@ -58,8 +58,7 @@
 
 
                         <td>
-
-                            <a href="" class="btn btn-primary">Modify</a>
+                            <a href="{{route('Admin.Entreprise.flote.car.carInformation.edit', ['id' => $cars->id])}}" class="btn btn-primary">Modify</a>
                         </td>
                     </tr>
                 @empty

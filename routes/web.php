@@ -134,24 +134,34 @@ Route::prefix('/Administration')->middleware(['auth', 'verified', 'checkRole:1']
 
     //Cars
     Route::prefix('/Entreprise/nos-flote')->name('Entreprise.flote.car.')->group( function () {
-        Route::get('/voiture', [CarController::class, 'index'])->name('index');
-        Route::get('/voiture/Ajout-d-un-voiture', [CarController::class, 'create'])->name('create');
-        Route::post('/voiture/Ajout-d-un-voiture', [CarController::class, 'store'])->name('store');
-        Route::get('/voiture/{id}/Edition-d-un-voiture', [CarController::class, 'edit'])->name('edit');
-        Route::put('/voiture/{id}/Edition-d-un-voiture', [CarController::class, 'update'])->name('update');
-        Route::delete('/voiture/{id}/Supression-d-un-voiture', [CarController::class, 'delete'])->name('delete');
+        //Car only
+        Route::prefix('/voiture')->group( function() {
+            Route::get('/', [CarController::class, 'index'])->name('index');
+            Route::get('/Ajout-d-un-voiture', [CarController::class, 'create'])->name('create');
+            Route::post('/Ajout-d-un-voiture', [CarController::class, 'store'])->name('store');
+            Route::get('/{id}/Edition-d-un-voiture', [CarController::class, 'edit'])->name('edit');
+            Route::put('/{id}/Edition-d-un-voiture', [CarController::class, 'update'])->name('update');
+            Route::delete('/{id}/Supression-d-un-voiture', [CarController::class, 'delete'])->name('delete');
+        });
         //view of one car
         Route::get('/voiture/{id}/Vue-d-un-voiture', [CarController::class, 'view'])->name('view');
         //return pdf download
         Route::get('/voiture/{id}/pdf', [CarController::class, 'generatePDF'])->name('generatePDF');
-
         //car listing by float
-        Route::get('/liste-des-voiture-par-flote', [CarListingController::class, 'index'])->name('listing.flote.index');
-        Route::get('/liste-des-voiture-par-flote/{id}/{category}', [CarListingController::class, 'listing'])->name('listing.flote.listing');
+        Route::prefix('/liste-des-voiture-par-flote')->name('listing.flote.')->group( function () {
+            Route::get('/', [CarListingController::class, 'index'])->name('index');
+        Route::get('/{id}/{category}', [CarListingController::class, 'listing'])->name('listing');
+        });
         //car information
-        Route::get('/voiture/information', [CarInformationController::class, 'index'])->name('carInformation.index');
-        Route::get('/voiture/information/ajouter-information-pour-un-voiture', [CarInformationController::class, 'create'])->name('carInformation.create');
-        Route::post('/voiture/information/ajouter-information-pour-un-voiture', [CarInformationController::class, 'store'])->name('carInformation.store');
+        Route::prefix('/voiture/information')->name('carInformation.')->group( function () {
+            Route::get('/', [CarInformationController::class, 'index'])->name('index');
+            //Creation
+            Route::get('/ajouter-information-pour-un-voiture', [CarInformationController::class, 'create'])->name('create');
+            Route::post('/ajouter-information-pour-un-voiture', [CarInformationController::class, 'store'])->name('store');
+            //Modification
+            Route::get('/{id}/edition', [CarInformationController::class, 'edit'])->name('edit');
+            Route::put('/{id}/edition', [CarInformationController::class, 'update'])->name('update');
+        });
     });
 
 

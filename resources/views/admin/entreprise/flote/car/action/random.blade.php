@@ -152,7 +152,8 @@
             <select name="place" id="place" class="form-control @error('place') is-invalid @enderror">
                 <option value="">Select the number of seats the car has</option>
                 @foreach ($place as $p)
-                    <option value="{{$p}}" @if($car->place == $car->place) selected @endif>{{$p}}</option>
+                    <!-- bug sur car place -->
+                    <option value="{{$p}}" @if($car->place == $p) selected @endif>{{$p}}</option>
                 @endforeach
             </select>
             @error('place')
