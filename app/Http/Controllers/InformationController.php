@@ -73,14 +73,14 @@ class InformationController extends Controller
                     // You can also set additional media properties here if needed
                 } catch (\Exception $mediaException) {
                     // Handle media-related exceptions
-                    throw new \Exception('Oupss, il y a eu une erreur ' . $mediaException->getMessage());
+                    throw new \Exception('Oops, there was an error ' . $mediaException->getMessage());
                 }
             }
             // Step 4: Redirect with success message
-            return redirect()->route($this->routes().'listing')->with('success', 'Création de l\'information réussie');
+            return redirect()->route($this->routes().'listing')->with('success', 'Successful creation of information');
         } catch (\Exception $e) {
             // Handle general exceptions
-            $errorMessage = 'Une erreur est survenue lors de la création de l\'information: ' . $e->getMessage();
+            $errorMessage = 'An error occurred while creating the information:' . $e->getMessage();
             return redirect()->route($this->routes().'create')->with('error', $errorMessage);
         }
     }
@@ -108,9 +108,9 @@ class InformationController extends Controller
             // Supprimer l'objet HomeAdmin lui-même
             $information->delete();
 
-            return redirect()->route('Admin.Information.listing')->with('success', 'Suppression réussie');
+            return redirect()->route('Admin.Information.listing')->with('success', 'Deletion successful');
         } catch (\Exception $e) {
-            return redirect()->route('Admin.Information.listing')->with('error', 'une erreur c\'est survenu lors de la suppréssion'.$e->getMessage());
+            return redirect()->route('Admin.Information.listing')->with('error', 'an error occurred during deletion'.$e->getMessage());
         }
     }
 
@@ -184,9 +184,9 @@ class InformationController extends Controller
                     throw new \Exception('An error occurred while adding media: ' . $mediaException->getMessage());
                 }
             }
-            return redirect()->route($this->routes().'edit', ['id' => $home->id])->with('success', 'Modification réussi');
+            return redirect()->route($this->routes().'edit', ['id' => $home->id])->with('success', 'Modification successful');
         } catch(\Exception $e) {
-            return redirect()->route($this->routes().'edit', ['id' => $home->id])->with('error', 'Erreur lors de la modification' . $e->getMessage());
+            return redirect()->route($this->routes().'edit', ['id' => $home->id])->with('error', 'Error while editing' . $e->getMessage());
         }
     }
 

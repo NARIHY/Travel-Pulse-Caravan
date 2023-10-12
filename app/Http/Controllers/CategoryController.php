@@ -24,11 +24,11 @@ class CategoryController extends Controller
    }
 
    /**
-    * Already used when user add new flote 
+    * Already used when user add new flote
     *
     * @return View
     */
-   public function create(): View 
+   public function create(): View
    {
         $category = new Category();
         return view('admin.entreprise.flote.action.random', [
@@ -48,11 +48,11 @@ class CategoryController extends Controller
         try {
             $data = $request->validated();
             $category = Category::create($data);
-            return redirect()->route('Admin.Entreprise.flote.index')->with('success', 'Création du flotte réussi');
+            return redirect()->route('Admin.Entreprise.flote.index')->with('success', 'Creation of the successful fleet');
         } catch (\Exception $e) {
-            return redirect()->route('Admin.Entreprise.flote.index')->with('error', 'Echec de la création' . $e->getMessage());
+            return redirect()->route('Admin.Entreprise.flote.index')->with('error', 'Failed to create' . $e->getMessage());
         }
-        
+
    }
 
    /**
@@ -61,7 +61,7 @@ class CategoryController extends Controller
     * @param string $id
     * @return View
     */
-   public function edit(string $id): View 
+   public function edit(string $id): View
    {
         $category = Category::findOrFail($id);
         return view('admin.entreprise.flote.action.random', [
@@ -75,9 +75,9 @@ class CategoryController extends Controller
             $category = Category::findOrFail($id);
             $data = $request->validated();
             $category->update($data);
-            return redirect()->route('Admin.Entreprise.flote.edit', ['id' => $category->id])->with('success', 'Modification du flotte réussi');
+            return redirect()->route('Admin.Entreprise.flote.edit', ['id' => $category->id])->with('success', 'Fleet modification successful');
         } catch (\Exception $e) {
-            return redirect()->route('Admin.Entreprise.flote.edit')->with('error', 'Echec de la modification' . $e->getMessage());
+            return redirect()->route('Admin.Entreprise.flote.edit')->with('error', 'Edit failed' . $e->getMessage());
         }
    }
 }

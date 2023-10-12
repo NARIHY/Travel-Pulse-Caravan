@@ -50,7 +50,7 @@ class PassengerVerificationController extends Controller
         foreach($passenger as $p) {
             $p = $p->stat;
             if($p->stat == "abord") {
-                return redirect()->route('Admin.Verification.Passenger.listing')->with('error', 'ce ticket n\'est plus disponnible.');
+                return redirect()->route('Admin.Verification.Passenger.listing')->with('error', 'This ticket is no longer available.');
             }
         }
         return view('admin.entreprise.reservation.view', [

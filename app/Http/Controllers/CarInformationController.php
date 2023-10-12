@@ -112,16 +112,16 @@ class CarInformationController extends Controller
             //get request validated and insert it into $data= []
             $data = $request->validated();
             //verify if numbers of mileage insert by user is lower than the mileage of the car already registered
-            if ($carInformation->kilometers <  $data['kilometers']) {
+            if ( !($data['kilometers'] > $carInformation->kilometers) ) {
                 //return error
-                return redirect()->route($this->route().'edit', ['id' => $carInformation->id])->with('error', 'The mileage number of you entered is lower than the mileage of the current car');
+                return redirect()->route($this->routes().'edit', ['id' => $carInformation->id])->with('error', 'The mileage number of you entered is lower than the mileage of the current car');
             }
             //Verify if $carInformation->maintains is before $request->validated('maintains') return an error
             $maintainsDate = Carbon::parse($data['maintains']);
             $carMaintainsDate = Carbon::parse($carInformation->maintains);
             //we used Carbon
             if ($maintainsDate->isBefore($carMaintainsDate)) {
-                return redirect()->route($this->route().'edit', ['id' => $carInformation->id])->with('error', 'The maintenance date must be later than the current date.');
+                return redirect()->route($this->routes().'edit', ['id' => $carInformation->id])->with('error', 'The maintenance date must be later than the current date.');
             }
             //if there is no eror save these information
             $carInformation->update($data);

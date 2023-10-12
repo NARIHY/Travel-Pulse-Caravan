@@ -9,66 +9,66 @@
             <video src="{{asset('public/video/evito.mp4')}}" width="600px" controls autoplay class="myVid"></video>
         </div>
         <div class="col-md-6">
-            <h2 class="colis-title">Envoyez votre Colis Toute Confiance avec Travel Pulse Caravan</h2>
+            <h2 class="colis-title">Send your Package Confidently with Travel Pulse Caravan</h2>
             <p class="colis-content">
-                Dans l'effervescent univers de Travel Pulse Caravan, notre "Flotte Colis Express" se distingue comme le fer de lance de la rapidité et de la fiabilité dans le domaine du transport de colis et de marchandises.
-                Cette flotte incarne la quintessence de la livraison rapide, idéale pour les envois urgents et les biens précieux. Nous nous engageons à offrir une expérience client exceptionnelle en garantissant que chaque colis atteigne sa destination dans les délais impartis. Que vous soyez une entreprise en quête d'une gestion transparente de vos expéditions ou un particulier cherchant la tranquillité d'esprit, notre Flotte Colis Express est là pour vous. Optez pour Travel Pulse Caravan et découvrez une livraison rapide et fiable qui défie les attentes.
+                In the bustling world of Travel Pulse Caravan, our “Parcel Express Fleet” stands out as the spearhead of speed and reliability in the field of parcel and goods transport.
+                This fleet embodies the epitome of fast delivery, ideal for urgent shipments and valuable goods. We are committed to providing an exceptional customer experience by ensuring that every package reaches its destination on time. Whether you are a company looking for transparent management of your shipments or an individual looking for peace of mind, our Parcel Express Fleet is there for you. Opt for Travel Pulse Caravan and experience fast, reliable delivery that defies expectations.
             </p>
         </div>
     </div>
 
     <div class="colis-next">
-        <h2 class="colis-titre">Nos conditions</h2>
+        <h2 class="colis-titre">Our conditions</h2>
         <p class="colis-content">
-            Pour garantir une expérience harmonieuse et fiable avec notre service de colis express, Travel Pulse Caravan met en place des conditions générales qui englobent les droits et responsabilités de nos clients et de notre entreprise. Ces conditions visent à assurer la sécurité, la transparence et la qualité de nos services tout en respectant les lois en vigueur. Nous vous invitons à prendre connaissance de ces conditions pour une expédition en toute confiance avec notre flotte Colis Express.
+            To ensure a smooth and reliable experience with our express parcel service, Travel Pulse Caravan puts in place terms and conditions that encompass the rights and responsibilities of our customers and our company. These conditions aim to ensure the security, transparency and quality of our services while respecting the laws in force. We invite you to read these conditions for shipping with complete confidence with our Parcel Express fleet.
         </p>
         <ol>
-            <li>Réservation et Paiement</li>
+            <li>Reservation and Payment</li>
             <p class="colis-ol-content">
-                Les utilisateurs doivent réserver le service de colis express en fournissant des détails précis sur l'expédition, y compris les adresses d'expédition et de destination, les dimensions et le poids du colis, la date de ramassage souhaitée, etc. Le paiement des frais d'expédition doit être effectué conformément aux modalités de paiement de l'entreprise.
+                Users need to book the express parcel service by providing accurate shipping details, including shipping and destination addresses, parcel dimensions and weight, desired pickup date, etc. Payment for shipping charges must be made in accordance with the company's payment terms.
             </p>
             <li>Responsabilité de l'Expéditeur</li>
             <p class="colis-ol-content">
-                L'expéditeur est généralement responsable de s'assurer que le colis est correctement emballé, étiqueté et que son contenu est conforme aux lois et règlements locaux et internationaux. L'expéditeur est également responsable de fournir des informations de contact précises.
+                The shipper is generally responsible for ensuring that the package is properly packaged, labeled, and that its contents comply with local and international laws and regulations. The sender is also responsible for providing accurate contact information.
             </p>
 
-            <li>Responsabilité de la Société de Transport </li>
+            <li>Responsibility of the Transport Company </li>
             <p class="colis-ol-content">
-                La société de transport, en l'occurrence Travel Pulse Caravan, s'engage à prendre en charge le colis conformément aux spécifications convenues, à le livrer dans les délais impartis et à le préserver de tout dommage pendant le transport. La société de transport est généralement responsable en cas de perte, de retard ou de dommage au colis, sous réserve des conditions contractuelles.
+                The transport company, in this case Travel Pulse Caravan, undertakes to take charge of the parcel in accordance with the agreed specifications, to deliver it within the stipulated time and to protect it from any damage during transport. The shipping company is generally responsible for any loss, delay or damage to the package, subject to contractual conditions.
             </p>
-            <li>Suivi et Notifications</li>
+            <li>Tracking and Notifications</li>
             <p class="colis-ol-content">
-                Les utilisateurs ont généralement accès à un système de suivi en temps réel pour surveiller l'état de leurs colis. Des notifications peuvent être envoyées aux utilisateurs pour les informer des mises à jour importantes.
-            </p>
-
-            <li>Limitations de responsabilité</li>
-            <p class="colis-ol-content">
-                Les contrats de transport peuvent inclure des limitations de responsabilité pour certaines marchandises, en particulier celles de grande valeur. Les utilisateurs doivent être informés de ces limitations au moment de la réservation.
+                Users usually have access to a real-time tracking system to monitor the status of their packages. Notifications can be sent to users to notify them of important updates.
             </p>
 
-            <li>Droits de Douane et Taxes </li>
+            <li>Limitations of Liability</li>
             <p class="colis-ol-content">
-                Les utilisateurs sont responsables du respect des lois et réglementations douanières et du paiement des droits de douane et taxes éventuelles pour les envois internationaux.
+                Contracts of carriage may include limitations of liability for certain goods, particularly those of high value. Users must be informed of these limitations at the time of booking.
+            </p>
+
+            <li>Customs Duties and Taxes </li>
+            <p class="colis-ol-content">
+                Users are responsible for complying with customs laws and regulations and paying any customs duties and taxes for international shipments.
             </p>
 
             <li>Conditions de Livraison </li>
             <p class="colis-ol-content">
-                Les conditions spécifiques de livraison, telles que les heures de livraison, les emplacements de dépôt et de ramassage, doivent être convenues au moment de la réservation.
+                Specific delivery terms, such as delivery times, drop-off and pick-up locations, must be agreed at the time of booking.
             </p>
 
-            <li>Annulations et Remboursements</li>
+            <li>Cancellations and Refunds</li>
             <p class="colis-ol-content">
-                Les politiques d'annulation et de remboursement doivent être détaillées, y compris les frais éventuels associés à une annulation.
+                Cancellation and refund policies should be detailed, including any fees associated with a cancellation.
             </p>
 
-            <li>Protection des Données </li>
+            <li>Data protection </li>
             <p class="colis-ol-content">
-                La protection des données personnelles des utilisateurs doit être garantie conformément aux lois applicables sur la confidentialité et la sécurité des données.
+                The protection of users' personal data must be guaranteed in accordance with applicable data privacy and security laws.
             </p>
 
-            <li>Modification des Conditions</li>
+            <li>Modification of the Conditions</li>
             <p class="colis-ol-content">
-                La société de transport se réserve généralement le droit de Modifier ses conditions générales, et les utilisateurs doivent être informés de ces modifications.
+                The transport company generally reserves the right to modify its terms and conditions, and users must be informed of these modifications.
             </p>
         </ol>
     </div>

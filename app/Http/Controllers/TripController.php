@@ -68,14 +68,14 @@ class TripController extends Controller
                                         ->where('date_depart', $daysToGo)
                                         ->count();
             if ($verification > 0) {
-                return redirect()->route($this->routes().'create')->with('error', 'Cette voiture ne peut pas être mis sur le planing pour ce jour  car elle y est déjàs inscrit');
+                return redirect()->route($this->routes().'create')->with('error', 'This car cannot be put on the schedule for this day because it is already registered there');
             }
             //trip creation
             $trip = Trip::create($data);
             $trip->update(['flote' => $flote]);
-            return redirect()->route($this->routes().'index')->with('success', 'Ajout du trajet réussi');
+            return redirect()->route($this->routes().'index')->with('success', 'Added successful journey');
         } catch(\Exception $e) {
-            return redirect()->route($this->routes().'create')->with('error', 'il y a eu une erreur'.$e->getMessage());
+            return redirect()->route($this->routes().'create')->with('error', 'there was a mistake'.$e->getMessage());
         }
     }
 
@@ -123,7 +123,7 @@ class TripController extends Controller
                             ->get();
                 // if verify === true
                 if(empty($verify)) {
-                    return redirect()->route($this->routes().'update', ['id' => $id])->with('error', 'La voiture est disponible pour cette date');
+                    return redirect()->route($this->routes().'update', ['id' => $id])->with('error', 'The car is available for this date');
                 }
             }
             //Now we notify every passenger who follow the trip
@@ -141,9 +141,9 @@ class TripController extends Controller
             $trip->update($data);
 
 
-            return redirect()->route($this->routes().'update', ['id' => $id])->with('success', 'Modification réussi');
+            return redirect()->route($this->routes().'update', ['id' => $id])->with('success', 'Modification successful');
         } catch (\Exception $e) {
-            return redirect()->route($this->routes().'update', ['id' => $id])->with('error', 'il y a eu une erreur lors de la modification'.$e->getMessage());
+            return redirect()->route($this->routes().'update', ['id' => $id])->with('error', 'there was an error while editing'.$e->getMessage());
         }
     }
 
@@ -151,7 +151,7 @@ class TripController extends Controller
     {
         $trip = Trip::findOrFail($id);
         $trip->delete();
-        return redirect()->route($this->routes().'index')->with('success', 'Suppréssion réussi');
+        return redirect()->route($this->routes().'index')->with('success', 'Deletion successful');
 
     }
 

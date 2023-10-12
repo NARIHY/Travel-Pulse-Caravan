@@ -5,7 +5,7 @@
 @section('content')
 <section class="client-space" style="margin-top: 40px">
     <div class="container">
-        <h4>Mes réservations:</h4>
+        <h4>My reservations:</h4>
         <div class="table-responsive">
         @forelse ($passenger as $p)
 
@@ -13,11 +13,11 @@
                 <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Voiture</th>
-                    <th scope="col">Flotte</th>
+                    <th scope="col">Car</th>
+                    <th scope="col">Fleet</th>
                     <th scope="col">Status</th>
 
-                    <th scope="col">Date et departure time</th>
+                    <th scope="col">Date and departure time</th>
                     <th scope="col">Action</th>
                 </tr>
                 </thead>
@@ -54,7 +54,7 @@
                                             @if (!$date->isPast() )
                                                 <div class="row mb-3">
                                                     <div class="col-md-6">
-                                                        <a href="{{route('Public.Reservation.Auth.success' , ['reservationId' => $r->id])}}" class="btn btn-primary" style="color: white">Voir</a>
+                                                        <a href="{{route('Public.Reservation.Auth.success' , ['reservationId' => $r->id])}}" class="btn btn-primary" style="color: white">See</a>
                                                     </div>
                                                     @php
                                                     //Actuale date
@@ -66,7 +66,7 @@
                                                         <div class="col-md-6">
                                                             <form action="{{route('Client.abord', ['reservationId' => $r->id])}}" method="post">
                                                                 @csrf
-                                                                <input type="submit" value="Annuler" class="btn btn-danger" onclick="afficherAlerte()" />
+                                                                <input type="submit" value="Cancel" class="btn btn-danger" onclick="afficherAlerte()" />
                                                             </form>
                                                         </div>
                                                     @endif
@@ -76,7 +76,7 @@
                                                 <p style="color: red">Indisponible</p>
                                             @endif
                                         @else
-                                            <p style="color: red">Annulé</p>
+                                            <p style="color: red">Canceled</p>
                                         @endif
 
 
@@ -93,7 +93,7 @@
 
 
         @empty
-                <p>Vous n'avez passée aucune réservation pour le moment.</p>
+                <p>You have not made any reservations yet.</p>
         @endforelse
     </div>
     </div>
@@ -101,7 +101,7 @@
 <script>
     function afficherAlerte() {
         // Afficher l'alerte lorsque le bouton est cliqué
-        alert("Êtes-vous sûr de vouloir annuler ?");
+        alert("Are you sure you want to cancel?");
     }
 </script>
 @endsection

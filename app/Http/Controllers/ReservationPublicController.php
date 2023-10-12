@@ -102,7 +102,7 @@ class ReservationPublicController extends Controller
             // The email address is valid
             // Check if the traveler's phone number is the same as the emergency contact's
             if ($data['phone_number'] === $data['emergency_contact']) {
-                return redirect()->route('Public.Reservation.Auth.passenger', ['tripId' => $tripId, 'carId' => $carId])->with('error', 'Les deux numéros ne doivent pas correspondre');
+                return redirect()->route('Public.Reservation.Auth.passenger', ['tripId' => $tripId, 'carId' => $carId])->with('error', 'The two numbers must not match');
             }
             //Verify if the email already exists in the reservation
             //get every email
@@ -113,7 +113,7 @@ class ReservationPublicController extends Controller
                 $passengersId = Passenger::findOrFail($emails->passenger_id);
                 // if true -> error redirections
                 if($passengersId->email === $email) {
-                    return redirect()->route('Public.Reservation.Auth.passenger', ['tripId' => $tripId, 'carId' => $carId])->with('error', 'Le passager ne peut pas s\'inscrire deux fois dans cette réservation');
+                    return redirect()->route('Public.Reservation.Auth.passenger', ['tripId' => $tripId, 'carId' => $carId])->with('error', 'The passenger cannot register twice in this reservation');
                 }
             }
             // Verify if there are already places
@@ -122,13 +122,13 @@ class ReservationPublicController extends Controller
                 $verif = $verify->verify();
             } catch (\Exception $e) {
                 // Enregistrez l'exception dans les journaux Laravel pour le débogage
-                \Log::error('Erreur lors de la vérification de la réservation : ' . $e->getMessage());
+                \Log::error('Error verifying the reservation: ' . $e->getMessage());
                 // Vous pouvez également afficher un message d'erreur personnalisé ici si nécessaire
                 $verif = false; // Par exemple
             }
             // If true, redirect
             if ($verif === true) {
-                return redirect()->route('Public.Reservation.Auth.passenger', ['tripId' => $tripId, 'carId' => $carId])->with('error', 'Oups, la réservation n\'est plus disponible');
+                return redirect()->route('Public.Reservation.Auth.passenger', ['tripId' => $tripId, 'carId' => $carId])->with('error', 'Oops, reservation is no longer available');
             }
             // Create an instance of the Passenger model with the validated data
             $passenger = Passenger::create($data);
@@ -155,11 +155,11 @@ class ReservationPublicController extends Controller
             return redirect()->route('Public.Reservation.Auth.success', ['reservationId' => $reservation->id]);
         } else {
             // The email address is not valid
-            return redirect()->route('Public.Reservation.Auth.passenger', ['tripId' => $tripId, 'carId' => $carId])->with('error', 'L\'adresse e-mail que vous avez saisie n\'est pas valide ou n\'existe pas');
+            return redirect()->route('Public.Reservation.Auth.passenger', ['tripId' => $tripId, 'carId' => $carId])->with('error', 'The email address you entered is invalid or does not exist');
         }
     } catch (\Exception $e) {
         // In case of an error, redirect with an error message
-        return redirect()->route('Public.Reservation.Auth.passenger', ['tripId' => $tripId, 'carId' => $carId])->with('error', 'Une erreur s\'est produite : ' . $e->getMessage());
+        return redirect()->route('Public.Reservation.Auth.passenger', ['tripId' => $tripId, 'carId' => $carId])->with('error', 'An error has occurred : ' . $e->getMessage());
     }
 }
 

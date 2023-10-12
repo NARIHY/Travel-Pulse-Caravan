@@ -11,59 +11,58 @@
                 <img src="{{asset('img/info.png')}}" alt="lorem ipsum" width="100%">
             </div>
             <div class="col-md-6">
-                <h3 style="color: rgb(65, 65, 65)">Votre Voyage Personnalisé et Sans Souci chez nous</h3>
+                <h3 style="color: rgb(65, 65, 65)">Your Personalized and Worry-Free Trip with us</h3>
                 <p style="text-align: justify; color: rgb(39, 39, 39)">
-                    Bienvenue chez Travel Pulse Caravan, votre partenaire de confiance pour des solutions de transport terrestre personnalisées. Notre mission est de vous offrir une gamme complète de services de transport, alliant efficacité et fiabilité. Notre flotte diversifiée, comprenant les catégories Lite, Premium, Vip, V-Vip et Colis, offre des solutions sur mesure pour un large éventail de besoins. Que vous recherchiez une option économique, une expérience de voyage haut de gamme ou un moyen sécurisé de transporter des biens, Travel Pulse Caravan a la réponse. Nous sommes fiers de notre réputation en matière de fiabilité et d'excellence dans le secteur du transport terrestre, soutenue par des années d'expertise. Rejoignez-nous pour un voyage sans souci et découvrez comment Travel Pulse Caravan peut rendre vos déplacements plus pratiques et agréables.
+                    Welcome to Travel Pulse Caravan, your trusted partner for personalized ground transportation solutions. Our mission is to offer you a complete range of transport services, combining efficiency and reliability. Our diverse fleet, including Lite, Premium, Vip, V-Vip and Parcel categories, offers tailor-made solutions for a wide range of needs. Whether you're looking for a budget-friendly option, a premium travel experience, or a secure way to transport goods, Travel Pulse Caravan has the answer. We are proud of our reputation for reliability and excellence in the ground transportation industry, backed by years of expertise. Join us for a worry-free journey and discover how Travel Pulse Caravan can make your travels more convenient and enjoyable.
                 </p>
             </div>
 
         </div>
         <div>
-            <h3 style="color: rgb(65, 65, 65)">Acceptation des Conditions :</h3>
+            <h3 style="color: rgb(65, 65, 65)">Acceptance of the Conditions:</h3>
             <p style="text-align: justify; color: rgb(41, 41, 41)">
-                En accédant à notre site web et en utilisant nos services, vous acceptez de vous conformer aux présentes Conditions d'Utilisation. Il est important de les lire attentivement avant de continuer. Si vous n'êtes pas d'accord avec l'une des dispositions de ces conditions, nous vous prions de ne pas utiliser nos services. Votre utilisation continue de nos services sera interprétée comme une acceptation de ces conditions.
+                By accessing our website and using our services, you agree to comply with these Terms of Use. It is important to read them carefully before continuing. If you disagree with any provision of these Terms, please do not use our Services. Your continued use of our services will be construed as acceptance of these terms.
             </p>
 
-            <h3 style="color: rgb(65, 65, 65)">Utilisation des Services :</h3>
+            <h3 style="color: rgb(65, 65, 65)">Use of the Services:</h3>
             <p style="text-align: justify; color: rgb(41, 41, 41)">
-                En utilisant nos services, vous acceptez de respecter les règles et les restrictions suivantes :
+                By using our services, you agree to comply with the following rules and restrictions:
                 <ol>
-                    <li>Droits de Propriété Intellectuelle : </li>
-                    Tout le contenu présent sur notre site web et nos services est protégé par des droits de propriété intellectuelle. Vous acceptez de ne pas copier, distribuer ou utiliser ce contenu sans autorisation.
-                    <li>Contenu Utilisateur : </li>
-                    Lorsque vous contribuez avec du contenu sur nos plateformes, vous devez vous assurer qu'il est légal, respecte les droits d'autrui, et ne viole pas nos politiques en matière de contenu.
-                    <li>Respect des Lois :</li>
-                    Vous acceptez de respecter toutes les lois et réglementations applicables lorsque vous utilisez nos services.
-                    <li>Sécurité :</li>
-                    Vous ne devez pas tenter de compromettre la sécurité de nos services, y compris en essayant d'accéder à des comptes ou des données sans autorisation.
-                    <li>Interdiction du Spam :</li>
-                    L'envoi de spam ou de contenu indésirable est strictement interdit.
-                    <li>Respect des Autres Utilisateurs :</li>
-                    Vous devez respecter les autres utilisateurs de nos services, en évitant tout comportement offensant, diffamatoire ou nuisible.
-                    <li>Modifications des Services :</li>
-                    Nous nous réservons le droit de modifier ou d'interrompre nos services à tout moment.
-                    <li>Responsabilité :</li>
-                    Vous êtes responsable de votre utilisation de nos services, y compris du contenu que vous publiez. Nous ne sommes pas responsables des actes ou du contenu des utilisateurs.
-
+                    <li>Intellectual Property Rights: </li>
+                    All the content present on our website and services is protected by intellectual property rights. You agree not to copy, distribute, or use this content without permission.
+                    <li>User Content: </li>
+                    When you contribute content on our platforms, you must ensure that it is legal, respects the rights of others, and does not violate our content policies.
+                    <li>Compliance with Laws:</li>
+                    You agree to comply with all applicable laws and regulations when using our services.
+                    <li>Security:</li>
+                    You must not attempt to compromise the security of our services, including trying to access accounts or data without authorization.
+                    <li>No Spam:</li>
+                    Sending spam or unwanted content is strictly prohibited.
+                    <li>Respect for Other Users:</li>
+                    You must respect other users of our services, avoiding any offensive, defamatory, or harmful behavior.
+                    <li>Service Changes:</li>
+                    We reserve the right to modify or discontinue our services at any time.
+                    <li>Responsibility:</li>
+                    You are responsible for your use of our services, including the content you post. We are not responsible for the actions or content of users.
                 </ol>
-                Nous vous encourageons à lire ces règles attentivement, car elles régissent votre utilisation de nos services. Le non-respect de ces règles peut entraîner des mesures, y compris la résiliation de votre compte.
+                We encourage you to read these rules carefully, as they govern your use of our services. Failure to comply with these rules may result in action, including termination of your account.
             </p>
 
             <h3 style="color: rgb(65, 65, 65)">Garanties et Limitation de Responsabilité :</h3>
             <p style="text-align: justify; color: rgb(41, 41, 41)">
                 <ol>
-                    <li>Garanties :</li>
-                    Nous nous efforçons de fournir nos services avec professionnalisme et diligence. Cependant, nous ne faisons aucune garantie expresse ou implicite quant à l'exactitude, à la fiabilité ou à l'adéquation de nos services à un usage particulier.
-                    <li>Limitation de Responsabilité : </li>
-                    En aucun cas, Travel Pulse Caravan, ses dirigeants, employés, ou affiliés ne seront responsables des dommages directs, indirects, accessoires, spéciaux ou consécutifs résultant de l'utilisation de nos services, y compris les pertes de données, les pertes de bénéfices ou les interruptions d'activité.
-                    <li>Force Majeure :</li>
-                    Nous ne serons pas responsables des retards ou des défauts d'exécution dus à des circonstances indépendantes de notre volonté, y compris, sans s'y limiter, des catastrophes naturelles, des actes de terrorisme, des grèves, des pannes de réseau ou des pannes de fournisseurs de services tiers.
-                    <li>Indemnisation :</li>
-                    Vous acceptez d'indemniser et de dégager Travel Pulse Caravan de toute responsabilité en cas de réclamation ou de litige découlant de votre utilisation de nos services.
-                    <li>Législation Applicable : </li>
-                    Ces garanties et limitations de responsabilité sont régies par la législation en vigueur.
+                    <li>Warranties:</li>
+                    We strive to provide our services with professionalism and diligence. However, we make no express or implied warranties regarding the accuracy, reliability, or suitability of our services for a particular purpose.
+                    <li>Limitation of Liability:</li>
+                    In no event shall Travel Pulse Caravan, its officers, employees, or affiliates be liable for direct, indirect, incidental, special, or consequential damages resulting from the use of our services, including data loss, loss of profits, or business interruptions.
+                    <li>Force Majeure:</li>
+                    We shall not be liable for delays or failures in performance due to circumstances beyond our control, including but not limited to natural disasters, acts of terrorism, strikes, network failures, or third-party service provider outages.
+                    <li>Indemnification:</li>
+                    You agree to indemnify and hold Travel Pulse Caravan harmless from any claims or disputes arising from your use of our services.
+                    <li>Applicable Law:</li>
+                    These warranties and limitations of liability are governed by applicable law.
                 </ol>
-                Nous vous encourageons à lire cette clause attentivement, car elle définit les garanties que nous offrons et les limites de notre responsabilité envers vous en tant qu'utilisateur de nos services.
+                We encourage you to read this clause carefully, as it sets out the guarantees we offer and the limits of our liability to you as a user of our services.
             </p>
 
         </div>

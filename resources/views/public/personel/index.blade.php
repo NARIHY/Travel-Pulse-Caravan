@@ -6,32 +6,32 @@
 <div class="container" style="margin-top: 100px">
     <div class="introduction">
         <p>
-            Bienvenue à bord de Travel Pulse Caravan, bien plus qu'une simple entreprise de transport terrestre. Nous sommes votre porte d'entrée vers une expérience de voyage véritablement exceptionnelle. Laissez-nous vous emmener dans un voyage au cœur de notre univers, où chaque flotte que nous proposons raconte sa propre histoire et incarne une philosophie unique du service.
+            Welcome aboard Travel Pulse Caravan, much more than just a ground transportation company. We are your gateway to a truly exceptional travel experience. Let us take you on a journey to the heart of our universe, where each fleet we offer tells its own story and embodies a unique philosophy of service.
 
-Chacune de nos flottes est le fruit d'une réflexion profonde, d'un dévouement sans faille envers la qualité et d'un engagement envers l'excellence. Elles sont conçues pour répondre de manière exceptionnelle à vos besoins de déplacement, quels qu'ils soient. Que vous recherchiez une solution économique, un confort supérieur, une expérience de voyage luxueuse ou même une gestion rapide et sécurisée de vos colis, nous avons une flotte dédiée à votre service.
+            Each of our fleets is the product of deep thought, an unwavering dedication to quality and a commitment to excellence. They are designed to exceptionally meet your travel needs, whatever they may be. Whether you are looking for an economical solution, superior comfort, a luxurious travel experience or even fast and secure management of your packages, we have a fleet dedicated to your service.
         </p>
-        <h5>Permettez-nous de vous présenter ces différentes flottes qui composent notre entreprise, chacune avec sa propre personnalité et son objectif spécifique :</h5>
+        <h5>Allow us to introduce you to these different fleets that make up our company, each with its own personality and specific objective:</h5>
     </div>
     <div class="row mb-3">
         <div class="col-md-6">
             <video src="{{asset('public/video/vito.mp4')}}" width="600px" controls autoplay class="myVid"></video>
         </div>
         <div class="col-md-6">
-            <h2 class="colis-title">L'Économie Sans Compromis chez Travel Pulse Caravan</h2>
+            <h2 class="colis-title">Economy Without Compromise at Travel Pulse Caravan</h2>
             <p class="colis-content">
-                Notre Flotte Lite de notre compagnie propose une solution de transport axée sur l'efficacité économique sans compromis sur la qualité.
-                Conçue pour les voyageurs soucieux de leur budget, elle met en avant des véhicules économes en carburant et un service de livraison standard fiable.
-                Cette flotte garantit que vos colis et déplacements sont traités avec soin, même pour les expéditions moins urgentes. Que vous soyez un voyageur conscient de ses dépenses ou une entreprise cherchant à optimiser ses coûts de transport, la Flotte Lite offre une option abordable sans sacrifier la fiabilité.
-                 Chez Travel Pulse Caravan, nous vous invitons à embarquer dans cette expérience économique de qualité.
+                Our company's Lite Fleet offers a transportation solution focused on economic efficiency without compromising on quality.
+                Designed for budget-conscious travelers, it highlights fuel-efficient vehicles and a reliable standard delivery service.
+                This fleet ensures that your packages and trips are handled with care, even for less urgent shipments. Whether you are a cost-conscious traveler or a business looking to optimize transportation costs, Fleet Lite offers an affordable option without sacrificing reliability.
+                 At Travel Pulse Caravan, we invite you to embark on this quality, economical experience.
             </p>
         </div>
     </div>
 
     <div class="row mb-3">
         <div class="col-md-6">
-            <h2 class="colis-title"> Un Voyage de Confort et de Prestige avec Travel Pulse Caravan</h2>
+            <h2 class="colis-title"> A Trip of Comfort and Prestige with Travel Pulse Caravan</h2>
             <p class="colis-content">
-                Notre Flotte Premium de Travel Pulse Caravan est conçue pour satisfaire les voyageurs en quête d'une expérience de voyage plus confortable et personnalisée. Avec des véhicules de qualité supérieure, cette flotte offre un niveau de confort inégalé. Les délais de livraison sont plus rapides, répondant ainsi aux besoins des voyageurs pressés. De plus, un suivi avancé assure une traçabilité complète des expéditions, tandis qu'un service client attentionné est à disposition pour répondre à toutes les demandes spécifiques. Que ce soit pour un voyage d'affaires ou un voyage personnel, la Flotte Premium garantit une expérience de voyage de premier ordre, combinant confort, rapidité et service exceptionnel.
+                Our Premium Travel Pulse Caravan Fleet is designed to satisfy travelers looking for a more comfortable and personalized travel experience. With superior quality vehicles, this fleet offers an unrivaled level of comfort. Delivery times are faster, meeting the needs of busy travelers. Additionally, advanced tracking ensures complete shipment traceability, while attentive customer service is on hand to assist with any specific requests. Whether for business or personal travel, the Premium Fleet guarantees a premier travel experience, combining comfort, speed and exceptional service.
 
             </p>
         </div>
@@ -45,18 +45,18 @@ Chacune de nos flottes est le fruit d'une réflexion profonde, d'un dévouement 
             <video src="{{asset('public/video/evito.mp4')}}" width="600px" controls autoplay class="myVid"></video>
         </div>
         <div class="col-md-6">
-            <h2 class="colis-title">L'Élégance du Voyage Personnalisé avec Travel Pulse Caravan</h2>
+            <h2 class="colis-title">The Elegance of Personalized Travel with Travel Pulse Caravan</h2>
             <p class="colis-content">
-                Notre Flotte VIP de Travel Pulse Caravan vous invite à un voyage où le luxe et les détails sont à l'honneur. Dotée de véhicules haut de gamme, cette flotte garantit une expérience de voyage élégante et sur mesure pour répondre à vos besoins spécifiques. Nos chauffeurs expérimentés assurent une conduite impeccable, tandis que notre assistance client dédiée est prête à répondre à toutes vos demandes. Que ce soit pour un voyage d'affaires ou une escapade personnelle, la Flotte VIP offre le summum du confort et de la sophistication. Laissez-vous choyer et profitez d'un voyage mémorable où chaque détail est soigneusement orchestré pour votre satisfaction.
+                Our Travel Pulse Caravan VIP Fleet invites you on a journey where luxury and detail are in the spotlight. Featuring premium vehicles, this fleet guarantees a stylish and tailor-made travel experience to meet your specific needs. Our experienced drivers ensure impeccable driving, while our dedicated customer support is ready to respond to all your requests. Whether for a business trip or a personal getaway, the VIP Fleet offers the ultimate in comfort and sophistication. Let yourself be pampered and enjoy a memorable trip where every detail is carefully orchestrated for your satisfaction.
             </p>
         </div>
     </div>
 
     <div class="row mb-3">
         <div class="col-md-6">
-            <h2 class="colis-title"> L'Exclusivité Redéfinie avec Travel Pulse Caravan</h2>
+            <h2 class="colis-title"> Exclusivity Redefined with Travel Pulse Caravan</h2>
             <p class="colis-content">
-                Notre Flotte VVIP de Travel Pulse Caravan incarne l'apogée du voyage personnalisé et exclusif. Avec des véhicules de prestige à la pointe de la technologie, cette flotte est conçue pour répondre aux attentes des voyageurs les plus exigeants. Chaque détail de votre voyage est soigneusement orchestré, de la réservation à la destination finale. Notre service de conciergerie dédié est à votre disposition pour répondre à vos demandes les plus spécifiques. Que ce soit pour des voyages d'affaires de haut niveau, des événements spéciaux ou des escapades luxueuses, la Flotte VVIP offre une expérience sur mesure qui dépasse toutes les attentes. Embarquez dans le monde de l'exclusivité et du raffinement avec Travel Pulse Caravan.
+                Our Travel Pulse Caravan VVIP Fleet embodies the pinnacle of personalized and exclusive travel. With prestigious vehicles at the cutting edge of technology, this fleet is designed to meet the expectations of the most demanding travelers. Every detail of your trip is carefully orchestrated, from booking to final destination. Our dedicated concierge service is at your disposal to respond to your most specific requests. Whether for high-profile business trips, special events or luxurious getaways, the VVIP Fleet offers a tailor-made experience that exceeds all expectations. Embark on the world of exclusivity and refinement with Travel Pulse Caravan.
             </p>
         </div>
         <div class="col-md-6">

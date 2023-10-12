@@ -7,9 +7,9 @@
     <div class="container">
 
       <div class="section-title">
-        <h2>Nous contacter</h2>
+        <h2>Contact us</h2>
         <p>
-            Besoin de nous connaître un peu plus, n'hésitez pas à nous contacter.
+            If you need to know us a little more, do not hesitate to contact us.
         </p>
       </div>
 
@@ -21,21 +21,21 @@
             <div class="col-md-12">
               <div class="info-box">
                 <i class="bx bx-map"></i>
-                <h3>Notre addresse</h3>
+                <h3>Our adress</h3>
                 <p>Madagascar,Antananarivo,Mahamasina</p>
               </div>
             </div>
             <div class="col-md-6">
               <div class="info-box mt-4">
                 <i class="bx bx-envelope"></i>
-                <h3>Notre addresse email</h3>
+                <h3>Our email address</h3>
                 <p>travelpulsecaravan@gmail.com</p>
               </div>
             </div>
             <div class="col-md-6">
               <div class="info-box mt-4">
                 <i class="bx bx-phone-call"></i>
-                <h3>Appeler nous</h3>
+                <h3>Call us</h3>
                 <p>+261 00 00 000 00</p>
               </div>
             </div>
@@ -70,7 +70,7 @@
             @if (session('success'))
                 <div style="color: green">{{session('success')}}</div>
               @endif
-            <div class="text-center" style="margin-top: 10px"><button type="submit">Envoyer</button></div>
+            <div class="text-center" style="margin-top: 10px"><button type="submit">Send</button></div>
           </form>
         </div>
 

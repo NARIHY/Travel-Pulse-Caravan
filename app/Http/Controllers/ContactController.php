@@ -40,13 +40,13 @@ class ContactController extends Controller
                 // The email address is valid
                 // Create an instance of the contact model with the validated data
                 $contact = Contact::create($data);
-                return redirect()->route('Public.index')->with('success', 'Merci, de nous avoir contacter');
+                return redirect()->route('Public.index')->with('success', 'Thank you for contacting us');
             } else {
                 // The email address is not valid
-                return redirect()->route('Public.index')->with('Oups', 'Votre email n\'existe pas ou n\'est pas valide');
+                return redirect()->route('Public.index')->with('Oups', 'Your email does not exist or is invalid');
             }
         } catch (\Exception $e) {
-            return redirect()->route('Public.index')->with('Oups', 'il y a eu une erreur lors de l\'envoie du message');
+            return redirect()->route('Public.index')->with('Oups', 'there was an error sending the message');
         }
 
     }
@@ -75,13 +75,13 @@ class ContactController extends Controller
                 // The email address is valid
                 // Create an instance of the contact model with the validated data
                 $contact = Contact::create($data);
-                return redirect()->route('Public.contacts')->with('success', 'Merci, de nous avoir contacter');
+                return redirect()->route('Public.contacts')->with('success', 'Thank you for contacting us');
             } else {
                 // The email address is not valid
-                return redirect()->route('Public.contacts')->with('Oups', 'Votre email n\'existe pas ou n\'est pas valide');
+                return redirect()->route('Public.contacts')->with('Oups', 'Your email does not exist or is invalid');
             }
         } catch (\Exception $e) {
-            return redirect()->route('Public.contacts')->with('Oups', 'il y a eu une erreur lors de l\'envoie du message');
+            return redirect()->route('Public.contacts')->with('Oups', 'there was an error sending the message');
         }
 
     }

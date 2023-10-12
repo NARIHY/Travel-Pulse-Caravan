@@ -60,24 +60,23 @@
                 </div>
                 <div class="col-md-6">
 
-                            <h5><b style="color: red">Modèle de la voiture:</b>  {{$car->model}}</h5>
-                                @php
-                                    $cat = App\Models\Category::findOrFail($car->category);
-                                @endphp
-                            <h5><b style="color: red">Marque de la voiture:</b>  {{$car->brand}}</h5>
-                            <h5><b style="color: red">Flotte:</b>  {{$cat->flotte}}</h5>
-                            <h5><b style="color: red">Année de sortie:</b>  {{$car->year}}</h5>
-                            <h5><b style="color: red">Immatriculation:</b>  {{$car->plate_number}}</h5>
-                            <h5><b style="color: red">Nombre de place:</b>  {{$car->place}} places</h5>
+                    <h5><b style="color: red">Car Model:</b>  {{$car->model}}</h5>
+                    @php
+                        $cat = App\Models\Category::findOrFail($car->category);
+                    @endphp
+                    <h5><b style="color: red">Car Brand:</b>  {{$car->brand}}</h5>
+                    <h5><b style="color: red">Fleet:</b>  {{$cat->fleet}}</h5>
+                    <h5><b style="color: red">Year of Manufacture:</b>  {{$car->year}}</h5>
+                    <h5><b style="color: red">License Plate:</b>  {{$car->plate_number}}</h5>
+                    <h5><b style="color: red">Number of Seats:</b>  {{$car->place}} seats</h5>
 
-                            <p style="text-align: justify">
-                                Nos voitures transcendent les simples véhicules. Chacune est une œuvre d'art roulante, un hymne à l'innovation, au design et à la performance. Elles sont bien plus que de simples moyens de transport, ce sont des partenaires de voyage fidèles, prêts à vous emmener là où votre cœur le désire.
+                    <p style="text-align: justify">
+                        Our cars transcend simple vehicles. Each one is a rolling work of art, an ode to innovation, design, and performance. They are more than just means of transportation; they are loyal travel partners, ready to take you wherever your heart desires.
 
-Que vous souhaitiez vous aventurer en ville ou partir sur la route de l'inconnu, nos voitures s'adaptent à votre rythme. Elles incarnent l'élégance, avec une fusion de technologie avancée et de confort inégalé. Chaque trajet devient une expérience inoubliable, une symphonie de puissance, de sophistication et de douceur de conduite.
+                        Whether you want to venture in the city or head down the road of the unknown, our cars adapt to your pace. They embody elegance, with a fusion of advanced technology and unmatched comfort. Every journey becomes an unforgettable experience, a symphony of power, sophistication, and smooth driving.
 
-Découvrez la route sous un nouvel angle, découvrez l'émotion de la conduite avec nos véhicules exceptionnels. Embarquez pour une aventure qui transcende les limites, car avec nos voitures, chaque voyage devient une destination en soi.
-                            </p>
-
+                        Discover the road from a new perspective, experience the thrill of driving with our exceptional vehicles. Embark on an adventure that goes beyond boundaries because with our cars, every journey becomes a destination in itself.
+                    </p>
                 </div>
             </div>
         </div>

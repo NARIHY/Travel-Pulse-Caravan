@@ -132,7 +132,7 @@ class ReservationController extends Controller
             $purcounts = $purcount + 25;
             return redirect()->route($this->routes().'passenger.city.reserve', ['passenger_id' => $passenger_id, 'purcount' => $purcounts, 'depart' => $place_depart, 'arrivals' => $place_arrivals]);
         } catch(\Exception $e) {
-            return redirect()->route($this->route().'passenger.city', ['passenger_id' => $passenger_id, 'purcount' => $purcount])->with('error', 'Il y a une erreur lors du sauvgarde'.$e->getMessage());
+            return redirect()->route($this->route().'passenger.city', ['passenger_id' => $passenger_id, 'purcount' => $purcount])->with('error', 'There was an error saving'.$e->getMessage());
         }
     }
     /**

@@ -89,9 +89,9 @@ class CarController extends Controller
                 }
             }
 
-            return redirect()->route($this->routes().'index')->with('success', 'Ajout réussi');
+            return redirect()->route($this->routes().'index')->with('success', 'Added successfully');
         } catch (\Exception $e) {
-            return redirect()->route($this->routes().'create')->with('error', 'Une erreur s\'est survenu' . $e->getMessage());
+            return redirect()->route($this->routes().'create')->with('error', 'An error has occurred' . $e->getMessage());
         }
     }
 
@@ -156,9 +156,9 @@ class CarController extends Controller
                     throw new \Exception('An error occurred while adding media: ' . $mediaException->getMessage());
                 }
             }
-            return redirect()->route($this->routes().'edit', ['id' => $id])->with('success', 'Modification réussi');
+            return redirect()->route($this->routes().'edit', ['id' => $id])->with('success', 'Modification successful');
         } catch(\Exception $e) {
-            return redirect()->route($this->routes().'edit', ['id' => $id])->with('error', 'Erreur lors de la modification' . $e->getMessage());
+            return redirect()->route($this->routes().'edit', ['id' => $id])->with('error', 'Error while editing' . $e->getMessage());
         }
     }
 
@@ -186,9 +186,9 @@ class CarController extends Controller
             // Supprimer l'objet HomeAdmin lui-même
             $home->delete();
 
-            return redirect()->route($this->routes(). 'index')->with('success', 'Suppression réussie');
+            return redirect()->route($this->routes(). 'index')->with('success', 'Deletion successful');
         } catch (\Exception $e) {
-            return redirect()->route($this->routes(). 'index')->with('error', 'une erreur c\'est survenu lors de la suppréssion');
+            return redirect()->route($this->routes(). 'index')->with('error', 'an error occurred during deletion');
         }
     }
 
@@ -215,17 +215,17 @@ class CarController extends Controller
         $date = strtotime($carInformation->maintains);
         $array = [
             'Model' => $car->model,
-            'Marque' => $car->brand,
-            'kilometrage' => number_format($carInformation->kilometers, thousands_separator:' '). 'Km ',
-            'Capacité de la réservoir' => $carInformation->max_fuel . 'l',
-            'poid minimale' => number_format($carInformation->min_weight, thousands_separator: ' '). ' Kg',
-            'poid maximale' => number_format($carInformation->max_weight, thousands_separator: ' '). ' Kg',
-            'Immatriculation' => $car->plate_number,
-            'Nombre de place' => $car->place,
-            'Année de sortie' => $car->year,
-            'date d\'expiration Visite technique' => date('D d M Y', $date),
-            'flote' => $flote,
-            'compagnie' => 'Travel Pulse Caravan'
+            'Brand' => $car->brand,
+            'mileage' => number_format($carInformation->kilometers, thousands_separator:' '). 'Km ',
+            'Tank capacity' => $carInformation->max_fuel . 'l',
+            'minimum weight' => number_format($carInformation->min_weight, thousands_separator: ' '). ' Kg',
+            'maximum weight' => number_format($carInformation->max_weight, thousands_separator: ' '). ' Kg',
+            'Plate number' => $car->plate_number,
+            'Number of places' => $car->place,
+            'Release year' => $car->year,
+            'expiration date Technical visit' => date('D d M Y', $date),
+            'fleet' => $flote,
+            'company' => 'Travel Pulse Caravan'
         ];
             $items = [];
         foreach ($array as $key =>$value) {
@@ -264,24 +264,22 @@ class CarController extends Controller
         $flote = Category::where('id', $car->category)
                                     ->value('flotte');
 
-        // Convertir la date en timestamp
+        // Convert date to timestamp
         $date = strtotime($carInformation->maintains);
-
         $array = [
             'Model' => $car->model,
-            'Marque' => $car->brand,
-            'kilometrage' => number_format($carInformation->kilometers, 0, '.', ' ') . ' Km',
-            'Capacité de la réservoir' => $carInformation->max_fuel . 'l',
-            'poid minimale' => number_format($carInformation->min_weight, 0, '.', ' ') . ' Kg',
-            'poid maximale' => number_format($carInformation->max_weight, 0, '.', ' ') . ' Kg',
-            'Immatriculation' => $car->plate_number,
-            'Nombre de place' => $car->place,
-            'Année de sortie' => $car->year,
-            'date d\'expiration Visite technique' => date('D d M Y', $date),
-            'flote' => $flote,
-            'compagnie' => 'Travel Pulse Caravan'
+            'Brand' => $car->brand,
+            'mileage' => number_format($carInformation->kilometers, thousands_separator:' '). 'Km ',
+            'Tank capacity' => $carInformation->max_fuel . 'l',
+            'minimum weight' => number_format($carInformation->min_weight, thousands_separator: ' '). ' Kg',
+            'maximum weight' => number_format($carInformation->max_weight, thousands_separator: ' '). ' Kg',
+            'Plate number' => $car->plate_number,
+            'Number of places' => $car->place,
+            'Release year' => $car->year,
+            'expiration date Technical visit' => date('D d M Y', $date),
+            'fleet' => $flote,
+            'company' => 'Travel Pulse Caravan'
         ];
-
         $items = [];
         foreach ($array as $key => $value) {
             $items[] = "$key: $value";

@@ -45,23 +45,23 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto @if (request()->routeIS('Public.index')) active @endif" href="{{route('Public.index')}}">Acceuil</a></li>
+            <li><a class="nav-link scrollto @if (request()->routeIS('Public.index')) active @endif" href="{{route('Public.index')}}">Home</a></li>
 
-          <li><a class="nav-link scrollto @if (request()->routeIS('Public.service')) active @endif" href="{{route('Public.service')}}">Nos préstation</a></li>
-          <li><a class="nav-link scrollto @if (request()->routeIS('Public.Reservation.index')) active @endif" href="{{ route('Public.Reservation.index')}}">Réserver</a></li>
+            <li><a class="nav-link scrollto @if (request()->routeIS('Public.service')) active @endif" href="{{route('Public.service')}}">Our services</a></li>
+            <li><a class="nav-link scrollto @if (request()->routeIS('Public.Reservation.index')) active @endif" href="{{ route('Public.Reservation.index')}}">To book</a></li>
 
 
-          <li><a class="nav-link scrollto @if (request()->routeIS('Public.contacts')) active @endif" href="{{route('Public.contacts')}}">Contact</a></li>
-          <li><a class="nav-link scrollto @if (request()->routeIS('Public.information')) active  @endif" href="{{route('Public.information')}}">Information</a></li>
+            <li><a class="nav-link scrollto @if (request()->routeIS('Public.contacts')) active @endif" href="{{route('Public.contacts')}}">Contact</a></li>
+            <li><a class="nav-link scrollto @if (request()->routeIS('Public.information')) active  @endif" href="{{route('Public.information')}}">Information</a></li>
           @if (!Illuminate\Support\Facades\Auth::check())
-            <li><a class="nav-link scrollto" href="{{route('register')}}">S'inscrire</a></li>
-            <li><a class="nav-link scrollto" href="{{route('login')}}">Se connecter</a></li>
+            <li><a class="nav-link scrollto" href="{{route('register')}}">Register</a></li>
+            <li><a class="nav-link scrollto" href="{{route('login')}}">Login</a></li>
           @else
           @php
                 $user = Illuminate\Support\Facades\Auth::user();
           @endphp
             @if ($user->role == 1)
-                <li><a class="nav-link scrollto" href="{{route('Client.index')}}">Mon espace</a></li>
+                <li><a class="nav-link scrollto" href="{{route('Client.index')}}">My space</a></li>
             @endif
           @if ($user->role != 1)
             <li><a class="nav-link scrollto" href="{{route('Admin.index')}}">Administration</a></li>
@@ -71,7 +71,7 @@
                     @csrf
                     <div class="nav-link scrollto">
 
-                      <input type="submit" value="Déconnexion" style="background: transparent; border:transparent; color:white; margin-left:5px">
+                      <input type="submit" value="Log out" style="background: transparent; border:transparent; color:white; margin-left:5px">
                     </div>
 
                 </form>
@@ -108,19 +108,19 @@
           <div class="col-lg-2 col-md-6 footer-links">
             <h4>Lien utile</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="{{route('Public.index')}}">Acceuil</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{{route('Public.index')}}">Home</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="{{route('Public.information')}}">Information</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="{{route('Public.service')}}">Nos service</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="{{route('Public.condition')}}">Conditions d'utilisation</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="{{route('Public.terme')}}">Politique de confidentialité</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{{route('Public.service')}}">Our services</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{{route('Public.condition')}}">Terms of use</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{{route('Public.terme')}}">Privacy Policy</a></li>
             </ul>
           </div>
 
           <div class="col-lg-3 col-md-6 footer-links">
             <h4>Notre service</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="{{route('Public.Personel.index')}}">Transport personnelle</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="{{route('Public.Colis.index')}}">Colis express</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{{route('Public.Personel.index')}}">Personal transportation</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{{route('Public.Colis.index')}}">Express parcel</a></li>
                 <!--
                     <li><i class="bx bx-chevron-right"></i> <a href="#">Location de voiture</a></li>
                 -->
@@ -129,9 +129,9 @@
           </div>
 
           <div class="col-lg-4 col-md-6 footer-newsletter">
-            <h4>Restez Connectés avec Travel Pulse Caravan : Inscrivez-vous pour nos Actualités Exclusives !</h4>
+            <h4>Stay Connected with Travel Pulse Caravan: Sign up for our Exclusive News!</h4>
             <p>
-                Rejoignez notre communauté en créant un compte dès aujourd'hui et ne manquez aucune de nos actualités passionnantes. Soyez les premiers informés de nos offres exclusives, de nos nouveautés et de nos conseils de voyage. Inscrivez-vous maintenant pour rester connectés avec Travel Pulse Caravan !
+                Join our community by creating an account today and don't miss any of our exciting news. Be the first to know about our exclusive offers, news and travel advice. Sign up now to stay connected with Travel Pulse Caravan!
             </p>
           </div>
 
@@ -146,7 +146,7 @@
           &copy; Copyright <strong><span>Briqueweb</span></strong>
         </div>
         <div class="credits">
-          Designed by NARIHY
+          Designed by NARIHY maheninarandrianarisoa@gmail.com
         </div>
       </div>
       <div class="social-links text-center text-md-right pt-3 pt-md-0">

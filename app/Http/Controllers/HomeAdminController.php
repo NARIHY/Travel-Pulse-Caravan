@@ -13,7 +13,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class HomeAdminController extends Controller
 {
-    /** 
+    /**
      * return to home dashboard listing
      * @return View
      */
@@ -29,7 +29,7 @@ class HomeAdminController extends Controller
      * NOTE - Creation of one publication
      * @return View()
      */
-    public function create(): View 
+    public function create(): View
     {
         $home = new HomeAdmin();
         return view('admin.visualInterface.home.action.random', [
@@ -68,10 +68,10 @@ class HomeAdminController extends Controller
                     throw new \Exception('An error occurred while adding media: ' . $mediaException->getMessage());
                 }
             }
-            
+
 
             // Step 4: Redirect with success message
-            return redirect()->route('Admin.Home.index')->with('success', 'Création de la publication réussie');
+            return redirect()->route('Admin.Home.index')->with('success', 'Created successful post');
         } catch (\Exception $e) {
             // Handle general exceptions
             $errorMessage = 'Une erreur est survenue lors de la création de la publication: ' . $e->getMessage();
@@ -80,7 +80,7 @@ class HomeAdminController extends Controller
     }
 
 
-   
+
 
    /**
      * TODO - Edit information
@@ -108,7 +108,7 @@ class HomeAdminController extends Controller
             ]);
         } catch (\Exception $e) {
             // Handle exceptions, if any
-            $errorMessage = 'Une erreur est survenue lors de la récupération des données : ' . $e->getMessage();
+            $errorMessage = 'An error occurred while retrieving data : ' . $e->getMessage();
             return redirect()->route('Admin.Home.index')->with('error', $errorMessage);
         }
     }
@@ -130,7 +130,7 @@ class HomeAdminController extends Controller
             $home->update($data);
             if (!empty($request->hasFile('media'))) {
                 try {
-                    // used to delete an old  media files when update action is on 
+                    // used to delete an old  media files when update action is on
                     $delete = Media::where('collection_name', 'home_collection')
                                         ->where('model_type', HomeAdmin::class)
                                         ->where('model_id', $id)
@@ -140,16 +140,16 @@ class HomeAdminController extends Controller
                         ->toMediaCollection('home_collection', 'public'); // Change 'disk_name' to the actual disk name
                     //Now we store the new files in the home_admins entities
                     $storagePath = $media->getPath();
-                    $home->update(['media'=> $storagePath]);    
+                    $home->update(['media'=> $storagePath]);
                     // You can also set additional media properties here if needed
                 } catch (\Exception $mediaException) {
                     // Handle media-related exceptions
                     throw new \Exception('An error occurred while adding media: ' . $mediaException->getMessage());
                 }
             }
-            return redirect()->route('Admin.Home.edit', ['id' => $id])->with('success', 'Modification réussi');
+            return redirect()->route('Admin.Home.edit', ['id' => $id])->with('success', 'Modification successful');
         } catch(\Exception $e) {
-            return redirect()->route('Admin.Home.edit', ['id' => $id])->with('error', 'Erreur lors de la modification' . $e->getMessage());
+            return redirect()->route('Admin.Home.edit', ['id' => $id])->with('error', 'Error while editing' . $e->getMessage());
         }
     }
 
@@ -159,39 +159,39 @@ class HomeAdminController extends Controller
      * NOTE - Suppression with spatie/media-library
      * The spatie/media-library package for Laravel is a great tool to easily manage media files in your applications.
      *  Here's how you can use it to manage media associated with your templates, such as your HomeAdmin template.
-     * 
+     *
      * Step 1: Install the package
      * this is the comande -> composer require spatie/laravel-medialibrary
-     * 
+     *
      * Step 2: Configuration
      * After you install the package, you must publish and run the migrations to create the necessary tables:
-     * this is the comande -> php artisan vendor:publish --provider="Spatie\MediaLibrary\MediaLibraryServiceProvider" --tag="migrations" 
+     * this is the comande -> php artisan vendor:publish --provider="Spatie\MediaLibrary\MediaLibraryServiceProvider" --tag="migrations"
      *                     -> php artisan migrate
-     * 
+     *
      * Install there if not you will have an errors
-     * 
-     * 
+     *
+     *
      *  */
     public function delete(string $id): RedirectResponse
     {
         try {
             $home = HomeAdmin::findOrFail($id);
-           
+
 
             // Supprimer le fichier média associé du stockage s'il existe
             if ($home->media) {
-                
+
                 if (Storage::disk('public')->exists($home->media)) {
-                     Storage::disk('public')->delete($home->media);           
+                     Storage::disk('public')->delete($home->media);
                 }
             }
-            
+
             // Supprimer l'objet HomeAdmin lui-même
             $home->delete();
 
-            return redirect()->route('Admin.Home.index')->with('success', 'Suppression réussie');
+            return redirect()->route('Admin.Home.index')->with('success', 'Deletion successful');
         } catch (\Exception $e) {
-            return redirect()->route('Admin.Home.index')->with('error', 'une erreur c\'est survenu lors de la suppréssion');
+            return redirect()->route('Admin.Home.index')->with('error', 'an error occurred during deletion');
         }
     }
 
