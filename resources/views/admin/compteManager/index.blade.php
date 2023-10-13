@@ -65,7 +65,7 @@ $roles = $roli->roles();
           <td>
             <div class="row mb-3">
                 <div class="col-md-6">
-                    <a href="{{route('Admin.Compte.edit', ['id' => $users->id])}}" class="btn btn-primary">Editer</a>
+                    <a href="{{route('Admin.Compte.edit', ['id' => $users->id])}}" class="btn btn-primary">Edit</a>
                 </div>
                 <div class="col-md-6">
                     <form action="{{route('Admin.Compte.deleteUser',['id' => $users->id])}}" method="post">
