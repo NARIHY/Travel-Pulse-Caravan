@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Car;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -13,6 +15,13 @@ class AdminController extends Controller
      */
     public function index(): View
     {
-        return view('admin.index');
+        //car count
+        $car = Car::count();
+        //fleet
+        $fleet = Category::count();
+        return view('admin.index', [
+            'car' => $car,
+            'fleet' => $fleet
+        ]);
     }
 }

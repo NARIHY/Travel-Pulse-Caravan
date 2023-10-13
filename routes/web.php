@@ -80,7 +80,7 @@ Route::prefix('/')->name('Public.')->group( function (){
     });
 
     //for reservation
-    Route::prefix('/reservation')->name('Reservation.')->middleware('auth')->group( function () {
+    Route::prefix('/reservation')->name('Reservation.')->middleware(['auth', 'verified'])->group( function () {
         Route::get('/', [ReservationPublicController::class, 'index'])->name('index');
         //information sur une voiture
         Route::get('/voiture/a5{id}6z', [ReservationPublicController::class, 'car'])->name('car');
@@ -89,6 +89,8 @@ Route::prefix('/')->name('Public.')->group( function (){
             //request for initiate the reservation
             Route::get('/za89{tripId}13aaz-c22{carId}-87s', [ReservationPublicController::class, 'passenger'])->name('passenger');
             Route::post('/za89{tripId}13aaz-c22{carId}-87s', [ReservationPublicController::class, 'passenger_add'])->name('passenger_add');
+            //routes for telma payement
+            Route::get('/P85-oi{reservationId}7-Z742b/telma',[ReservationPublicController::class, 'telma'])->name('telma');
             //success
             Route::get('/P85-oi{reservationId}7-Z742b', [ReservationPublicController::class, 'success'])->name('success');
 

@@ -86,6 +86,14 @@
                     <p><strong>departure time:</strong> {{$time}}</p>
                     <p><strong>Place of departure:</strong> {{$trip->place_depart}}</p>
                     <p><strong>Arrival point:</strong> {{$trip->place_arrivals}}</p>
+                    <p><strong>Status:</strong>
+                        @if (session('success'))
+                            {{session('success')}}
+                        @endif
+                        @if (session('error'))
+                            {{session('error')}}
+                        @endif
+                    </p>
                 </div>
             </div>
             <div class="col-md-6">

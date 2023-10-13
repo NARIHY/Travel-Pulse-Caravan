@@ -60,11 +60,21 @@
 
                 <td>
                     @php
+                                try {
+                                    $verify = new \Nari\Reservation\Reservation($trips->id, $trips->car);
+                                    $verif = $verify->verify();
+                                } catch (\Exception $e) {
+                                    // Enregistrez l'exception dans les journaux Laravel pour le débogage
+                                    \Log::error('Erreur lors de la vérification de la réservation : ' . $e->getMessage());
+                                    // Vous pouvez également afficher un message d'erreur personnalisé ici si nécessaire
+                                    $verif = false; // Par exemple
+                                }
 
-                        $verify = new Nari\Reservation\Reservation ($trips->id, $trips->car);
-                    @endphp
 
-                    @if ($verify->verify() === false)
+                                @endphp
+
+
+                    @if ($verif === false)
                         <a href="{{route('Admin.Entreprise.trip.reservation.passenger.city.payement',['passenger_id' => $passenger_id, 'purcount' => $purcount + 25, 'tripId' => $trips->id, 'depart' => $depart, 'arrivals' => $arrivals])}}" class="btn btn-primary">Reserver</a>
                     @else
                         <p style="color: red">Plein</p>

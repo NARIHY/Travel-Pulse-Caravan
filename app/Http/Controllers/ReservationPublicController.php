@@ -83,85 +83,85 @@ class ReservationPublicController extends Controller
      * @return RedirectResponse
      */
     public function passenger_add(PassengerRequest $request, string $tripId, string $carId): RedirectResponse
-{
-    try {
-        // Get the validated data from the request
-        $data = $request->validated();
-        // Get the email address from the validated data
-        $email = $data['email']; // Use $data instead of $request->validated('email')
+    {
+        try {
+            // Get the validated data from the request
+            $data = $request->validated();
+            // Get the email address from the validated data
+            $email = $data['email']; // Use $data instead of $request->validated('email')
 
-        // Create an instance of the email validator
-        $validator = new EmailValidator();
-        // Configure multiple validations to apply (RFCValidation and DNSCheckValidation)
-        $multipleValidations = new MultipleValidationWithAnd([
-            new RFCValidation(),
-            new DNSCheckValidation()
-        ]);
-        // Check if the email address is valid using the configured validations
-        if ($validator->isValid($email, $multipleValidations)) {
-            // The email address is valid
-            // Check if the traveler's phone number is the same as the emergency contact's
-            if ($data['phone_number'] === $data['emergency_contact']) {
-                return redirect()->route('Public.Reservation.Auth.passenger', ['tripId' => $tripId, 'carId' => $carId])->with('error', 'The two numbers must not match');
-            }
-            //Verify if the email already exists in the reservation
-            //get every email
-            $emailGet = \App\Models\Reservation::where('trip_id', $tripId)
-                                                    ->where('stat', '!=', 'abord')
-                                                    ->get();
-            foreach($emailGet as $emails) {
-                $passengersId = Passenger::findOrFail($emails->passenger_id);
-                // if true -> error redirections
-                if($passengersId->email === $email) {
-                    return redirect()->route('Public.Reservation.Auth.passenger', ['tripId' => $tripId, 'carId' => $carId])->with('error', 'The passenger cannot register twice in this reservation');
+            // Create an instance of the email validator
+            $validator = new EmailValidator();
+            // Configure multiple validations to apply (RFCValidation and DNSCheckValidation)
+            $multipleValidations = new MultipleValidationWithAnd([
+                new RFCValidation(),
+                new DNSCheckValidation()
+            ]);
+            // Check if the email address is valid using the configured validations
+            if ($validator->isValid($email, $multipleValidations)) {
+                // The email address is valid
+                // Check if the traveler's phone number is the same as the emergency contact's
+                if ($data['phone_number'] === $data['emergency_contact']) {
+                    return redirect()->route('Public.Reservation.Auth.passenger', ['tripId' => $tripId, 'carId' => $carId])->with('error', 'The two numbers must not match');
                 }
+                //Verify if the email already exists in the reservation
+                //get every email
+                $emailGet = \App\Models\Reservation::where('trip_id', $tripId)
+                                                        ->where('stat', '!=', 'abord')
+                                                        ->get();
+                foreach($emailGet as $emails) {
+                    $passengersId = Passenger::findOrFail($emails->passenger_id);
+                    // if true -> error redirections
+                    if($passengersId->email === $email) {
+                        return redirect()->route('Public.Reservation.Auth.passenger', ['tripId' => $tripId, 'carId' => $carId])->with('error', 'The passenger cannot register twice in this reservation');
+                    }
+                }
+                // Verify if there are already places
+                try {
+                    $verify = new \Nari\Reservation\Reservation($tripId, $carId);
+                    $verif = $verify->verify();
+                } catch (\Exception $e) {
+                    // Enregistrez l'exception dans les journaux Laravel pour le débogage
+                    \Log::error('Error verifying the reservation: ' . $e->getMessage());
+                    // Vous pouvez également afficher un message d'erreur personnalisé ici si nécessaire
+                    $verif = false; // Par exemple
+                }
+                // If true, redirect
+                if ($verif === true) {
+                    return redirect()->route('Public.Reservation.Auth.passenger', ['tripId' => $tripId, 'carId' => $carId])->with('error', 'Oops, reservation is no longer available');
+                }
+                // Create an instance of the Passenger model with the validated data
+                $passenger = Passenger::create($data);
+                //Add user id to the passenger
+                $user = Auth::user();
+                $u = [
+                    'user_id' => $user->id
+                ];
+                $passenger->update($u);
+                // Generate a random token of 32 bytes (256 bits)
+                $token = bin2hex(random_bytes(32));
+                // Hash the token using SHA-256
+                $securityTicket = hash('sha256', $token);
+                $datas = [
+                    'trip_id' => $tripId,
+                    'passenger_id' => $passenger->id,
+                    'reservation_date' => now(),
+                    'reservation_status' => 'reserve', // Fixed a typo here
+                    'identification' => $securityTicket
+                ];
+                // Create a Reservation instance
+                $reservation = \App\Models\Reservation::create($datas);
+                // Redirect to the success page with parameters and a success message
+                return redirect()->route('Public.Reservation.Auth.telma', ['reservationId' => $reservation->id]);
+            } else {
+                // The email address is not valid
+                return redirect()->route('Public.Reservation.Auth.passenger', ['tripId' => $tripId, 'carId' => $carId])->with('error', 'The email address you entered is invalid or does not exist');
             }
-            // Verify if there are already places
-            try {
-                $verify = new \Nari\Reservation\Reservation($tripId, $carId);
-                $verif = $verify->verify();
-            } catch (\Exception $e) {
-                // Enregistrez l'exception dans les journaux Laravel pour le débogage
-                \Log::error('Error verifying the reservation: ' . $e->getMessage());
-                // Vous pouvez également afficher un message d'erreur personnalisé ici si nécessaire
-                $verif = false; // Par exemple
-            }
-            // If true, redirect
-            if ($verif === true) {
-                return redirect()->route('Public.Reservation.Auth.passenger', ['tripId' => $tripId, 'carId' => $carId])->with('error', 'Oops, reservation is no longer available');
-            }
-            // Create an instance of the Passenger model with the validated data
-            $passenger = Passenger::create($data);
-            //Add user id to the passenger
-            $user = Auth::user();
-            $u = [
-                'user_id' => $user->id
-            ];
-            $passenger->update($u);
-            // Generate a random token of 32 bytes (256 bits)
-            $token = bin2hex(random_bytes(32));
-            // Hash the token using SHA-256
-            $securityTicket = hash('sha256', $token);
-            $datas = [
-                'trip_id' => $tripId,
-                'passenger_id' => $passenger->id,
-                'reservation_date' => now(),
-                'reservation_status' => 'reserve', // Fixed a typo here
-                'identification' => $securityTicket
-            ];
-            // Create a Reservation instance
-            $reservation = \App\Models\Reservation::create($datas);
-            // Redirect to the success page with parameters and a success message
-            return redirect()->route('Public.Reservation.Auth.success', ['reservationId' => $reservation->id]);
-        } else {
-            // The email address is not valid
-            return redirect()->route('Public.Reservation.Auth.passenger', ['tripId' => $tripId, 'carId' => $carId])->with('error', 'The email address you entered is invalid or does not exist');
+        } catch (\Exception $e) {
+            // In case of an error, redirect with an error message
+            return redirect()->route('Public.Reservation.Auth.passenger', ['tripId' => $tripId, 'carId' => $carId])->with('error', 'An error has occurred : ' . $e->getMessage());
         }
-    } catch (\Exception $e) {
-        // In case of an error, redirect with an error message
-        return redirect()->route('Public.Reservation.Auth.passenger', ['tripId' => $tripId, 'carId' => $carId])->with('error', 'An error has occurred : ' . $e->getMessage());
     }
-}
 
 
     /**
@@ -215,6 +215,97 @@ class ReservationPublicController extends Controller
         $pdf->render();
 
         return $pdf->stream('reservation_'.$reservation->id.'_'.$passenger->id.'.pdf');
+    }
+
+
+    /**
+     * Just change these when you are in a go Live //production
+     * Payements with mobile money in scandbox
+     * No interfaces but you can add view for it
+     * @param string $reservationId
+     * @return RedirectResponse
+     */
+    public function telma(string $reservationId)
+    {
+        //important function that generates X-Coretionnal-id
+        function generateRandomCorrelationId() {
+            // You can customize your correlation ID generation here
+            return 'CORR-' . uniqid();
+        }
+        //verry important
+        $reservation = \App\Models\Reservation::findOrFail($reservationId);
+        // Replace the following information with your real access and application data
+        $customerKey = 'RgRYEYiLbLVT0qkrCM1vC6bDlq8a';
+        $customerSecret = 'dfzx1_PmwuajUS4uEGiLgGy9zrga';
+        $accessToken = 'eyJ4NXQiOiJPRE5tWkRFMll6UTRNVEkxTVRZME1tSmhaR00yTUdWa1lUZGhOall5TWpnM01XTmpNalJqWWpnMll6bGpNRGRsWWpZd05ERmhZVGd6WkRoa1lUVm1OZyIsImtpZCI6Ik9ETm1aREUyWXpRNE1USTFNVFkwTW1KaFpHTTJNR1ZrWVRkaE5qWXlNamczTVdOak1qUmpZamcyWXpsak1EZGxZall3TkRGaFlUZ3paRGhrWVRWbU5nX1JTMjU2IiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiJtYWhlbmluYXJhbmRyaWFuYXJpc29hQGdtYWlsLmNvbUBjYXJib24uc3VwZXIiLCJhdXQiOiJBUFBMSUNBVElPTiIsImF1ZCI6IlJnUllFWWlMYkxWVDBxa3JDTTF2QzZiRGxxOGEiLCJuYmYiOjE2OTcxODI4NTQsImF6cCI6IlJnUllFWWlMYkxWVDBxa3JDTTF2QzZiRGxxOGEiLCJzY29wZSI6IkVYVF9JTlRfTVZPTEFfU0NPUEUiLCJpc3MiOiJodHRwczpcL1wvYXBpbS5wcmVwLnRlbG1hLm1nOjk0NDNcL29hdXRoMlwvdG9rZW4iLCJleHAiOjE2OTcxODY0NTQsImlhdCI6MTY5NzE4Mjg1NCwianRpIjoiNDk1N2YwMDgtOGRlZC00MWQ5LThmYTQtMTY5N2IzODQ3ZTkxIn0.KEP8XoWAaqRmn1fO0RmgakZZHte_Db85ZS0Ae1DqKj8idf9Xyq53RsavHBkaKSupImycTgMklAXIg-quG--hidGnlj--qXbVx8U37eB-rgNwlVBi-exqt2KLi18Tv22dFbpjsezna1rHBhsDZ0MEwJTRZyGvSrL9ZXOMAqTlTBm5iHQhfyifHNsQAJXzRMA9f3j2dcKkkw8Qt0zqgU1GzG-9_xAx1HErl_vPXPQwe0MhZVNbckDRdH6aGTRzt27_VIngYxS98gM4Z6KOx2JDIKTCfFV3VDsYVu_D4MzFu16ww4avC0fdnRmPjbLi9tOB4YzZ8mPMeAzKCFE0Rx0vng';
+        // API URL
+        //https://devapi.mvola.mg/mvola/mm/transactions/type/merchantpay/1.0.0/
+        // scandbox api
+        $credentials = base64_encode($customerKey . ':' . $customerSecret);
+        $correlationId = 'X-CorrelationId: ' . generateRandomCorrelationId();
+        //$url = 'https://devapi.mvola.mg/token';
+        $apiUrl = 'https://devapi.mvola.mg/$accessToken'; // Replace with the actual token URL
+        // You can customize the reference format
+        $originalTransactionReference = 'TX' . uniqid();
+        // Data you want to send in the POST request (in JSON format for example)
+        $postData = json_encode([
+            'amount' => 5000, // Replace with the transaction amount
+            'currency' => 'Ar', // Replace with currency code
+            'descriptionText' => 'Achat d\'un ticket de reservation', // Replace with description
+            'requestDate' => '2023-10-13T12:00:00.000Z', // Replace with transaction date
+            'debitParty' => '0343500003', // Replace with the customer's phone number
+            'creditParty' => '0343500004', // Replace with the merchant's phone number
+            'metadata' => [
+                'partnerName' => 'Travel Pulse Caravan', // Replace with partner name
+                'requestingOrganisation' => 'Transaction Reference', // Replace with the transaction reference
+                'originalTransactionReference' => $originalTransactionReference, // Random transaction references
+                'fc' => 'USD', // Replace with foreign currency
+                'amountFc' => 100.50, // Replace with amount based on foreign currency
+            ]
+        ]);
+        //Initialisation of curl
+        $curl = curl_init($apiUrl);
+        // Configuring cURL options
+        $headers = [
+            'Authorization: Bearer ' . $accessToken, // Use the token in the Bearer header
+            //correlationId, instanciation in the amount variable
+            $correlationId,
+            //languages Fr or Mg
+            'UserLanguage: MG',
+            //Types
+            'Content-Type: application/json', // Specify the content type in JSON
+            //callback url if success | change if you need to change it
+            'X-Callback-URL: http://caravan.briqueweb.com/',
+            //appliaction cache
+            'Cache-Control: no-cache'
+        ];
+        // Set cURL to return the response as a string instead of directly outputting it.
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        // Configure cURL to perform a POST request.
+        curl_setopt($curl, CURLOPT_POST, 1);
+        // Set the data to be sent in the POST request. The data is stored in the $postData variable.
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $postData);
+        // Set the HTTP headers for the request, which are defined in the $headers array.
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+        // curl response
+        $response = curl_exec($curl);
+        //If no response
+        if ($response === false) {
+            die('Erreur cURL : ' . curl_error($curl));
+        }
+
+        $httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+
+        curl_close($curl);
+        //If it's finished then redirect to a callBack url || it doesn't work in the scandbox
+        //but if you need to verify these if success or not get the response code
+        // Check if the HTTP request was successful (usually 200 OK)
+        if ($httpCode === 200) {
+            return redirect()->route('Public.Reservation.Auth.success', ['reservationId' => $reservation->id])->with('success', 'Booking successful');
+        } else {
+            //if error
+            return redirect()->route('Public.Reservation.Auth.success', ['reservationId' => $reservation->id])->with('error', 'Failure');
+        }
     }
 
 }

@@ -59,7 +59,7 @@
         </div>
         <form action="" method="post">
             @csrf
-            <input type="submit" class="btn btn-primary" style="float: right" value="Payement en espèce">
+            <input type="submit" class="btn btn-primary" style="float: right" value="Cash payment">
         </form>
     </div>
 </div>
