@@ -100,7 +100,7 @@
               Mahamasina<br>
               ANTANANARIVO<br>
               MADAGASCAR <br><br>
-              <strong>Phone:</strong> +261 00 000 00<br>
+              <strong>Phone:</strong> +261 00 00 000 00<br>
               <strong>Email:</strong> travelpulsecaravan@gmail.com<br>
             </p>
           </div>
