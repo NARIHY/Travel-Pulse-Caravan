@@ -223,7 +223,7 @@ $user = Auth::user();
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="">
+              <a class="dropdown-item d-flex align-items-center" href="" onclick="alerte()">
                 <i class="bi bi-question-circle"></i>
                 <span>Need help ?</span>
               </a>
@@ -425,6 +425,11 @@ $user = Auth::user();
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
+  <script>
+    function alerte() {
+        window.alert('Contacter l\'Administrateur du site, \n maheninarandrianarisoa@gmail.com')
+    }
+  </script>
   <!-- Vendor JS Files -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 

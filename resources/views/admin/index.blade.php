@@ -32,7 +32,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="d-flex justify-content-center align-items-center">
-                                <h1>75</h1>
+                                <h1>{{$visits}}</h1>
                             </div>
                         </div>
                     </div>
@@ -84,19 +84,19 @@
                 <div class="col-md-4">
                     <h6>Numbers of visits for today:</h6>
                     <div >
-                        <h2>0</h2>
+                        <h2>{{$visitsToday}}</h2>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <h6>Numbers of visits for this month:</h6>
                     <div >
-                        <h2>0</h2>
+                        <h2>{{$visitsThisMonth}}</h2>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <h6>Numbers of visits for this year:</h6>
                     <div >
-                        <h2>0</h2>
+                        <h2>{{$visitsThisYear}}</h2>
                     </div>
                 </div>
             </div>
@@ -107,13 +107,13 @@
                 <div class="col-md-6">
                     <h6>Total number of users</h6>
                     <div >
-                        <h2>0</h2>
+                        <h2>{{$totalUsers}}</h2>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <h6>Total number of moderators and administrators</h6>
                     <div >
-                        <h2>0</h2>
+                        <h2>{{$totaleAdmin}}</h2>
                     </div>
                 </div>
             </div>

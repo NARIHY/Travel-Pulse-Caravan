@@ -27,22 +27,22 @@
                 <p>{{$dateFormated}}</p>
             </div>
             <div style="text-align: right; margin-right:15px">
-                <p>Madame/Monsieur le responsable</p>
+                <p>Madam/Mr. Manager</p>
                 <p style="color: blue">Travel Pulse Caravan</p>
                 <p style="color: red">contact@travelPulseCaravan.mg</p>
             </div>
             <div>
-                <h6 style="margin-left: 80px"><b style="text-decoration: underline; color:black">Objet:</b> {{$contact->subject}} </h6 style="margin-left: 80px">
+                <h6 style="margin-left: 80px"><b style="text-decoration: underline; color:black">Subject:</b> {{$contact->subject}} </h6 style="margin-left: 80px">
             </div>
             <div>
-                <p style="margin-left: 30px">Madame, Monsieur,</p>
+                <p style="margin-left: 30px">Dear,</p>
 
                 <div class="container" style="padding: 15px">
-                    <p style="text-align: justify; margin-bottom:5px">Je vous écris pour exprimer mon intérêt à établir un contact et à discuter d'opportunités de collaboration ou d'autres sujets d'intérêt mutuel. J'ai récemment eu l'occasion de découvrir votre entreprise de transport terrestre et j'ai été impressionné par vos services de qualité/votre engagement envers la sécurité/votre réputation dans le secteur du transport, et bien d'autres encore.</p>
-                    <p style="text-align: justify; margin-bottom:5px">En tant que passionné(e) du monde de voyage, je crois que nos chemins pourraient se croiser de manière bénéfique. Je suis enthousiaste à l'idée de toutes vos offres et services, et je serais ravi(e) de discuter de la manière dont nous pourrions collaborer ou partager des idées pour améliorer davantage cette compagnie.</p>
+                    <p style="text-align: justify; margin-bottom:5px">I am writing to express my interest in establishing contact and discussing collaboration opportunities or other topics of mutual interest. I recently had the opportunity to experience your ground transportation company and was impressed by your quality services/commitment to safety/reputation in the transportation industry, and much more.</p>
+                    <p style="text-align: justify; margin-bottom:5px">As a travel enthusiast, I believe our paths could cross in a beneficial way. I'm excited about all of your offerings and services, and would be happy to discuss how we could collaborate or share ideas to further improve this company.</p>
                     <p style="text-align: justify; margin-bottom:5px">{{$contact->content}}</p>
-                    <p style="text-align: justify; margin-bottom:5px">En attendant, je vous remercie de prendre le temps de lire ma lettre et j'espère que nous pourrons échanger plus en détail dans un proche avenir. Si vous avez des questions ou si vous souhaitez discuter de cette opportunité, vous pouvez me joindre  par e-mail à <b style="text-decoration: underline; color:blue;">{{$contact->email}}</b>.</p>
-                    <p style="text-align: justify">Je vous adresse, Cher(e) Madame/Monsieur le responsable de Travel Pulse Caravan, l'expression de mes salutations distinguées. <br> Cordialement,</p>
+                    <p style="text-align: justify; margin-bottom:5px">In the meantime, I thank you for taking the time to read my letter and I hope that we can communicate in more detail in the near future. If you have any questions or would like to discuss this opportunity, you can reach me by email at <b style="text-decoration: underline; color:blue;">{{$contact->email}}</b>.</p>
+                    <p style="text-align: justify">I send you, Dear Madam/Mr. Manager of Travel Pulse Caravan, the expression of my distinguished greetings.<br> Sincerely,</p>
                     <h4 style="color: rgb(0, 0, 0); text-align:left; margin-left:15px">{{$contact->last_name}} {{$contact->name}}</h4>
                 </div>
 

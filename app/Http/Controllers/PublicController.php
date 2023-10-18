@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Compteur;
 use App\Models\HomeAdmin;
 use App\Models\Information;
 use Illuminate\Http\Request;
@@ -16,6 +17,7 @@ class PublicController extends Controller
      */
     public function index(): View
     {
+        $compteur = Compteur::create();
         $home = HomeAdmin::orderBy('created_at', 'desc')
                             ->paginate(2);
         $category = Category::orderBy('id', 'asc')
