@@ -6,7 +6,7 @@
  <!-- ======= Hero Section ======= -->
  <section id="hero" class="d-flex align-items-center justify-content-center">
     <div class="container position-relative">
-      <h1>Welcome to Travel Pulse Caravan</h1>
+      <h1>Travel Pulse Caravan Madagascar</h1>
       <h2>Your trusted partner for unforgettable trips.</h2>
 
     </div>
@@ -150,7 +150,7 @@ Whether you dream of white sand beaches, wilderness explorations, cultural disco
             @if (session('success'))
                 <div style="color: green">{{session('success')}}</div>
               @endif
-            <div class="text-center" style="margin-top: 10px"><button type="submit">Send</button></div>
+            <div class="text-center" style="margin-top: 10px"><button type="submit">Send <img src="{{asset('gif-newsletter.gif')}}" alt="" width="25px"> </button></div>
           </form>
         </div>
 

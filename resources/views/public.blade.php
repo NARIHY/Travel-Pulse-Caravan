@@ -8,7 +8,7 @@
   <title>@yield('title') | Travel Pulse Caravan</title>
   <meta content="Compagnie de Transport Terrestre à Madagascar" name="description">
   <meta content="Travel, voyage, madagascar, compagnie de transport" name="keywords">
-
+    <link rel="shortcut icon" href="{{asset('logi.png')}}" type="image/x-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
@@ -39,9 +39,9 @@
   <header id="header" class="fixed-top header-transparent">
     <div class="container d-flex align-items-center justify-content-between">
 
-      <h1 class="logo"><a href="{{route('Public.index')}}">Travel Pulse Caravan</a></h1>
+      <h1 class="logo"><a href="{{route('Public.index')}}"><img src="{{asset('lolo.png')}}" alt="TPC" width="75px" height="50px"> TRAVEL PULSE CARAVAN</a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+      <!-- <a href="index.html" class="logo"><img src="{{asset('welcome/Travel pulse Caravan-logo1.png')}}" alt="" class="img-fluid"></a>-->
 
       <nav id="navbar" class="navbar">
         <ul>
@@ -95,11 +95,10 @@
         <div class="row">
 
           <div class="col-lg-3 col-md-6 footer-contact">
-            <h3>Travel Pulse Caravan</h3>
+            <h3 class="text-center">
+                <img src="{{asset('Travel pulse Caravan-logo.png')}}" alt="" width="200px">
+            </h3>
             <p>
-              Mahamasina<br>
-              ANTANANARIVO<br>
-              MADAGASCAR <br><br>
               <strong>Phone:</strong> +261 00 00 000 00<br>
               <strong>Email:</strong> travelpulsecaravan@gmail.com<br>
             </p>

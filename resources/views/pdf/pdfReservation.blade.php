@@ -60,7 +60,7 @@
         @endphp
         <div class="container">
             <div class="headers">
-                <h1>Ticket de réservation</h1>
+                <h1>Reservation ticket</h1>
             </div>
             <div class="info">
                 <h2>Informations sur la Réservation :</h2>

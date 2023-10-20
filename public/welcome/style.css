@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:100&display=swap');
+body {
+    background-image: url('fond.png');
+    background-size: cover; /* Ajuste l'image pour couvrir tout le fond */
+    background-repeat: no-repeat; /* Empêche la répétition de l'image */
+    background-attachment: fixed; /* Optionnel - Pour fixer l'image de fond */
+    background-position: center center;
+
+}
+
+
+.containers {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%; /* Remplit la hauteur de la fenêtre */
+}
+
+h1 {
+    font-family: "Raleway", sans-serif; /* Exemple de famille de police élégante */
+    font-size: 48px;
+    color: #ffffff; /* Couleur du texte */
+    text-align: center;
+    margin-top: 45vh;
+    filter: brightness(1); /* Réduire la luminosité à 50% */
+}
+h2 {
+    font-family: "Raleway", sans-serif; /* Exemple de famille de police élégante */
+    font-size: 22px;
+    color: #ffffff; /* Couleur du texte */
+    text-align: center;
+
+}
+@media (max-width: 768px) {
+
+
+    /* Styles spécifiques pour les écrans de largeur maximale de 768px */
+    h1 {
+        font-size: 28px; /* Réduisez la taille de la police pour les écrans plus petits */
+
+    }
+
+    h2 {
+        font-size: 18px; /* Réduisez la taille de la police pour les écrans plus petits */
+    }
+}
+
+.btn {
+    width: 200px;
+    font-size: 25px;
+    text-decoration: none;
+    border: 3px solid rgb(173, 22, 22);
+    background-color: rgb(173, 22, 22);
+    color: white;
+    border-radius: 30px;
+    padding: 5px;
+    text-align: center;
+    transition: background-color 1s border 1s;
+}
+
+.btn:hover {
+    border: 3px solid rgb(255, 0, 0);
+    background-color: red;
+}
+
+.logo {
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: 20px;
+}
+
