@@ -13,6 +13,7 @@ use Barryvdh\DomPDF\PDF;
 use Barryvdh\Snappy\Facades\SnappyPdf;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
@@ -88,7 +89,7 @@ class CarController extends Controller
                     throw new \Exception('An error occurred while adding media: ' . $mediaException->getMessage());
                 }
             }
-
+            $this->copyFiles();
             return redirect()->route($this->routes().'index')->with('success', 'Added successfully');
         } catch (\Exception $e) {
             return redirect()->route($this->routes().'create')->with('error', 'An error has occurred' . $e->getMessage());
@@ -156,6 +157,7 @@ class CarController extends Controller
                     throw new \Exception('An error occurred while adding media: ' . $mediaException->getMessage());
                 }
             }
+            $this->copyFiles();
             return redirect()->route($this->routes().'edit', ['id' => $id])->with('success', 'Modification successful');
         } catch(\Exception $e) {
             return redirect()->route($this->routes().'edit', ['id' => $id])->with('error', 'Error while editing' . $e->getMessage());
@@ -312,6 +314,19 @@ class CarController extends Controller
         return $pdf->stream($car->model.'_'.$car->brand.'.pdf');
     }
 
+    /**
+     * When users upload files, it copy every files in storage to public /
+     * it's the same roles to php artisan generate:link
+     * @return void
+     */
+    private function copyFiles()
+    {
+        $sourceDirectory = storage_path('app/public');
+        $destinationDirectory = public_path('storage');
+        if (File::isDirectory($sourceDirectory)) {
+            File::copyDirectory($sourceDirectory, $destinationDirectory);
+        }
+    }
 
     /**
      * Private function who is very nedded because this return a instance of fileViewPath

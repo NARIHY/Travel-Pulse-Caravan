@@ -11,12 +11,12 @@
 <body>
 
     <div class="containers">
-        <h1>Welcome to Travel Pulse Caravan</h1>
+        <h1 id="typing-element">Welcome to Travel Pulse Caravan</h1>
             <a href="{{route('Public.index')}}" class="btn">
-                Let's started
+                Start
             </a>
             <img src="{{asset('welcome/Travel pulse Caravan-logo1.png')}}" alt="welcome" class="logo">
-      </div>
+    </div>
 
 
 

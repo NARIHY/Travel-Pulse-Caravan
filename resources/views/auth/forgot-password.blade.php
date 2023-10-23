@@ -1,6 +1,6 @@
 <x-guest-layout>
     <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
-        {{ __('Désolé, il semble que vous ayez oublié votre mot de passe. Pas d\'inquiétude, nous allons vous aider à le réinitialiser en quelques étapes simples. Tout d\'abord, veuillez entrée votre addresse email') }}
+        {{ __('Sorry, it seems you forgot your password. Don\'t worry, we will help you reset it in a few simple steps. First, please enter your email address') }}
     </div>
 
     <!-- Session Status -->

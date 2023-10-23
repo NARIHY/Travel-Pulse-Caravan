@@ -9,6 +9,7 @@ use App\Http\Controllers\ClientSpaceController;
 use App\Http\Controllers\ColisController;
 use App\Http\Controllers\CompteControllers;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ManualController;
 use App\Http\Controllers\PassengerVerificationController;
 use App\Http\Controllers\PersonnelController;
 use App\Http\Controllers\PublicController;
@@ -274,3 +275,9 @@ Route::prefix('/Administration')->middleware(['auth', 'verified', 'checkRole:1']
         Route::get('/{identification}', [PassengerVerificationController::class, 'passenger'])->name('view');
     });
 }) ;
+
+//User manual
+Route::prefix('Manuelle-d-utilisation')->name('Manual.')->group( function () {
+    Route::get('/', [ManualController::class, 'greeting'])->name('greeting');
+    Route::get('/Authentification', [ManualController::class, 'authetificate'])->name('authetificate');
+});

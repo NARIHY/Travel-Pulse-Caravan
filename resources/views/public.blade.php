@@ -120,6 +120,7 @@
             <ul>
               <li><i class="bx bx-chevron-right"></i> <a href="{{route('Public.Personel.index')}}">Personal transportation</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="{{route('Public.Colis.index')}}">Express parcel</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{{route('Manual.greeting')}}">User Manual</a></li>
                 <!--
                     <li><i class="bx bx-chevron-right"></i> <a href="#">Location de voiture</a></li>
                 -->

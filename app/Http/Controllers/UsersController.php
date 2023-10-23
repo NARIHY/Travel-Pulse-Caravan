@@ -11,6 +11,7 @@ use Egulias\EmailValidator\Validation\RFCValidation;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
@@ -84,6 +85,7 @@ class UsersController extends Controller
                         $data['picture'] = $picture->store('users', 'public');
                         $user->update($data);
                     }
+                    $this->copyFiles();
                     return redirect()->route($this->routes() . 'edit')->with('success', 'Modification réussie');
                 } else {
                     return redirect()->route($this->routes() . 'edit')->with('error', 'L\'email que vous avez entré n\'existe pas ou est invalide');
@@ -94,6 +96,20 @@ class UsersController extends Controller
         } catch (\Exception $e) {
             // Gérer les erreurs de validation ici (si nécessaire)
             return redirect()->route($this->routes() . 'edit')->with('error', 'Erreur de validation : ' . $e->getMessage());
+        }
+    }
+
+     /**
+     * When users upload files, it copy every files in storage to public /
+     * it's the same roles to php artisan generate:link
+     * @return void
+     */
+    private function copyFiles()
+    {
+        $sourceDirectory = storage_path('app/public');
+        $destinationDirectory = public_path('storage');
+        if (File::isDirectory($sourceDirectory)) {
+            File::copyDirectory($sourceDirectory, $destinationDirectory);
         }
     }
 

@@ -8,11 +8,11 @@
             @csrf
             <div class="row">
               <div class="col-md-6 form-group">
-                <input type="text" name="name" class="form-control" id="name" placeholder="Votre nom" required value="{{@old('name')}}">
+                <input type="text" name="name" class="form-control" id="name" placeholder="Your name" required value="{{@old('name')}}">
               </div>
 
               <div class="col-md-6 form-group mt-3 mt-md-0">
-                <input type="text" name="last_name" class="form-control" id="last_name" placeholder="Votre prénon" required value="{{@old('name')}}">
+                <input type="text" name="last_name" class="form-control" id="last_name" placeholder="Your lastname" required value="{{@old('name')}}">
               </div>
             </div>
             <div class="form-group mt-3">
@@ -20,11 +20,11 @@
             </div>
             <div class="row" style="margin-top: 10px">
                 <div class="col-md-6 form-group">
-                    <input type="text" class="form-control" name="phone_number" id="phone_number" placeholder="Votre numéro de téléphone" required value="{{@old('phone_number')}}">
+                    <input type="text" class="form-control" name="phone_number" id="phone_number" placeholder="Vyour phone number" required value="{{@old('phone_number')}}">
                 </div>
 
                 <div class="col-md-6 form-group mt-3 mt-md-0">
-                    <input type="text" class="form-control" name="emergency_contact" id="emergency_contact" placeholder="Contact en cas d'urgence" required value="{{@old('emergency_contact')}}">
+                    <input type="text" class="form-control" name="emergency_contact" id="emergency_contact" placeholder="Emergency contact" required value="{{@old('emergency_contact')}}">
                 </div>
               </div>
 
@@ -39,7 +39,7 @@
             @if (session('success'))
                 <div style="color: green">{{session('success')}}</div>
               @endif
-            <div class="text-center" style="margin-top: 10px"><button type="submit">Envoyer</button></div>
+            <div class="text-center" style="margin-top: 10px"><button type="submit">Register</button></div>
           </form>
     </div>
 </section>

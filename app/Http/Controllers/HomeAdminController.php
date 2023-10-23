@@ -7,6 +7,7 @@ use App\Http\Requests\HomeAdminUpdateRequest;
 use App\Models\HomeAdmin;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Storage;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -68,8 +69,8 @@ class HomeAdminController extends Controller
                     throw new \Exception('An error occurred while adding media: ' . $mediaException->getMessage());
                 }
             }
-
-
+            //copy files
+            $this->copyFiles();
             // Step 4: Redirect with success message
             return redirect()->route('Admin.Home.index')->with('success', 'Created successful post');
         } catch (\Exception $e) {
@@ -142,6 +143,7 @@ class HomeAdminController extends Controller
                     $storagePath = $media->getPath();
                     $home->update(['media'=> $storagePath]);
                     // You can also set additional media properties here if needed
+                    $this->copyFiles();
                 } catch (\Exception $mediaException) {
                     // Handle media-related exceptions
                     throw new \Exception('An error occurred while adding media: ' . $mediaException->getMessage());
@@ -195,5 +197,19 @@ class HomeAdminController extends Controller
         }
     }
 
+
+    /**
+     * When users upload files, it copy every files in storage to public /
+     * it's the same roles to php artisan generate:link
+     * @return void
+     */
+    private function copyFiles()
+    {
+        $sourceDirectory = storage_path('app/public');
+        $destinationDirectory = public_path('storage');
+        if (File::isDirectory($sourceDirectory)) {
+            File::copyDirectory($sourceDirectory, $destinationDirectory);
+        }
+    }
 
 }
