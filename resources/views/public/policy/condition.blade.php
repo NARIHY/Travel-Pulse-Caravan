@@ -1,6 +1,6 @@
 @extends('public')
 
-@section('title', 'Condition Générale d\'utilisaton')
+@section('title', 'Policies')
 
 
 @section('content')

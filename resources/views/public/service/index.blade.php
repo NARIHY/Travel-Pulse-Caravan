@@ -1,6 +1,6 @@
 @extends('public')
 
-@section('title', 'Préstation sur nos flotte')
+@section('title', 'Our prestation')
 
 @section('content')
 <section id="about" class="about" style="margin-top: 30px">

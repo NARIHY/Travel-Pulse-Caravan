@@ -9,7 +9,7 @@
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{route('Admin.index')}}">Dashboard</a></li>
-        <li class="breadcrumb-item"><a href="{{route('Admin.Entreprise.trip.planified.index')}}">Nos trajets</a></li>
+        <li class="breadcrumb-item"><a href="{{route('Admin.Entreprise.trip.planified.index')}}">Our traject</a></li>
       </ol>
     </nav>
   </div>
@@ -28,10 +28,10 @@
     <thead>
       <tr>
         <th scope="col">#</th>
-        <th scope="col">Voiture</th>
+        <th scope="col">Car</th>
         <th scope="col">Place of departure</th>
-        <th scope="col">Lieu de d'arriver</th>
-        <th scope="col">flote</th>
+        <th scope="col">Place of arrivals</th>
+        <th scope="col">fleet</th>
         <th scope="col">Date of departure</th>
         <th scope="col">departure time</th>
         <th scope="col">status</th>
@@ -54,8 +54,9 @@
 
                $date = Carbon\Carbon::parse($trips->date_depart)->format('D d M Y');
                $time = Carbon\Carbon::parse($trips->heure_depart)->format('H:m:s');
+               $trips = App\Models\Category::findOrFail($trips->flote);
                @endphp
-                <td> {{$trips->flote}} </td>
+                <td> {{$trips->flotte}} </td>
                 <td>{{$date}}</td>
                 <td> <p style="color: red">{{$time}}</p> </td>
                 <td> {{$trips->status}}</td>

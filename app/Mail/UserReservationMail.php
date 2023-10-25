@@ -32,7 +32,7 @@ class UserReservationMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Réservation d\'une place',
+            subject: 'Ticket Reservation',
         );
     }
 

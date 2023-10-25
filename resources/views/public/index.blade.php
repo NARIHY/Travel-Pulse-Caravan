@@ -1,6 +1,6 @@
 @extends('public')
 
-@section('title', 'Acceuil')
+@section('title', 'Home')
 
 @section('content')
  <!-- ======= Hero Section ======= -->

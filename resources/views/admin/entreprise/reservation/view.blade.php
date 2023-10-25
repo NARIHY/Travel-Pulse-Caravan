@@ -18,15 +18,15 @@
         @foreach ($passenger as $passengers)
         <div class="row mb-3">
             <div class="col-md-6">
-                <h4 class="text-primary">Numéro de ticket:</h4>
-                <h4 class="text-primary">Compagnie:</h4>
-                <h4 class="text-primary">Flotte:</h4>
-                <h4 class="text-primary">Immatriculation de la voiture:</h4>
-                <h4 class="text-primary">Trajet:</h4>
-                <h4 class="text-primary">Horaire:</h4>
-                <h4 class="text-primary">Date de la réservation:</h4>
-                <h4 class="text-primary">Nom et prénom du passager:</h4>
-                <h4 class="text-primary">Téléphone du passager:</h4>
+                <h4 class="text-primary">Ticket numbert:</h4>
+                <h4 class="text-primary">Company:</h4>
+                <h4 class="text-primary">Fleet:</h4>
+                <h4 class="text-primary">Car registration:</h4>
+                <h4 class="text-primary">Traject:</h4>
+                <h4 class="text-primary">Hourly:</h4>
+                <h4 class="text-primary">Date of reservation</h4>
+                <h4 class="text-primary">Passenger's first and last name:</h4>
+                <h4 class="text-primary">Passenger phone:</h4>
             </div>
             <div class="col-md-6">
                 <h4>79-{{$passengers->id}}58-5489-15-uz</h4>

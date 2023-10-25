@@ -1,5 +1,5 @@
 @extends('public')
-@section('title', 'Information sur nous')
+@section('title', 'Our informations')
 
 @section('content')
     <section class="hzi">

@@ -17,7 +17,7 @@ class Reservation
     public function verify(): bool
     {
 
-        if ($this->placeDisponible() === $this->countReservation()) {
+        if ($this->placeDisponible() <= $this->countReservation()) {
             return true;
         } else {
             return false;
@@ -44,11 +44,26 @@ class Reservation
     private function countReservation(): string
     {
         $verify = \App\Models\Reservation::where('trip_id', $this->reservation)
-                                            ->where('stat', '!=', 'abord')
-                                            ->count();
+                                                ->where('stat', null)
+                                                ->count();
         return $verify;
     }
 
+    /**
+     * Count place disponible
+     * @return string
+     */
+    public function count(): string
+    {
+        $cars = Car::findOrFail($this->car);
+        $place = $cars->place;
+        $disponiblePlace = $place - 2;
+        $verify = \App\Models\Reservation::where('trip_id', $this->reservation)
+                                            ->where('stat', null)
+                                            ->count();
+        $c = $disponiblePlace - $verify;
+        return $c;
+    }
 
     /**
      * We need carInformation and car to instance the reservationCustomized

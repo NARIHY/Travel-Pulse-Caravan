@@ -1,6 +1,6 @@
 @extends('public')
 
-@section('title', 'Mon espace')
+@section('title', 'My space')
 
 @section('content')
 <section class="client-space" style="margin-top: 40px">

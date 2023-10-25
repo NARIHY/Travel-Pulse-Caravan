@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="pagetitle">
-    <h1>Réservation</h1>
+    <h1>Reservation</h1>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{route('Admin.index')}}">Dashboard</a></li>
@@ -23,10 +23,10 @@
             <thead>
               <tr>
                 <th scope="col">#</th>
-                <th scope="col">Immatriculation</th>
-                <th scope="col">Trajet</th>
+                <th scope="col">Plate number</th>
+                <th scope="col">Traject</th>
                 <th scope="col">Status</th>
-                <th scope="col">Horaire</th>
+                <th scope="col">Timing</th>
                 <th scope="col">Action</th>
 
               </tr>
@@ -63,7 +63,7 @@
                 @empty
                     <tr>
                         <th scope="row"></th>
-                        <td style="text-align: center">Aucune flote pour le moment</td>
+                        <td style="text-align: center">Empty</td>
                         <td>
 
                         </td>

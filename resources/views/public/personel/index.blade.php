@@ -1,6 +1,6 @@
 @extends('public')
 
-@section('title', 'Transport personnel')
+@section('title', 'Personal transport')
 
 @section('content')
 <div class="container" style="margin-top: 100px">

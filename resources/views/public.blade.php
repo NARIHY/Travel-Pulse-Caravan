@@ -39,7 +39,7 @@
   <header id="header" class="fixed-top header-transparent">
     <div class="container d-flex align-items-center justify-content-between">
 
-      <h1 class="logo"><a href="{{route('Public.index')}}"><img src="{{asset('lolo.png')}}" alt="TPC" width="75px" height="50px"> TRAVEL PULSE CARAVAN</a></h1>
+      <h1 class="logo" style="text-align: center"><a href="{{route('Public.index')}}"><img src="{{asset('lolo.png')}}" alt="TPC" width="75px" height="50px"> TRAVEL PULSE CARAVAN</a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo"><img src="{{asset('welcome/Travel pulse Caravan-logo1.png')}}" alt="" class="img-fluid"></a>-->
 

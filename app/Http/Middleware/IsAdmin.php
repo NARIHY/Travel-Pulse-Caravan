@@ -15,12 +15,12 @@ class IsAdmin
      */
     public function handle($request, Closure $next)
     {
-        // Vérifiez si l'utilisateur est authentifié et a le rôle d'administrateur (par exemple, le rôle 3)
+        //Verify if user is Authentified and these has role Admin
         if (auth()->check() && auth()->user()->role === 3) {
             return $next($request); // Continuez l'action
         }
 
-        // Redirigez l'utilisateur vers la page d'accueil (ou une autre page selon vos besoins)
-        return redirect()->route('Admin.index'); // Vous pouvez personnaliser l'URL de redirection
+        // if false, redirect user
+        return redirect()->route('Admin.index');
     }
 }

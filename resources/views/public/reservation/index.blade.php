@@ -88,7 +88,7 @@
                                     @endphp
 
                                     @if ($verif === false)
-                                        <p style="color: blue">Disponible</p>
+                                        <p style="color: blue">Disponible <p style="color: black"> {{$verify->count()}} place<?php  if($verify->count() > 1){echo 's';} ?> </p> </p>
                                     @else
                                         <p style="color: red">Indisponible</p>
                                     @endif
@@ -102,10 +102,15 @@
                                 </font></font>
 
                             <td >
-                                <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-                                    <a href="{{route('Public.Reservation.Auth.passenger', ['tripId' => $trips->id, 'carId' => $trips->car])}}" class="btn btn-primary" style="color: white">Reserve</a>
+                                @if ($verif === false)
+                                    <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+                                        <a href="{{route('Public.Reservation.Auth.passenger', ['tripId' => $trips->id, 'carId' => $trips->car])}}" class="btn btn-primary" style="color: white">Reserve</a>
 
-                                </font></font>
+                                    </font></font>
+                                @else
+                                    <p style="color: red">Full</p>
+                                @endif
+
                             </td>
 
                         </tr>

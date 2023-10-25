@@ -1,5 +1,5 @@
 @extends('public')
-@section('title', 'Nous contacter')
+@section('title', 'Contact us')
 
 @section('content')
 <!-- ======= Contact Section ======= -->
@@ -48,18 +48,18 @@
             @csrf
             <div class="row">
               <div class="col-md-6 form-group">
-                <input type="text" name="name" class="form-control" id="name" placeholder="Votre nom" required value="{{@old('name')}}">
+                <input type="text" name="name" class="form-control" id="name" placeholder="Your name" required value="{{@old('name')}}">
               </div>
 
               <div class="col-md-6 form-group mt-3 mt-md-0">
-                <input type="text" name="last_name" class="form-control" id="last_name" placeholder="Votre prénon" required value="{{@old('name')}}">
+                <input type="text" name="last_name" class="form-control" id="last_name" placeholder="Your lastname" required value="{{@old('name')}}">
               </div>
             </div>
             <div class="form-group mt-3">
                 <input type="email" class="form-control" name="email" id="email" placeholder="email@gmail.com" required value="{{@old('email')}}">
             </div>
             <div class="form-group mt-3">
-              <input type="text" class="form-control" name="subject" id="subject" placeholder="Sujet de conversation" required value="{{@old('subject')}}">
+              <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject of conversation" required value="{{@old('subject')}}">
             </div>
             <div class="form-group mt-3">
               <textarea class="form-control" name="content" rows="5" placeholder="content" required></textarea>

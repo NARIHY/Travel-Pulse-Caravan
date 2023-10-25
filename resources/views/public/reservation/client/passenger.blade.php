@@ -20,7 +20,7 @@
             </div>
             <div class="row" style="margin-top: 10px">
                 <div class="col-md-6 form-group">
-                    <input type="text" class="form-control" name="phone_number" id="phone_number" placeholder="Vyour phone number" required value="{{@old('phone_number')}}">
+                    <input type="text" class="form-control" name="phone_number" id="phone_number" placeholder="your phone number" required value="{{@old('phone_number')}}">
                 </div>
 
                 <div class="col-md-6 form-group mt-3 mt-md-0">
