@@ -393,6 +393,12 @@ $user = Auth::user();
           <span>Site</span>
         </a>
       </li><!-- Sites -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{{route('Admin.Newsletter.listing')}}">
+          <i class="bi bi-envelope"></i>
+          <span>Newsletter</span>
+        </a>
+      </li><!-- End Contact Page Nav -->
 
 
 

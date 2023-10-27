@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ContactRequest;
 use App\Models\Contact;
+use App\Models\User;
+use App\Notifications\ContactsNotification;
 use Egulias\EmailValidator\EmailValidator;
 use Egulias\EmailValidator\Validation\DNSCheckValidation;
 use Egulias\EmailValidator\Validation\MultipleValidationWithAnd;
@@ -40,6 +42,16 @@ class ContactController extends Controller
                 // The email address is valid
                 // Create an instance of the contact model with the validated data
                 $contact = Contact::create($data);
+
+                $passenger = User::where('role','!=','1')->get();
+
+                //boucle to get every passenger
+                foreach($passenger as $passengers) {
+                    //to differency the id of trip and the id of many passenger to send notification
+
+                    $pass = User::findOrFail($passengers->id);
+                    $pass->notify(new ContactsNotification($contact->id));
+                }
                 return redirect()->route('Public.index')->with('success', 'Thank you for contacting us');
             } else {
                 // The email address is not valid
@@ -75,6 +87,14 @@ class ContactController extends Controller
                 // The email address is valid
                 // Create an instance of the contact model with the validated data
                 $contact = Contact::create($data);
+                $passenger = User::where('role','!=','1')->get();
+                //boucle to get every passenger
+                foreach($passenger as $passengers) {
+                    //to differency the id of trip and the id of many passenger to send notification
+                    $i = $passengers->passenger_id;
+                    $pass = User::findOrFail($i);
+                    $pass->notify(new ContactsNotification($contact->id));
+                }
                 return redirect()->route('Public.contacts')->with('success', 'Thank you for contacting us');
             } else {
                 // The email address is not valid

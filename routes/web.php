@@ -10,6 +10,7 @@ use App\Http\Controllers\ColisController;
 use App\Http\Controllers\CompteControllers;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ManualController;
+use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\PassengerVerificationController;
 use App\Http\Controllers\PersonnelController;
 use App\Http\Controllers\PublicController;
@@ -21,6 +22,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PublicityController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\ReservationPublicController;
+use App\Http\Controllers\SubscriberController;
+use App\Http\Controllers\TestController;
 use App\Http\Controllers\TravelController;
 use App\Http\Controllers\TripController;
 use App\Http\Controllers\UsersController;
@@ -61,6 +64,8 @@ Route::prefix('/')->name('Public.')->group( function (){
     Route::get('/', function () {
         return view('welcome');
     });
+    //Route for subscriber
+    Route::post('/Abonement-newsletter', [SubscriberController::class, 'subscribe'])->name('subscribe');
     //for policy
     Route::get('/policy', [ColisController::class, 'condition'])->name('condition');
     Route::get('/terms-of-policy', [ColisController::class, 'terme'])->name('terme');
@@ -274,6 +279,19 @@ Route::prefix('/Administration')->middleware(['auth', 'verified', 'checkRole:1']
         Route::get('/{id}/Liste-des-passager', [PassengerVerificationController::class, 'verify'])->name('verify');
         Route::get('/{identification}', [PassengerVerificationController::class, 'passenger'])->name('view');
     });
+    //route for newsletter
+     Route::prefix('/Newsletter')->name('Newsletter.')->group( function () {
+        Route::get('/', [NewsletterController::class, 'listing'])->name('listing');
+        Route::get('/creation', [NewsletterController::class, 'create'])->name('create');
+        Route::post('/creation', [NewsletterController::class, 'store'])->name('store');
+
+        //update
+        Route::get('/{id}/edition', [NewsletterController::class, 'edit'])->name('edit');
+        Route::put('/{id}/edition', [NewsletterController::class, 'update'])->name('update');
+
+        //send
+        Route::post('/{id}/Poster-le-newsletter', [NewsletterController::class, 'sendEmail'])->name('send');
+     });
 }) ;
 
 //User manual
@@ -281,3 +299,6 @@ Route::prefix('Manuelle-d-utilisation')->name('Manual.')->group( function () {
     Route::get('/', [ManualController::class, 'greeting'])->name('greeting');
     Route::get('/Authentification', [ManualController::class, 'authetificate'])->name('authetificate');
 });
+
+//test
+Route::get('/test', [TestController::class, 'test']);

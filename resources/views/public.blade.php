@@ -46,13 +46,14 @@
       <nav id="navbar" class="navbar">
         <ul>
             <li><a class="nav-link scrollto @if (request()->routeIS('Public.index')) active @endif" href="{{route('Public.index')}}">Home</a></li>
-
+            <li><a class="nav-link scrollto @if (request()->routeIS('Public.information')) active  @endif" href="{{route('Public.information')}}">Information</a></li>
             <li><a class="nav-link scrollto @if (request()->routeIS('Public.service')) active @endif" href="{{route('Public.service')}}">Our services</a></li>
+            <li><a class="nav-link scrollto @if (request()->routeIS('Public.contacts')) active @endif" href="{{route('Public.contacts')}}">Contact</a></li>
             <li><a class="nav-link scrollto @if (request()->routeIS('Public.Reservation.index')) active @endif" href="{{ route('Public.Reservation.index')}}">To book</a></li>
 
 
-            <li><a class="nav-link scrollto @if (request()->routeIS('Public.contacts')) active @endif" href="{{route('Public.contacts')}}">Contact</a></li>
-            <li><a class="nav-link scrollto @if (request()->routeIS('Public.information')) active  @endif" href="{{route('Public.information')}}">Information</a></li>
+
+
           @if (!Illuminate\Support\Facades\Auth::check())
             <li><a class="nav-link scrollto" href="{{route('register')}}">Register</a></li>
             <li><a class="nav-link scrollto" href="{{route('login')}}">Login</a></li>
@@ -105,22 +106,22 @@
           </div>
 
           <div class="col-lg-2 col-md-6 footer-links">
-            <h4>Lien utile</h4>
+            <h4>Usefull link</h4>
             <ul>
               <li><i class="bx bx-chevron-right"></i> <a href="{{route('Public.index')}}">Home</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="{{route('Public.information')}}">Information</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="{{route('Public.service')}}">Our services</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="{{route('Public.condition')}}">Terms of use</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="{{route('Public.terme')}}">Privacy Policy</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{{route('Public.Personel.index')}}">Personal transportation</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{{route('Public.Colis.index')}}">Express parcel</a></li>
             </ul>
           </div>
 
           <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Notre service</h4>
+            <h4>Our service</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="{{route('Public.Personel.index')}}">Personal transportation</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="{{route('Public.Colis.index')}}">Express parcel</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="{{route('Manual.greeting')}}">User Manual</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{{route('Public.condition')}}">Terms of use</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{{route('Public.terme')}}">Privacy Policy</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{{route('Manual.greeting')}}">C.G.U</a></li>
                 <!--
                     <li><i class="bx bx-chevron-right"></i> <a href="#">Location de voiture</a></li>
                 -->
@@ -133,6 +134,17 @@
             <p>
                 Join our community by creating an account today and don't miss any of our exciting news. Be the first to know about our exclusive offers, news and travel advice. Sign up now to stay connected with Travel Pulse Caravan!
             </p>
+
+             <form action="{{route('Public.subscribe')}}" method="post">
+                @csrf
+              <input type="email" name="email"><input type="submit" value="Subscribe">
+            </form>
+            @if(session('good'))
+                <p style="color: green">{{session('good')}}</p>
+            @endif
+            @if(session('bad'))
+                <p style="color: red">{{session('bad')}}</p>
+            @endif
           </div>
 
         </div>
@@ -143,11 +155,9 @@
 
       <div class="me-md-auto text-center text-md-start">
         <div class="copyright">
-          &copy; Copyright <strong><span>Briqueweb</span></strong>
+          &copy; Copyright <strong><span>Briqueweb</span></strong> All rights reserved
         </div>
-        <div class="credits">
-          Designed by NARIHY maheninarandrianarisoa@gmail.com
-        </div>
+
       </div>
       <div class="social-links text-center text-md-right pt-3 pt-md-0">
         <a href="https://www.briqueweb.com/" class="twitter"><i class="bi bi-globe"></i></a>

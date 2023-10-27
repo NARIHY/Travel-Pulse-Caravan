@@ -19,11 +19,13 @@ class PublicController extends Controller
     {
         $compteur = Compteur::create();
         $home = HomeAdmin::orderBy('created_at', 'desc')
-                            ->paginate(2);
+                            ->paginate(1);
+        $before = HomeAdmin::orderBy('created_at', 'desc')->skip(1)->take(1)->get();
         $category = Category::orderBy('id', 'asc')
                                 ->get();
         return view('public.index', [
             'home' => $home,
+            'before' => $before,
             'category' => $category
         ]);
     }

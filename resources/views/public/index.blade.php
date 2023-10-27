@@ -37,6 +37,29 @@
                 </div>
             </div>
         @endforeach
+        @foreach ($before as $h)
+        <div class="row">
+            <div class="col-lg-6 pt-4 pt-lg-0">
+                <h3>{{$h->title}}</h3>
+                <p style="text-align: justify">
+                    {{$h->content}}
+                </p>
+            </div>
+            <div class="col-lg-6">
+                @php
+                $m = Spatie\MediaLibrary\MediaCollections\Models\Media::where('collection_name', 'home_collection')
+                                    ->where('model_type', App\Models\HomeAdmin::class)
+                                    ->where('model_id', $h->id)
+                                    ->get();
+                @endphp
+                @foreach ($m as $med)
+                    <img src="{{$med->getUrl()}}" class="img-fluid" alt="{{$h->title}}" width="100%">
+                @endforeach
+
+            </div>
+
+        </div>
+    @endforeach
 
 
     </div>
@@ -65,11 +88,11 @@ Whether you dream of white sand beaches, wilderness explorations, cultural disco
 
         @foreach ($category as $categories)
             <div class="col-md-3" data-aos="zoom-in" data-aos-delay="100" style="margin-bottom: 5px">
-                <div class="icon-box iconbox-@if($categories->id == 1)dark @elseif($categories->id == 2)blue @elseif ($categories->id == 3)orange @elseif ($categories->id == 4)red @elseif($categories->id == 5)yellow @endif">
+                <div class="icon-box iconbox-blue">
                     <div class="icon">
                         <i class="bi bi-bus-front-fill"></i>
                     </div>
-                   <a href="#"> <h4>{{$categories->flotte}}</h4></a>
+                   <a href="#"> <h4 style="color: grey">{{$categories->flotte}}</h4></a>
 
                 </div>
           </div>
@@ -150,7 +173,8 @@ Whether you dream of white sand beaches, wilderness explorations, cultural disco
             @if (session('success'))
                 <div style="color: green">{{session('success')}}</div>
               @endif
-            <div class="text-center" style="margin-top: 10px"><button type="submit">Send <img src="{{asset('gif-newsletter.gif')}}" alt="" width="25px"> </button></div>
+            <div class="text-center" style="margin-top: 10px"><button type="submit">Send </button></div>
+            <!-- <img src="{{asset('gif-newsletter.gif')}}" alt="" width="25px">  -->
           </form>
         </div>
 
