@@ -235,9 +235,9 @@ class ReservationPublicController extends Controller
         //verry important
         $reservation = \App\Models\Reservation::findOrFail($reservationId);
         // Replace the following information with your real access and application data
-        $customerKey = 'RgRYEYiLbLVT0qkrCM1vC6bDlq8a';
-        $customerSecret = 'dfzx1_PmwuajUS4uEGiLgGy9zrga';
-        $accessToken = 'eyJ4NXQiOiJPRE5tWkRFMll6UTRNVEkxTVRZME1tSmhaR00yTUdWa1lUZGhOall5TWpnM01XTmpNalJqWWpnMll6bGpNRGRsWWpZd05ERmhZVGd6WkRoa1lUVm1OZyIsImtpZCI6Ik9ETm1aREUyWXpRNE1USTFNVFkwTW1KaFpHTTJNR1ZrWVRkaE5qWXlNamczTVdOak1qUmpZamcyWXpsak1EZGxZall3TkRGaFlUZ3paRGhrWVRWbU5nX1JTMjU2IiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiJtYWhlbmluYXJhbmRyaWFuYXJpc29hQGdtYWlsLmNvbUBjYXJib24uc3VwZXIiLCJhdXQiOiJBUFBMSUNBVElPTiIsImF1ZCI6IlJnUllFWWlMYkxWVDBxa3JDTTF2QzZiRGxxOGEiLCJuYmYiOjE2OTcxODI4NTQsImF6cCI6IlJnUllFWWlMYkxWVDBxa3JDTTF2QzZiRGxxOGEiLCJzY29wZSI6IkVYVF9JTlRfTVZPTEFfU0NPUEUiLCJpc3MiOiJodHRwczpcL1wvYXBpbS5wcmVwLnRlbG1hLm1nOjk0NDNcL29hdXRoMlwvdG9rZW4iLCJleHAiOjE2OTcxODY0NTQsImlhdCI6MTY5NzE4Mjg1NCwianRpIjoiNDk1N2YwMDgtOGRlZC00MWQ5LThmYTQtMTY5N2IzODQ3ZTkxIn0.KEP8XoWAaqRmn1fO0RmgakZZHte_Db85ZS0Ae1DqKj8idf9Xyq53RsavHBkaKSupImycTgMklAXIg-quG--hidGnlj--qXbVx8U37eB-rgNwlVBi-exqt2KLi18Tv22dFbpjsezna1rHBhsDZ0MEwJTRZyGvSrL9ZXOMAqTlTBm5iHQhfyifHNsQAJXzRMA9f3j2dcKkkw8Qt0zqgU1GzG-9_xAx1HErl_vPXPQwe0MhZVNbckDRdH6aGTRzt27_VIngYxS98gM4Z6KOx2JDIKTCfFV3VDsYVu_D4MzFu16ww4avC0fdnRmPjbLi9tOB4YzZ8mPMeAzKCFE0Rx0vng';
+        $customerKey = '';
+        $customerSecret = '';
+        $accessToken = '';
         // API URL
         //https://devapi.mvola.mg/mvola/mm/transactions/type/merchantpay/1.0.0/
         // scandbox api
